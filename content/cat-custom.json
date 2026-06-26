@@ -1,0 +1,165 @@
+{
+  "categoryId": "custom",
+  "senderName": "Ism",
+  "receiverName": "Qabul qiluvchi",
+  "customMessage": "Bu maxsus sizga atab yaratildi ✨",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Bu o'yinni kim siz uchun yaratdi deb o'ylaysiz?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Sizi yaxshi ko'radigan biri! ✨",
+        "Bilmayman",
+        "Tasodifiy kishi",
+        "Kompyuter"
+      ],
+      "wrongMessage": "Bu yaqin odam yaratdi! 💕",
+      "correctMessage": "Ha! Sizni yaxshi ko'radigan biri! ✨"
+    },
+    {
+      "id": 2,
+      "text": "Siz uchun maxsus narsalar yaratilganda qanday his qilasiz?",
+      "emoji": "🎁",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Oddiy",
+        "Uyalib ketaman",
+        "Ichim jiz etadi va xursand bo'laman 🎁",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Maxsus narsalar juda yaxshi-ku! 🎁",
+      "correctMessage": "Ha! Shunday bo'lishi kerak! 🎁💕"
+    },
+    {
+      "id": 3,
+      "text": "Agar bir kunlik erkin vaqt bo'lsa, nima qilardingiz?",
+      "emoji": "🌸",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Uyda uxlab qolardim",
+        "Sevganlarim bilan bo'lardim 🌸",
+        "Ishlayman",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Sevganlar — eng muhim! 🌸",
+      "correctMessage": "Aynan! Sevganlar bilan vaqt — eng qimmatli! 🌸💕"
+    },
+    {
+      "id": 4,
+      "text": "Baxt uchun sizga nima kerak?",
+      "emoji": "😊",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Ko'p pul",
+        "Mashhurlik",
+        "Hamma narsa bo'lsin",
+        "Sog'lik, mehr va yaqinlar 😊"
+      ],
+      "wrongMessage": "Moddiy narsalar yetarli emas! 😊",
+      "correctMessage": "To'g'ri! Mehr va yaqinlar — eng katta boylik! 😊💕"
+    },
+    {
+      "id": 5,
+      "text": "Bu o'yinni o'ynashdan oldin qanday kayfiyatda edingiz?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Oddiy, lekin endi biroz xursandman 🌈",
+        "Xafa edim",
+        "Zerikdim",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Umid qilamanki, biroz xursand bo'ldingiz! 🌈",
+      "correctMessage": "Xursandlangiz! Bu mening maqsadim edi! 🌈💕"
+    },
+    {
+      "id": 6,
+      "text": "Sizning eng kuchli tomoningiz nima?",
+      "emoji": "💪",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Ko'rinishim",
+        "Aqilim",
+        "Yuragim va mehrim 💪",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Yurak va mehr — eng katta kuch! 💪",
+      "correctMessage": "Ha! Yurak kuchi — hamma narsadan kuchli! 💪💕"
+    },
+    {
+      "id": 7,
+      "text": "Biror kishi sizga 'rahmat' demasa ham, yaxshilik qilasizmi?",
+      "emoji": "🤍",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, qaytarim bo'lmasa qilmayman",
+        "Ha, yaxshilik uchun yaxshilik qilaman 🤍",
+        "Ba'zan",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Yaxshilik uchun yaxshilik — eng go'zal xulq! 🤍",
+      "correctMessage": "Ha! Bu — siz haqingizda eng yaxshi narsa! 🤍💕"
+    },
+    {
+      "id": 8,
+      "text": "Bu o'yinni kim yubordi deb o'ylaysiz?",
+      "emoji": "💌",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Tasodifiy kishi",
+        "Bilmayman",
+        "Reklama",
+        "Sizi yaxshi ko'radigan va o'ylagan biri 💌"
+      ],
+      "wrongMessage": "U siz haqingizda o'yladi! 💌",
+      "correctMessage": "Ha! U siz uchun vaqt sarfladi! 💌💕"
+    },
+    {
+      "id": 9,
+      "text": "Bu o'yin sizni kuld irdimi?",
+      "emoji": "😄",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha, biroz kuldim 😄",
+        "Yo'q",
+        "Bilmayman",
+        "Ko'p emas"
+      ],
+      "wrongMessage": "Kamida biroz kuldingiz deb umid qilaman! 😄",
+      "correctMessage": "Mana shu! Jilmayish — eng yaxshi narsa! 😄💕"
+    },
+    {
+      "id": 10,
+      "text": "Bu o'yinni yaratgan kishiga nima derdingiz?",
+      "emoji": "💕",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Hech narsa",
+        "Bu g'alati edi",
+        "Rahmat, bu menga yoqdi! 💕",
+        "Nima bu?"
+      ],
+      "wrongMessage": "U sizni xursand qilishga harakat qildi! 💕",
+      "correctMessage": "Rahmat degan so'zingiz uni baxtli qiladi! 💕✨"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "Bu o'yin siz uchun maxsus yaratildi ✨",
+    "body": "Bu savollarni javobladingiz va o'zingiz haqingizda ko'p narsani ko'rsatdingiz. Siz ajoyib insonziz — bilasizmi? Bu o'yinni yuborgan kishi siz haqingizda o'yladi va bu bitta dalilat.",
+    "signoff": "Sizni qadrlagan biri ✨",
+    "bonusReveal": "💌 Maxsus sir: Siz doim kimningdir ko'zida yulduzday porlayziz ⭐"
+  }
+}

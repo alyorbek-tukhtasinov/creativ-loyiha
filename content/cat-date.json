@@ -1,0 +1,165 @@
+{
+  "categoryId": "date",
+  "senderName": "Sardor",
+  "receiverName": "Malika",
+  "customMessage": "Siz bilan birga bo'lgan har bir daqiqa menga baxt keltiradi 🎬",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Agar men sizi kino ko'rishga taklif qilsam, qanday javob berardingiz?",
+      "emoji": "🎬",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha, albatta! 🎉",
+        "Ehtimol...",
+        "Vaqtim yo'q",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Haqiqatan ham? Yana bir bor o'ylab ko'ring 😊",
+      "correctMessage": "Bilardim! Siz zo'rsiz! 🎬✨"
+    },
+    {
+      "id": 2,
+      "text": "Birgalikda qanday kino ko'rishni afzal ko'rasiz?",
+      "emoji": "🍿",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Qo'rqinchli film",
+        "Hujjatli film",
+        "Romantik komediya",
+        "Jangovar film"
+      ],
+      "wrongMessage": "Hmm, menga boshqacha tuyildi 🤔",
+      "correctMessage": "Ha! Romantik komediya eng yaxshisi! 💕"
+    },
+    {
+      "id": 3,
+      "text": "Kino oldidan nima yeyishni xohlardingiz?",
+      "emoji": "🍿",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Hech narsa",
+        "Popcorn va kola 🍿",
+        "Pizza",
+        "Sushi"
+      ],
+      "wrongMessage": "Kino va popcorn yaralgan juftlik-ku! 😄",
+      "correctMessage": "Albatta popcorn! Kino shu bilan mazali! 🍿"
+    },
+    {
+      "id": 4,
+      "text": "Kino paytida yonimda o'tirish sizga yoqadimi?",
+      "emoji": "🥰",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Farqi yo'q",
+        "Yo'q, alohida o'tiraman",
+        "Bilmayman",
+        "Ha, albatta! 🥰"
+      ],
+      "wrongMessage": "Iltimos qaytadan o'ylab ko'ring... 🥺",
+      "correctMessage": "Voy! Yuragim hapqirib ketdi! 🥰"
+    },
+    {
+      "id": 5,
+      "text": "Kino tugagandan keyin nima qilishni xohlardingiz?",
+      "emoji": "🚶",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Sayr qilish va gaplashish 🌙",
+        "Tez uyga ketish",
+        "Telefon ko'rish",
+        "Uxlash"
+      ],
+      "wrongMessage": "Shuncha vaqt birgalikda bo'lib, keyin ketib qolamizmi? 😕",
+      "correctMessage": "Ha! Kechki sayr va suhbat — eng yaxshi qismi! 🌙"
+    },
+    {
+      "id": 6,
+      "text": "Agar men kechikib qolsam, kutib turasizmi?",
+      "emoji": "⏰",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, ketib qolaman",
+        "5 daqiqa kutaman",
+        "Ha, sabr bilan kutaman 😊",
+        "Telefon qilib so'karaman"
+      ],
+      "wrongMessage": "Menga ishonmadingizmi? 😢",
+      "correctMessage": "Rahmat! Siz judayam yaxshi insonziz! 💕"
+    },
+    {
+      "id": 7,
+      "text": "Kino chiptasini kim to'lashi kerak?",
+      "emoji": "🎟️",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Men o'zim to'layman",
+        "Siz taklif qildingiz, siz to'lang 😄",
+        "Yarimlaymiz",
+        "Tegmaydi menga"
+      ],
+      "wrongMessage": "Ha-ha, logika ishlamadi! 😄",
+      "correctMessage": "To'g'ri! Men bilan kelsangiz, xarajat mening zimmamdaman! 😊"
+    },
+    {
+      "id": 8,
+      "text": "Qanday o'rindiqni tanlardingiz?",
+      "emoji": "💺",
+      "theme": "night",
+      "correctIndex": 3,
+      "options": [
+        "Eng oldingi qator",
+        "Eng orqa qator",
+        "O'rtada, lekin alohida",
+        "O'rtada, yonma-yon 🥰"
+      ],
+      "wrongMessage": "Yonimda o'tirmaysizmi? 🥺",
+      "correctMessage": "Yonma-yon o'tirgan eng yaxshi! 💕"
+    },
+    {
+      "id": 9,
+      "text": "Agar men qo'rqib ketib qolsam, qo'limni ushlab turasizmi?",
+      "emoji": "🤝",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Ha, albatta! 🤝",
+        "Yo'q, men ham qo'rqaman",
+        "Nima uchun?",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Aw... 🥺 Yana bir bor ko'ring",
+      "correctMessage": "Rahmat! Siz mening qahramonim! 🦸‍♂️"
+    },
+    {
+      "id": 10,
+      "text": "Bu uchrashuvimiz birinchi bo'ladimi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Ha, birinchi va oxirgi",
+        "Birinchi, lekin oxirgi emas! 🌟",
+        "Bilmayman",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Nima? Yana bir bor uchrashamasmiz? 😢",
+      "correctMessage": "Voy! Shunday deb umid qilamayn! 💕✨"
+    }
+  ],
+  "finalReward": {
+    "type": "ticket",
+    "headline": "Tabriklaymiz! Siz testdan o'tdingiz! 🎬",
+    "body": "Demak, siz menga rozi bo'ldingiz! Bu ish uchun raxmat. Mana sizning chiptangiz — kino kutmoqda!",
+    "signoff": "Sizni kutaman,\nSardoringizdan 💕",
+    "bonusReveal": "📍 Joy: Toshkent, Cinemark IMAX\n📅 Vaqt: Siz tanlagan kun\n🎟️ 2 ta VIP o'rindiq"
+  }
+}

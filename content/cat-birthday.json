@@ -1,0 +1,165 @@
+{
+  "categoryId": "birthday",
+  "senderName": "Sherzod",
+  "receiverName": "Gulnora",
+  "customMessage": "Bugun sizning maxsus kuningiz! Bu o'yin sizga atab yaratildi 🎂",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Tug'ilgan kuningiz haqida qanday his qilasiz?",
+      "emoji": "🎂",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Oddiy kun",
+        "Yoqtirmayman",
+        "Eng sevimli kunim! 🎂",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Bu maxsus kun-ku! 🎂",
+      "correctMessage": "Ha! Bu maxsus kun — siz ham maxsuzsiz! 🎂💕"
+    },
+    {
+      "id": 2,
+      "text": "Tug'ilgan kuningizda eng yaxshi sovg'a nima bo'lur edi?",
+      "emoji": "🎁",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Qimmat narsa",
+        "Sevganlarimning e'tibori va mehr 🎁",
+        "Pul",
+        "Kiyim"
+      ],
+      "wrongMessage": "Pul va narsa emas, mehr muhim! 💕",
+      "correctMessage": "To'g'ri! Mehr — eng qimmat sovg'a! 🎁💕"
+    },
+    {
+      "id": 3,
+      "text": "Tug'ilgan kuningizda tilak tilasangiz, nima tilardingiz?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Ko'p pul",
+        "Mashhurlik",
+        "Uzun umr",
+        "Yaqinlarim bilan baxt va sog'lik 🌟"
+      ],
+      "wrongMessage": "Moddiy narsalar o'tkinchi! 🌟",
+      "correctMessage": "Baxt va sog'lik — eng katta boylik! 🌟💕"
+    },
+    {
+      "id": 4,
+      "text": "Tug'ilgan kun tortini bir o'zi yeb qo'yganmi?",
+      "emoji": "🍰",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha, men... shu kunda ruxsat! 😄",
+        "Yo'q, hech qachon",
+        "Bilmayman",
+        "Bu savol nima uchun?"
+      ],
+      "wrongMessage": "Qani gapiring — bilib qo'ydik! 😄",
+      "correctMessage": "Haha! Bugun ruxsat — tug'ilgan kun axir! 🍰😄"
+    },
+    {
+      "id": 5,
+      "text": "Kim birinchi tabrik qilsa, xursand bo'lasizmi?",
+      "emoji": "📱",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Ota-onam",
+        "Do'stlarim",
+        "Eng yaqin insonim — siz! 📱",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Men ham birinchi bo'lishni xohlardim! 😊",
+      "correctMessage": "Voy! Bugun siz uchun birinchi bo'lishga harakat qildim! 📱💕"
+    },
+    {
+      "id": 6,
+      "text": "Tug'ilgan kuningizni qanday o'tkazishni orzu qilyapsiz?",
+      "emoji": "🎉",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Katta ziyofat",
+        "Yaqin odamlar bilan tinch va issiq kechqurun 🎉",
+        "Yolg'iz",
+        "Sayohatda"
+      ],
+      "wrongMessage": "Katta ziyofat ham yaxshi, lekin...",
+      "correctMessage": "Aynan! Issiq kechqurun va yaqin odamlar — bu ideal! 🎉💕"
+    },
+    {
+      "id": 7,
+      "text": "Bir nechta shamni uchirish vaqtida nima tilaysiz?",
+      "emoji": "🕯️",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Hech narsa",
+        "Pul",
+        "Ulug'vor narsalar",
+        "Muhabbat, sog'lik va baxt 🕯️"
+      ],
+      "wrongMessage": "Kichik va samimiy tilak eng ko'p ijobat bo'ladi! 🕯️",
+      "correctMessage": "Baraka topsin bu tilagingiz! 🕯️💕"
+    },
+    {
+      "id": 8,
+      "text": "Bu yil qanday maqsad qo'ydingiz?",
+      "emoji": "🎯",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "O'zim va yaqinlarim uchun yaxshi odam bo'lish 🎯",
+        "Ko'p pul topish",
+        "Maqsad qo'ymadim",
+        "Mashhur bo'lish"
+      ],
+      "wrongMessage": "Yaxshi odam bo'lish — eng ulug' maqsad! 🎯",
+      "correctMessage": "Bu maqsad bilan har yil muvaffaqiyatli bo'lasiz! 🎯💕"
+    },
+    {
+      "id": 9,
+      "text": "Siz bu yil nima o'rgandingiz?",
+      "emoji": "📚",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Hech narsa",
+        "Faqat ishda",
+        "Hayot, sevgi va o'zim haqimda ko'p narsa 📚",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Albatta biror narsa o'rgandingiz! 😊",
+      "correctMessage": "Ha! Hayot — eng yaxshi muallim! 📚💕"
+    },
+    {
+      "id": 10,
+      "text": "Keyingi yil sizni yanada baxtli qiladimi?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Bilmayman",
+        "Ha, ishonaman! 🌈",
+        "Ehtimol",
+        "Vaqt ko'rsatadi"
+      ],
+      "wrongMessage": "Ishoningnn! Yaxshi narsalar kutmoqda! 🌈",
+      "correctMessage": "Ishoningnn! Siz uchun eng yaxshi yil bu yil! 🌈💕"
+    }
+  ],
+  "finalReward": {
+    "type": "gift",
+    "headline": "Gulnora, tug'ilgan kuningiz muborak! 🎂",
+    "body": "Siz faqat tug'ilgan kun emas — hayotimning bayrami bo'ldingiz. Yil aylansada, biz birgalikda bo'lamiz. Keling, bu yilni birgalikda yanada maxsus qilaylik!",
+    "signoff": "Sherzoddан katta mehr bilan 🎂",
+    "bonusReveal": "🎁 Maxsus sovg'a: Bugun kechqurun sizni kutayotgan ajoyib narsa bor — tayyor bo'ling!"
+  }
+}

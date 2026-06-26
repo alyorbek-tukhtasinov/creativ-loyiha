@@ -1,0 +1,166 @@
+{
+  "categoryId": "anniversary",
+  "senderName": "Ulugbek",
+  "receiverName": "Fotima",
+  "customMessage": "Birga bo'lganimizning har bir yili — oltin sahifa 💍",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Biz birgalikda bo'lgan yillar haqida nima deya olasiz?",
+      "emoji": "💍",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Oddiy vaqt",
+        "Ba'zan yaxshi, ba'zan yo'q",
+        "Qiyin vaqtlar ham bo'ldi",
+        "Eng yaxshi yillarim — sizning yoningizdagilar 💍"
+      ],
+      "wrongMessage": "Birga o'tgan vaqt — oltin! 💍",
+      "correctMessage": "Ha! Siz bilan o'tgan har lahza qimmatli! 💍💕"
+    },
+    {
+      "id": 2,
+      "text": "Birinchi marta 'sevaman' deganingizda qanday his qildingiz?",
+      "emoji": "❤️",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Qo'rqib ketdim, lekin xursand bo'ldim ❤️",
+        "Hech narsa sezmadim",
+        "Uyaldim va ketib qoldim",
+        "Shunchaki so'z edi"
+      ],
+      "wrongMessage": "Ha... o'sha lahza maxsus bo'lgan! ❤️",
+      "correctMessage": "Men ham xuddi shunday his qildim! ❤️💕"
+    },
+    {
+      "id": 3,
+      "text": "Bu munosabatning eng yaxshi tomoni nima?",
+      "emoji": "🌺",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Sovg'alar va dabdaba",
+        "Baham ko'rgan ovqatlar",
+        "Bir-birimizni qabul qilish va tushunish 🌺",
+        "Birga ko'rgan filmlar"
+      ],
+      "wrongMessage": "Tushunish va qabul qilish — asosiy! 🌺",
+      "correctMessage": "Aynan! Bu — haqiqiy muhabbat belgilarimiz! 🌺💕"
+    },
+    {
+      "id": 4,
+      "text": "Bizning eng og'ir vaqtimizda kim kuchli bo'ldi?",
+      "emoji": "💪",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Men",
+        "Ikkovimiz ham bir-birimizga suyanib kuch oldik 💪",
+        "Siz",
+        "Hech kim"
+      ],
+      "wrongMessage": "Birgalikda kuchli bo'ldik-ku! 💪",
+      "correctMessage": "Ha! Birgalikda — ikki marta kuchlimiz! 💪💕"
+    },
+    {
+      "id": 5,
+      "text": "Yillik nishon kechasida nima qilishni orzu qilyapsiz?",
+      "emoji": "🌹",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Uyda qolish",
+        "Kino ko'rish",
+        "Do'stlar bilan nishonlash",
+        "Ikkovimiz uchun maxsus kecha — restoran va stargazing 🌹"
+      ],
+      "wrongMessage": "Maxsus kecha kerak-ku! 🌹",
+      "correctMessage": "Restoran va yulduzlar! Bu mening ham orzuim! 🌹💕"
+    },
+    {
+      "id": 6,
+      "text": "Agar o'tmishga qayta borolsam, o'zgartirmoqchi bo'lgan narsa bormi?",
+      "emoji": "⏳",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Yo'q, hamma narsa to'g'ri sodir bo'ldi ⏳",
+        "Ko'p narsa",
+        "Faqat ba'zi xatolar",
+        "Hamma narsani"
+      ],
+      "wrongMessage": "Hamma xato — saboq! O'zgartirmaslik kerak! ⏳",
+      "correctMessage": "To'g'ri! Har bir lahza bizni bugungi biz qildi! ⏳💕"
+    },
+    {
+      "id": 7,
+      "text": "Siz meni qachon ko'proq sevasiz?",
+      "emoji": "💖",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Faqat xursand vaqtlarda",
+        "Sovg'a berganimda",
+        "Doim — har holda, har vaqt 💖",
+        "Yaxshi kiyinib chiqqanimda"
+      ],
+      "wrongMessage": "Faqat yaxshi vaqtlarda emas-ku! 💖",
+      "correctMessage": "DOIM! Bu javob — mening orzuim! 💖💕"
+    },
+    {
+      "id": 8,
+      "text": "Keyingi yillikda nima qilishni rejalashtiryapsiz?",
+      "emoji": "✈️",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Hali bilmayman",
+        "Birgalikda yangi joyga sayohat ✈️",
+        "Oddiy nishon",
+        "Uydagi kichik ziyofat"
+      ],
+      "wrongMessage": "Keling, maxsus reja qilaylik! ✈️",
+      "correctMessage": "Sayohat! Yangi xotiralar yaratamiz! ✈️💕"
+    },
+    {
+      "id": 9,
+      "text": "Siz mening qaysi xususiyatimdan ilhomlanyapsiz?",
+      "emoji": "⭐",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Tashqi ko'rinishingizdan",
+        "Aqlingizdan",
+        "Hazil-muloqotingizdan",
+        "Hech qachon taslim bo'lmasligingiz va mehr-muhabbatingizdan ⭐"
+      ],
+      "wrongMessage": "Ichki sifatlar muhimroq! ⭐",
+      "correctMessage": "Bu javob... ko'zimni yoshlattirdi! ⭐💕"
+    },
+    {
+      "id": 10,
+      "text": "Umr bo'yi birga bo'lishni xohlaysizmi?",
+      "emoji": "💍",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Ha, umr bo'yi — shubhasiz! 💍",
+        "Ehtimol",
+        "Ko'ramiz",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Iltimos... 🥺 Men umidvorm",
+      "correctMessage": "UMRBOD! Bu so'z mening yuragimda naqsh bo'ldi! 💍💕"
+    }
+  ],
+  "finalReward": {
+    "type": "countdown",
+    "headline": "Fotima, birga bo'lganimizning nishoni muborak! 💍",
+    "body": "Har bir yil siz bilan yanada yaxshilanaman. Sizning kulishingiz, fikrlaringiz, mehr-muhabbatingiz — bularning hammasi mening hayotimni boyitadi. Yana ko'p yillar birgalikda!",
+    "signoff": "Ulugbekdan butun qalb bilan 💍",
+    "bonusReveal": "📅 Keyingi nishonimizga: Birgalikda sayohat rejalashtirildi!",
+    "countdownDate": "2027-06-25"
+  }
+}

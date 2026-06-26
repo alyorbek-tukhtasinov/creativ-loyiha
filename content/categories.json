@@ -1,0 +1,153 @@
+[
+  {
+    "id": "date",
+    "file": "cat-date.json",
+    "emoji": "🎬",
+    "title": "Uchrashuvga taklif",
+    "description": "Sevgilini uchrashuvga chaqirish uchun",
+    "color": "#FF6B9D",
+    "bgTheme": "roses",
+    "endReward": {
+      "type": "ticket",
+      "title": "Kino chiptasi 🎬",
+      "message": "Siz menga rozi bo'ldingiz! Mana sizning chiptangiz...",
+      "details": "2 kishi • Toshkent, Cinemark • Yaqin orada"
+    }
+  },
+  {
+    "id": "love",
+    "file": "cat-love.json",
+    "emoji": "💕",
+    "title": "Sevgi e'tirofi",
+    "description": "Sevgingizni aytish uchun maxsus o'yin",
+    "color": "#FF4B8B",
+    "bgTheme": "hearts",
+    "endReward": {
+      "type": "letter",
+      "title": "Sevgi xati 💕",
+      "message": "Yuragimning so'zlari...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "longdistance",
+    "file": "cat-longdistance.json",
+    "emoji": "✈️",
+    "title": "Uzoqdagi sevgi",
+    "description": "Uzoqda bo'lgan sevgilini ko'nglini ko'tarish",
+    "color": "#6B9DFF",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "letter",
+      "title": "Maxfiy xat 💌",
+      "message": "Barcha savollarga to'g'ri javob berdingiz! Sizga maxsus xabar bor...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "memory",
+    "file": "cat-memory.json",
+    "emoji": "📸",
+    "title": "Xotiralar",
+    "description": "Birgalikda o'tkazgan vaqtlarni eslash",
+    "color": "#9B6BFF",
+    "bgTheme": "flowers",
+    "endReward": {
+      "type": "letter",
+      "title": "Xotiralar albomi 📸",
+      "message": "Bizning eng ajoyib xotiralarimiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "future",
+    "file": "cat-future.json",
+    "emoji": "🌟",
+    "title": "Kelajak rejalari",
+    "description": "Birga quradigan kelajak haqida o'yin",
+    "color": "#FFB347",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "gift",
+      "title": "Kelajak rejasi 🌟",
+      "message": "Bizning birgalikdagi kelajagimiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "apology",
+    "file": "cat-apology.json",
+    "emoji": "🙏",
+    "title": "Kechirim so'rash",
+    "description": "Yurakdan kechirim so'rash uchun maxsus o'yin",
+    "color": "#A8D8EA",
+    "bgTheme": "night",
+    "endReward": {
+      "type": "letter",
+      "title": "Yurakdan kechirim 🙏",
+      "message": "Men chin dildan kechirim so'rayman...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "birthday",
+    "file": "cat-birthday.json",
+    "emoji": "🎂",
+    "title": "Tug'ilgan kun",
+    "description": "Tug'ilgan kunni maxsus nishonlash",
+    "color": "#FF6B6B",
+    "bgTheme": "flowers",
+    "endReward": {
+      "type": "gift",
+      "title": "Tug'ilgan kun sovg'asi 🎂",
+      "message": "Sizga maxsus sovg'a tayyorladim!",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "anniversary",
+    "file": "cat-anniversary.json",
+    "emoji": "💍",
+    "title": "Yillik nishon",
+    "description": "Birgalikdagi yillikni nishonlash",
+    "color": "#C9A96E",
+    "bgTheme": "roses",
+    "endReward": {
+      "type": "countdown",
+      "title": "Yillik nishon 💍",
+      "message": "Bizning ajoyib sayohatimiz davom etmoqda...",
+      "details": "custom_message_field",
+      "countdownDate": "2027-06-25"
+    }
+  },
+  {
+    "id": "flirt",
+    "file": "cat-flirt.json",
+    "emoji": "😘",
+    "title": "Flirt",
+    "description": "Yengil va qiziqarli flirt o'yini",
+    "color": "#FF8C69",
+    "bgTheme": "hearts",
+    "endReward": {
+      "type": "letter",
+      "title": "Sirli xabar 😘",
+      "message": "Bilasizmi, siz meni qiziqtirasiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "custom",
+    "file": "cat-custom.json",
+    "emoji": "✨",
+    "title": "Maxsus",
+    "description": "O'zingiz to'liq moslashtira oladigan kategoriya",
+    "color": "#B5EAD7",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "letter",
+      "title": "Maxsus xabar ✨",
+      "message": "Siz uchun maxsus yaratildi...",
+      "details": "custom_message_field"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/play/:path*", "destination": "/game/index.html" },
+    { "source": "/admin", "destination": "/admin/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/content/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ]
+}

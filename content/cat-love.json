@@ -1,0 +1,165 @@
+{
+  "categoryId": "love",
+  "senderName": "Amir",
+  "receiverName": "Zulfiya",
+  "customMessage": "Bu o'yinni siz uchun yaratdim, chunki so'zlar yetarli emas 💕",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Siz uchun sevgi nima?",
+      "emoji": "💕",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Faqat tuyg'u",
+        "Romantik kino",
+        "So'z",
+        "Hayotning ma'nosi 💕"
+      ],
+      "wrongMessage": "Hmm, men boshqacha o'ylayman... 🌹",
+      "correctMessage": "Ha! Sevgi hayotning ma'nosi! 💕"
+    },
+    {
+      "id": 2,
+      "text": "Kimdir sizni sevsa, birinchi navbatda nima qilishi kerak?",
+      "emoji": "🌹",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Hurmat ko'rsatish va qadrlash 🌹",
+        "Qimmat sovg'alar berish",
+        "Doimo yonida bo'lish",
+        "Ko'p xabar yozish"
+      ],
+      "wrongMessage": "Bu muhim, lekin asosiysi bu emas 😊",
+      "correctMessage": "To'g'ri! Hurmat va qadrlash — muhabbatning asosi! 🌹"
+    },
+    {
+      "id": 3,
+      "text": "Siz meni birinchi marta ko'rganingizda nima o'ylagan bo'lardingiz?",
+      "emoji": "👀",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Hech narsa",
+        "Qanday kiyingan?",
+        "Bu odam qiziq... 💭",
+        "Nimaga qarayapti?"
+      ],
+      "wrongMessage": "Rostini ayting... 😄",
+      "correctMessage": "Voy! Men ham xuddi shuni o'yladim! 💕"
+    },
+    {
+      "id": 4,
+      "text": "Mendan nimani eng yaxshi ko'rasiz?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Ko'rinishingizni",
+        "Qalbingizni va tabasumingizni ✨",
+        "Ovozingizni",
+        "Kiyimingizni"
+      ],
+      "wrongMessage": "Ichki go'zallik muhimroq-ku! 😊",
+      "correctMessage": "Aynan! Qalb va tabassum — eng ajoyib narsa! ✨"
+    },
+    {
+      "id": 5,
+      "text": "Sevgi deb ataladigan his qachon paydo bo'ladi?",
+      "emoji": "💗",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Birinchi ko'rishda",
+        "Bir yildan keyin",
+        "Hech qachon bilmaysan",
+        "Qalblar bir-birini taniganda 💗"
+      ],
+      "wrongMessage": "Ha, ba'zan shunday bo'ladi, lekin... 🤔",
+      "correctMessage": "To'g'ri! Qalblar bir-birini tanisa — muhabbat boshlanadi 💗"
+    },
+    {
+      "id": 6,
+      "text": "Siz meni sevasizmi?",
+      "emoji": "❤️",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Ha, judayam! ❤️",
+        "Bilmayman",
+        "Shoyad...",
+        "Bu savol qiyin"
+      ],
+      "wrongMessage": "Iltimos, yana bir bor o'ylab ko'ring 🥺",
+      "correctMessage": "AAAAH! Bu so'zni eshitishni orzu qilardim! ❤️"
+    },
+    {
+      "id": 7,
+      "text": "Yonimda bo'lmagan vaqtlarda meni eslaysizmi?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, band bo'laman",
+        "Ba'zan",
+        "Ha, doim! 💭",
+        "Faqat xabar yozsangiz"
+      ],
+      "wrongMessage": "Hmm... Siz meni kamroq eslaydigan bo'lsa kerak 😢",
+      "correctMessage": "Voy! Men ham sizni doim eslayman! 💭💕"
+    },
+    {
+      "id": 8,
+      "text": "Bizning munosabatimiz qanday bo'lishini xohlaysiz?",
+      "emoji": "🌈",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Oddiy do'stlik",
+        "Chuqur ishonch va sevgiga asoslangan 🌈",
+        "Faqat xabar yozib turish",
+        "Rasmiy"
+      ],
+      "wrongMessage": "Faqat shundaymi? 🤔",
+      "correctMessage": "Aynan! Men ham shunday munosabat istayman! 🌈💕"
+    },
+    {
+      "id": 9,
+      "text": "Menga biror narsa yoqmasa, aytib berasizmi?",
+      "emoji": "🗣️",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "Ha, lekin muloyimlik bilan 💬",
+        "Yo'q, jimgina o'tiraman",
+        "Bilmayman",
+        "Faqat katta muammo bo'lsa"
+      ],
+      "wrongMessage": "Muloqot muhim! 😊",
+      "correctMessage": "Rahmat! Halollik — munosabatning asosi! 💬"
+    },
+    {
+      "id": 10,
+      "text": "Menga bir so'z bilan sevgingizni ifodalasangiz?",
+      "emoji": "💌",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Yaxshi",
+        "Normal",
+        "Ko'p",
+        "Cheksiz 💌"
+      ],
+      "wrongMessage": "Cheksiz sevgi uchun kattaroq so'z kerak! 😄",
+      "correctMessage": "CHEKSIZ! Xuddi mening sevgim kabi! 💌💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "Zulfiya, seni judayam sevaman! 💕",
+    "body": "Bu savollar orqali siz o'zingiz haqingizda ko'p narsalarni ko'rsatdingiz. Siz ajoyib insonziz va men sizni hayotimga kirganingiz uchun shukronaman. Bu tuyg'u — cheksiz va sofdir.",
+    "signoff": "Sizni sevgan Amirdan 💕",
+    "bonusReveal": "💌 Siz uchun maxsus sir: Siz mening har kuni kulib turishimning sababi ekansiz ✨"
+  }
+}

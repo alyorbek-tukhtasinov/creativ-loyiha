@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeartQuest Admin — Link Yaratish</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <header class="admin-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-heart">💕</span>
+        <span class="logo-text">HeartQuest</span>
+        <span class="logo-badge">Admin</span>
+      </div>
+      <p class="header-sub">Sevgi o'yini linkini yarating</p>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- Step 1: Category Selection -->
+    <section class="step" id="step-categories">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <h2>Kategoriya tanlang</h2>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Step 2: Customizer Panel -->
+    <section class="step hidden" id="step-customizer">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <h2>O'yinni moslashtiring</h2>
+        <button class="btn-back" id="btnBack">← Orqaga</button>
+      </div>
+
+      <div class="customizer-layout">
+        <div class="selected-category-card" id="selectedCategoryCard"></div>
+
+        <div class="customizer-form glass-card">
+          <div class="form-group">
+            <label for="inputFrom">
+              <span class="label-icon">👤</span> Kimdan:
+            </label>
+            <input type="text" id="inputFrom" placeholder="Sizning ismingiz" maxlength="30">
+          </div>
+
+          <div class="form-group">
+            <label for="inputTo">
+              <span class="label-icon">💕</span> Kimga:
+            </label>
+            <input type="text" id="inputTo" placeholder="Sevgiliningiz ismi" maxlength="30">
+          </div>
+
+          <div class="form-group">
+            <label for="inputMsg">
+              <span class="label-icon">✍️</span> Shaxsiy xabar (ixtiyoriy):
+            </label>
+            <textarea id="inputMsg" placeholder="Maxsus xabar yozing... (200 ta belgi)" maxlength="200" rows="3"></textarea>
+            <span class="char-count"><span id="charCount">0</span>/200</span>
+          </div>
+
+          <div class="form-group extra-fields hidden" id="locationFields">
+            <label for="inputLocation">
+              <span class="label-icon">📍</span> Joy:
+            </label>
+            <input type="text" id="inputLocation" placeholder="Uchrashish joyi" maxlength="50">
+            <label for="inputDate" style="margin-top:12px">
+              <span class="label-icon">📅</span> Sana:
+            </label>
+            <input type="text" id="inputDate" placeholder="Masalan: 15-iyul, shanba kechqurun" maxlength="50">
+          </div>
+
+          <div class="form-group extra-fields hidden" id="longDistanceFields">
+            <label for="inputSpecialMsg">
+              <span class="label-icon">💌</span> Maxsus xabar (uzoqdagi sevgiliga):
+            </label>
+            <textarea id="inputSpecialMsg" placeholder="Unga aytmoqchi bo'lgan so'zlaringiz..." maxlength="300" rows="4"></textarea>
+          </div>
+
+          <button class="btn-generate" id="btnGenerate">
+            <span>Link yaratish</span>
+            <span class="btn-icon">🔗</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Generated Link -->
+    <section class="step hidden" id="step-result">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <h2>Linkingiz tayyor! 🎉</h2>
+      </div>
+
+      <div class="result-layout">
+        <div class="link-card glass-card">
+          <div class="link-label">O'yin linki:</div>
+          <div class="link-box">
+            <input type="text" id="generatedLink" readonly>
+            <button class="btn-copy" id="btnCopy" title="Nusxalash">
+              <span id="copyIcon">📋</span>
+            </button>
+          </div>
+          <div class="copy-success hidden" id="copySuccess">✅ Nusxalandi!</div>
+
+          <div class="action-btns">
+            <button class="btn-preview" id="btnPreview">
+              <span>Ko'rib chiqish 👁️</span>
+            </button>
+            <button class="btn-share" id="btnShare">
+              <span>Ulashish 📤</span>
+            </button>
+            <button class="btn-new" id="btnNew">
+              <span>Yangi link ✨</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="qr-card glass-card">
+          <div class="qr-label">QR Kod:</div>
+          <div id="qrcode"></div>
+          <p class="qr-hint">Telefon kamerasi bilan skanerlang</p>
+        </div>
+      </div>
+
+      <!-- Stats Panel -->
+      <div class="stats-panel glass-card" id="statsPanel">
+        <h3>📊 Statistika</h3>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

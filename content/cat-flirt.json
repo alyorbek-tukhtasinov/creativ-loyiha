@@ -1,0 +1,165 @@
+{
+  "categoryId": "flirt",
+  "senderName": "Otabek",
+  "receiverName": "Barno",
+  "customMessage": "Siz meni beixtiyor jilmaytirasiz... bu o'yinni o'ynamay ko'ring! 😘",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Kimdir sizga ko'z qisib qo'ysa, nima qilasiz?",
+      "emoji": "😉",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Qaytib ko'z qisaman 😉",
+        "E'tibor bermayman",
+        "Uyalib ketaman va jilmayaman 😊",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Jilmayish yaxshiroq! 😄",
+      "correctMessage": "Aw! Uyalib jilmayish — eng chiroyli narsa! 😊"
+    },
+    {
+      "id": 2,
+      "text": "Qaysi sohada yaxshiman deb o'ylaysiz?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Sport",
+        "Odamlarni xursand qilishda ✨",
+        "Ovqat pishirishda",
+        "Hech narsada"
+      ],
+      "wrongMessage": "Ha, sport ham yaxshi, lekin...",
+      "correctMessage": "Odamlarni xursand qilish — super kuch! ✨😘"
+    },
+    {
+      "id": 3,
+      "text": "Agar men 'salom' deb xabar yuborsam, qanchalik tez javob berasiz?",
+      "emoji": "📱",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "Bir zumda — siz uchun! 📱",
+        "10 daqiqadan keyin",
+        "Kechqurun",
+        "Ko'rmasam"
+      ],
+      "wrongMessage": "Men kutib o'tirmayman deb o'ylamang! 😄",
+      "correctMessage": "Bir zumda! Men ham xuddi shunday qilardim! 📱😘"
+    },
+    {
+      "id": 4,
+      "text": "Qanday insonni yoqtirasiz?",
+      "emoji": "💝",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Chiroyli",
+        "Boy",
+        "Mashhur",
+        "Mehribon, samimiy va siz bilan xursand bo'ladigan 💝"
+      ],
+      "wrongMessage": "Ichki dunyo muhimroq! 💝",
+      "correctMessage": "Bu — mening aniq tavsifim! 💝😘"
+    },
+    {
+      "id": 5,
+      "text": "Agar birov sizni yoqtirib qolsa, buni qanday bilasiz?",
+      "emoji": "💕",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Gapirib beradi",
+        "Sovg'a beradi",
+        "Ko'zlarida va tabasumida ko'rinadi 💕",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Ko'z va jilmayish hech yashirolmaydi! 💕",
+      "correctMessage": "Ha! Ko'zlar hech qachon yolg'on gapirmaydi! 💕😘"
+    },
+    {
+      "id": 6,
+      "text": "Siz uchun birinchi taassurot muhimmi?",
+      "emoji": "👀",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Umuman emas",
+        "Ha, lekin ikkinchi imkon ham bo'ladi 😊",
+        "Faqat birinchi muhim",
+        "Qaysi uchrashuv?"
+      ],
+      "wrongMessage": "Ikkinchi imkon ham bor axir! 😊",
+      "correctMessage": "To'g'ri! Birinchi taassurot muhim, lekin insonni vaqt ko'rsatadi! 😊"
+    },
+    {
+      "id": 7,
+      "text": "Men siz uchun qahva buyurtma qilsam, qanday ichishni xohlaysiz?",
+      "emoji": "☕",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Qorasini",
+        "Sut bilan",
+        "Shirin",
+        "Siz ichgan kabi — chunki siz tanlay olasiz ☕"
+      ],
+      "wrongMessage": "Menda tanlov bor-ku! 😄",
+      "correctMessage": "Voy! Bu javob... qiziq fikrlovchi insonziz! ☕😘"
+    },
+    {
+      "id": 8,
+      "text": "Birgalikda qayerga borshni xohlardingiz?",
+      "emoji": "🌆",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Qaerga bo'lsa ham — birgalikda bo'lsa kifoya 🌆",
+        "Qimmat restoranga",
+        "Kinoga",
+        "Uyda"
+      ],
+      "wrongMessage": "Joy muhim emas, birlikda bo'lsa kifoya! 🌆",
+      "correctMessage": "Aynan o'ylagan narsam! 🌆😘"
+    },
+    {
+      "id": 9,
+      "text": "Men sizga ko'proq gaplashmoqchi bo'lsam, yoqadimi?",
+      "emoji": "💬",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, band bo'laman",
+        "Ba'zan",
+        "Ha, juda ham xursand bo'laman! 💬",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Iltimos, ko'proq gaplashing! 😄",
+      "correctMessage": "Xursand bo'laman! Men ham! 💬😘"
+    },
+    {
+      "id": 10,
+      "text": "Bu o'yinda nimani his qildingiz?",
+      "emoji": "😊",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Hech narsa",
+        "Kulguli, qiziqarli va biroz... qizarganman 😊",
+        "Zerik bo'ldim",
+        "Oddiy"
+      ],
+      "wrongMessage": "Qizarmaganmisiz? 😄",
+      "correctMessage": "Meni ham qizarttirdingiz! 😊😘"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "Barno, siz meni jilmaytirasiz 😘",
+    "body": "Bu o'yinni o'ynab ko'rsangiz, bilasiz — men sizni qanchalik qiziqtirishimni. Qahva va gaplashish, sayr va kulgi... bu faqat boshlanish. Keyingisi qachon?",
+    "signoff": "Otabekdan, jilmayib 😘",
+    "bonusReveal": "☕ Taklif: Yaqin orada ikkovimiz birga qahva ichaylik — bu safar haqiqatan!"
+  }
+}

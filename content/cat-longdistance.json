@@ -1,0 +1,165 @@
+{
+  "categoryId": "longdistance",
+  "senderName": "Sardor",
+  "receiverName": "Malika",
+  "customMessage": "Seni judayam sog'indim. Bu o'yinni men sening uchun yaratdim 💙",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Hozir meni qanchalik sog'inyapsiz?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Har daqiqada sog'inaman 💙",
+        "Unchalik ham emas",
+        "Kim u o'zi?",
+        "Ozgina"
+      ],
+      "wrongMessage": "Hm... ishonmayapman 🤔",
+      "correctMessage": "Bilardim! Men ham seni sog'inaman 💙"
+    },
+    {
+      "id": 2,
+      "text": "Agar hozir yonimda bo'lsangiz, birinchi nima qilgan bo'lardingiz?",
+      "emoji": "🤗",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Telefoningizni olib qo'yardim",
+        "Uxlab olardim",
+        "Kuchli quchoqlab olardim 🤗",
+        "Ovqat so'rardim"
+      ],
+      "wrongMessage": "To'g'ri emas! Yana bir bor...",
+      "correctMessage": "Aaaw! Men ham seni quchoqlardim! 🥺"
+    },
+    {
+      "id": 3,
+      "text": "Uzoqda bo'lganimda eng ko'p nimani sog'inasiz?",
+      "emoji": "😔",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Ovqatlarimni",
+        "Ovozingizni va tabasumingizni 😊",
+        "Hech narsa",
+        "Faqat uchrashishni"
+      ],
+      "wrongMessage": "Faqatmi? 🥺",
+      "correctMessage": "Men ham sizning ovozingizni sog'inaman! 💙"
+    },
+    {
+      "id": 4,
+      "text": "Qachon uyga qaytaman deb o'ylaysiz?",
+      "emoji": "✈️",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Bilmayman",
+        "Hech qachon",
+        "Juda uzoqdan keyin",
+        "Tez orada — siz uchun! ✈️"
+      ],
+      "wrongMessage": "Bu javob meni qayg'urtiradi 😢",
+      "correctMessage": "Ha! Tez orada ko'rishamiz! 🙏✈️"
+    },
+    {
+      "id": 5,
+      "text": "Kechasi yotishdan oldin nima haqida o'ylaysiz?",
+      "emoji": "🌙",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Siz haqingizda 🌙",
+        "Ertangi ishlar haqida",
+        "Hech narsa",
+        "Ovqat haqida"
+      ],
+      "wrongMessage": "Meni eslaysiz deb umid qilardim... 🌙",
+      "correctMessage": "Men ham har kecha siz haqimda o'ylayman 🌙💙"
+    },
+    {
+      "id": 6,
+      "text": "Video qo'ng'iroq qilganimizda ko'zlaringizni yumib, men yonimda deb tasavvur qilasizmi?",
+      "emoji": "📱",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, shunchaki gaplashamiz",
+        "Ba'zan",
+        "Ha, doim shunday qilaman 📱",
+        "Bunaqa qilmayman"
+      ],
+      "wrongMessage": "Men ham shunday qilaman... 🥺",
+      "correctMessage": "Voy! Men ham xuddi shunday! 📱💙"
+    },
+    {
+      "id": 7,
+      "text": "Masofali munosabatning eng qiyin tomoni nima?",
+      "emoji": "💔",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Hech qiyin joyi yo'q",
+        "Fizik yaqinlikning yo'qligi 💔",
+        "Vaqt farqi",
+        "Pul xarajati"
+      ],
+      "wrongMessage": "Ha, bu ham qiyin, lekin eng asosiysi...",
+      "correctMessage": "To'g'ri. Yonimda bo'lishingizni judayam istayman 💙"
+    },
+    {
+      "id": 8,
+      "text": "Ko'rishganimizda birinchi nimani taklif qilasiz?",
+      "emoji": "🍽️",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Uyda o'tiramiz",
+        "Kinoga boramiz",
+        "Sayr qilamiz",
+        "Uzoq quchoqlashib, keyin birga yeyamiz 🥰"
+      ],
+      "wrongMessage": "Yaxshi, lekin birinchi narsa quchoq! 😄",
+      "correctMessage": "Aynan! Quchoq — birinchi! 🤗💙"
+    },
+    {
+      "id": 9,
+      "text": "Agar men hozir qo'ng'iroq qilsam, javob berasizmi?",
+      "emoji": "📞",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Ha, har doim! 📞",
+        "Ish vaqtida emas",
+        "Faqat kechqurun",
+        "Avval xabar yuboring"
+      ],
+      "wrongMessage": "Har doim javob bermaysizmi? 😢",
+      "correctMessage": "Rahmat! Bu meni baxtli qiladi! 📞💙"
+    },
+    {
+      "id": 10,
+      "text": "Bu masofaning oxiri bo'lishiga ishonamizmi?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Bilmayman",
+        "Ehtimol emas",
+        "Ha, biz birlashamiz! 🌈",
+        "Vaqt ko'rsatadi"
+      ],
+      "wrongMessage": "Men ishonamannn! 🙏",
+      "correctMessage": "Ha! Birga bo'lamiz — bu va'da! 🌈💙"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "Malika, seni judayam yaxshi ko'raman! 💙",
+    "body": "Uzoqlikka qaramay, sen har doim mening yuragimda yaqinsan. Har kecha yulduzlarga qarasam, sen ham xuddi shu yulduzlarni ko'rayapsan deb o'ylayman. Tez orada ko'rishamiz — bu men senga va'dam!",
+    "signoff": "Sardoringdan 💙",
+    "bonusReveal": "📍 Keyingi uchrashuvimiz joyi: Toshkent, Chilonzor bog'i — yaqinda! ✈️"
+  }
+}

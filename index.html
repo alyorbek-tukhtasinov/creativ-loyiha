@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeartQuest 💕 — Sevgi O'yini</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #FF6B9D;
+      --accent: #6B9DFF;
+      --gold: #FFD700;
+      --dark: #2D1B33;
+      --medium: #7B5C8A;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #FFF0F5 0%, #F0F4FF 50%, #FFF5E0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    /* Particles */
+    .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .particle {
+      position: absolute; user-select: none; font-size: 14px; opacity: 0.1;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    /* Main card */
+    .hero {
+      position: relative; z-index: 10;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 28px;
+      box-shadow: 0 12px 48px rgba(255,107,157,0.12);
+      padding: 52px 48px;
+      text-align: center;
+      max-width: 560px;
+      width: 100%;
+      animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .logo-heart {
+      font-size: 72px; display: block;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      14% { transform: scale(1.18); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+    }
+
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .logo-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px; color: var(--medium);
+      margin-bottom: 36px;
+    }
+
+    .features {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 40px; text-align: left;
+    }
+
+    .feature {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,107,157,0.06);
+      border: 1px solid rgba(255,107,157,0.12);
+      border-radius: 14px; padding: 12px 16px;
+    }
+
+    .feature-icon { font-size: 24px; flex-shrink: 0; }
+    .feature-text { font-size: 14px; color: var(--medium); font-weight: 600; }
+
+    .actions { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn-admin {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--primary), #FF4B8B);
+      color: white; text-decoration: none;
+      border-radius: 50px;
+      font-size: 18px; font-weight: 800;
+      box-shadow: 0 6px 24px rgba(255,107,157,0.4);
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-admin:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 36px rgba(255,107,157,0.5);
+    }
+
+    .btn-demo {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.9);
+      color: var(--dark); text-decoration: none;
+      border: 2px solid rgba(107,157,255,0.3);
+      border-radius: 50px;
+      font-size: 16px; font-weight: 700;
+      transition: all 0.3s;
+    }
+    .btn-demo:hover {
+      border-color: var(--accent);
+      background: rgba(107,157,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 13px; color: var(--medium);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 36px 24px; }
+      .logo-title { font-size: 36px; }
+      .logo-heart { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero">
+    <span class="logo-heart">💕</span>
+    <div class="logo-title">HeartQuest</div>
+    <div class="logo-tagline">Sevgi o'yini platformasi</div>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">🔗</span>
+        <span class="feature-text">Maxsus link yarating va sevgiliningizga yuboring</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏃</span>
+        <span class="feature-text">Noto'g'ri javoblar bosilganda qochib ketadi!</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎁</span>
+        <span class="feature-text">O'yin oxirida maxsus sovg'a: xat, chipta yoki taklif</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <span class="feature-text">10 ta kategoriya — bitta sevgi ifodasi</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="/admin/" class="btn-admin">
+        <span>🔗</span>
+        <span>Link yaratish — Admin paneli</span>
+      </a>
+      <a href="/game/?cat=love&from=Sardor&to=Siz&preview=true" class="btn-demo">
+        <span>🎮</span>
+        <span>Demo o'yinni ko'rish</span>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      HeartQuest — sevgini o'yinga aylantiring 💕
+    </div>
+  </div>
+
+  <script>
+    const syms = ['💕','✨','🌸','⭐','💫','🌹','💗','🎀','🌟','💖'];
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.textContent = syms[i % syms.length];
+      p.style.left = Math.random() * 100 + '%';
+      p.style.fontSize = (11 + Math.random() * 12) + 'px';
+      p.style.animationDuration = (9 + Math.random() * 13) + 's';
+      p.style.animationDelay = (-Math.random() * 13) + 's';
+      pc.appendChild(p);
+    }
+  </script>
+</body>
+</html>

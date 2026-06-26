@@ -1,0 +1,13 @@
+{
+  "name": "heartquest",
+  "version": "1.0.0",
+  "description": "HeartQuest - Sevgi o'yini platformasi",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . --listen 3000"
+  },
+  "keywords": ["love", "quiz", "uzbek", "heartquest"],
+  "author": "HeartQuest",
+  "license": "MIT"
+}
