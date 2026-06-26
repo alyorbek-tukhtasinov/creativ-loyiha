@@ -2,164 +2,164 @@
   "categoryId": "apology",
   "senderName": "Bobur",
   "receiverName": "Nafisa",
-  "customMessage": "Kechirim so'rash uchun so'zlar yetmaydi, lekin yuragim to'la... 🙏",
+  "customMessage": "Kechirim so'rash uchun so'zlar topish qiyin. Shu o'yin orqali eshiting... 🙏",
   "questions": [
     {
       "id": 1,
-      "text": "Agar kimdir chin dildan kechirim so'rasa, kechira olasizmi?",
+      "text": "Kimdir xato qilib, chin yurakdan kechirim so'rasa — kechira olasizmi?",
       "emoji": "🙏",
       "theme": "night",
-      "correctIndex": 0,
+      "correctIndex": 2,
       "options": [
-        "Ha, kechira olaman 🙏",
         "Yo'q, hech qachon",
-        "Vaqt kerak",
-        "Qarab turamiz"
+        "Vaqt kerak, bilmayman",
+        "Ha, agar kechirim chin dildan bo'lsa 🙏",
+        "Nima qilganiga qarab"
       ],
-      "wrongMessage": "Kechirim — kuch! Yana bir bor o'ylab ko'ring...",
-      "correctMessage": "Rahmat! Bu so'z meni yengillattirdi 🙏"
+      "wrongMessage": "Chin dildan so'rash — bu mening holatim... 🙏",
+      "correctMessage": "Rahmat! Bu so'z meni yengillattirdi... 🙏💕"
     },
     {
       "id": 2,
-      "text": "Men xato qilgan bo'lsam, siz ham bir qismini tushunasizmi?",
-      "emoji": "💭",
-      "theme": "night",
-      "correctIndex": 2,
+      "text": "Xata qilgan odam ikkinchi imkon olishga loyiqmi?",
+      "emoji": "🤍",
+      "theme": "flowers",
+      "correctIndex": 1,
       "options": [
-        "Yo'q, hamma ayb sizda",
-        "Bilmayman",
-        "Ha, ikki tarafdan ham tushunish kerak 💭",
-        "Bu muhim emas"
+        "Yo'q, bir marta xata — tamom",
+        "Ha, agar o'zgarmоqchi bo'lsa — albatta 🤍",
+        "Faqat katta odamlar",
+        "Bilmayman"
       ],
-      "wrongMessage": "Tushunish — kechirishdan ham muhim...",
-      "correctMessage": "Ha! Tushunish — kechiruvning asosi 💭💕"
+      "wrongMessage": "Hamma bir marta yanglishishi mumkin... 🤍",
+      "correctMessage": "Ha! O'zgarish — kechirishdan ko'ra muhimroq! 🤍💕"
     },
     {
       "id": 3,
-      "text": "Men sizni xafa qilganimda ichingizda nima kechdi?",
-      "emoji": "💔",
+      "text": "Xafa bo'lgan paytingizda jimgina o'tirish afzalmi yoki gaplashish?",
+      "emoji": "💬",
       "theme": "night",
-      "correctIndex": 1,
+      "correctIndex": 3,
       "options": [
-        "Hech narsa",
-        "Yig'ladim, lekin hali ham sevaman 💔",
-        "Unuting deb qaror qildim",
-        "Jahl qildim"
+        "Jimgina, hech narsa demay",
+        "Jahl bilan gapiraman",
+        "Ketib qolaman",
+        "Biroz jimlik, keyin gaplashish 💬"
       ],
-      "wrongMessage": "Xafa bo'lganingizni bilardim... 🥺",
-      "correctMessage": "Bilardim... va bu menga judayam og'ir edi 💔"
+      "wrongMessage": "Gaplashmasdan hal bo'lmaydi-ku! 💬",
+      "correctMessage": "Aynan! Biroz vaqt, keyin suhbat — bu to'g'ri yo'l! 💬💕"
     },
     {
       "id": 4,
-      "text": "Kechirim deganda nima tushunyapsiz?",
-      "emoji": "🤍",
+      "text": "Kechirim so'ragan odam bilan munosabatni qayta tiklash mumkinmi?",
+      "emoji": "🌱",
       "theme": "flowers",
-      "correctIndex": 3,
+      "correctIndex": 0,
       "options": [
-        "Unutish",
-        "Yo'qolish",
-        "E'tiborsiz qoldirish",
-        "Qayta ishonch va yangi boshlanish 🤍"
+        "Ha, yangi boshlanish mumkin 🌱",
+        "Yo'q, sindirgan narsa tuzalmaydi",
+        "Faqat ba'zan",
+        "Bilmayman, ko'ramiz"
       ],
-      "wrongMessage": "Kechirim — unutish emas, yangi boshlanish! 🤍",
-      "correctMessage": "Ha! Kechirim — yangi sahifadan boshlash! 🤍💕"
+      "wrongMessage": "Yangi boshlanish — har doim mumkin! 🌱",
+      "correctMessage": "Ha! Yangi boshlanish — bu ikkovimiz uchun ham mumkin! 🌱💕"
     },
     {
       "id": 5,
-      "text": "Bizning munosabatimiz tuzalishi mumkinmi?",
-      "emoji": "💞",
-      "theme": "roses",
-      "correctIndex": 0,
+      "text": "Xata qilgan odam haqida qanday o'ylaysiz: yomon insonmi?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 2,
       "options": [
-        "Ha, ikkovimiz xohlasak — albatta! 💞",
-        "Ehtimol",
-        "Bilmayman",
-        "Yo'q"
+        "Ha, yomon odamlar xato qiladi",
+        "Xatosi bor — yomon bo'ladi",
+        "Yo'q — yaxshi odamlar ham xato qiladi 💭",
+        "Bilmayman"
       ],
-      "wrongMessage": "Iltimos, ishoning... men harakat qilaman 🙏",
-      "correctMessage": "Ha! Birgalikda — hammasi mumkin! 💞"
+      "wrongMessage": "Hamma xato qiladi — bu insoniylik! 💭",
+      "correctMessage": "Ha! Xato qilish — insonning belgisi, kechirim so'rash — kuchining! 💭💕"
     },
     {
       "id": 6,
-      "text": "Mening qaysi tomonim sizga yoqadi, xato qilsam ham?",
-      "emoji": "💛",
-      "theme": "flowers",
-      "correctIndex": 2,
+      "text": "Agar men biror narsani o'zgartirmoqchi bo'lsam — bunga ishonamizmi?",
+      "emoji": "🔄",
+      "theme": "stars",
+      "correctIndex": 3,
       "options": [
-        "Hech narsa emas",
-        "Ko'rinishingiz",
-        "Siz bo'lganingiz uchun — hamma narsangiz 💛",
-        "Bilmayman"
+        "Yo'q, odamlar o'zgarmaydi",
+        "Ko'rinadigan ish emas",
+        "Bilmayman, sinab ko'rishim kerak",
+        "Ha, harakat qilsa — o'zgarish mumkin 🔄"
       ],
-      "wrongMessage": "Hech narsam yo'qmi? 🥺",
-      "correctMessage": "Bu javob meni yig'latdi... rahmat 💛"
+      "wrongMessage": "O'zgarish mumkin — agar chin istaklangan bo'lsa! 🔄",
+      "correctMessage": "Ha! O'zgarishga ishonish — eng katta qo'llab-quvvatlash! 🔄💕"
     },
     {
       "id": 7,
-      "text": "Agar men qayta xato qilmaslikka va'da bersam, ishonasizmi?",
-      "emoji": "🤞",
-      "theme": "stars",
+      "text": "Kechirgandan keyin — eski kayfiyatga qaytish mumkinmi?",
+      "emoji": "🌈",
+      "theme": "flowers",
       "correctIndex": 1,
       "options": [
-        "Yo'q, ishonmayman",
-        "Ha, bir imkon beraman 🤞",
-        "Ko'ramiz",
+        "Yo'q, narsa o'zgarib qoladi",
+        "Ha, balki undan ham yaxshisi — yangi bosqich 🌈",
+        "Ehtimol",
         "Bilmayman"
       ],
-      "wrongMessage": "Iltimos, bir imkon... 🙏",
-      "correctMessage": "Rahmat! Bu imkon uchun umrimda minnator bo'laman! 🤞💕"
+      "wrongMessage": "Yangi bosqich — eskisidan yaxshidir! 🌈",
+      "correctMessage": "Aynan! Kechirim — yangi va yaxshiroq bosqichning boshlanishi! 🌈💕"
     },
     {
       "id": 8,
-      "text": "Xafa bo'lganda meni o'yladingizmi?",
-      "emoji": "💭",
-      "theme": "night",
-      "correctIndex": 3,
-      "options": [
-        "Yo'q, o'ylamaganman",
-        "Faqat jahl bilan",
-        "Bir marta",
-        "Ha, doim o'ylardim, hatto xafa bo'lganda ham 💭"
-      ],
-      "wrongMessage": "Bilas isiz ishonmaydman... 🥺",
-      "correctMessage": "Men ham sizi doim o'ylardim! 💭💕"
-    },
-    {
-      "id": 9,
-      "text": "Kechirishdan oldin sizga nima kerak?",
+      "text": "Xafalikni endi qo'yib yubora olasizmi?",
       "emoji": "🕊️",
       "theme": "flowers",
       "correctIndex": 0,
       "options": [
-        "Chin dildan kechirim va sabr 🕊️",
-        "Qimmat sovg'a",
-        "Vaqt",
-        "Hech narsa kerak emas"
+        "Ha, qo'yib yubormoqchiman — bu men uchun ham yaxshi 🕊️",
+        "Hali bilmayman",
+        "Vaqt kerak",
+        "Qiyin"
       ],
-      "wrongMessage": "Chin dildan so'rash — eng muhimi 🕊️",
-      "correctMessage": "Ha! Chin dildan kechirim — bu men bermoqdaman! 🕊️"
+      "wrongMessage": "Og'irlikni ko'tarib yurish — o'zingizga ham qiyin... 🕊️",
+      "correctMessage": "Rahmat! Qo'yib yuborish — kuchning belgilaridan biri! 🕊️💕"
+    },
+    {
+      "id": 9,
+      "text": "Kechirim so'ragandan so'ng — munosabat avvalgidan mustahkamroq bo'lishi mumkinmi?",
+      "emoji": "💎",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, kamchiligi qoladi",
+        "Bilmayman",
+        "Ha! Qiyinchilikdan o'tgan narsa — mustahkamroq bo'ladi 💎",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Qiyinchilikdan o'tgan oltin — sofroq bo'ladi! 💎",
+      "correctMessage": "Ha! Sinov — munosabatni mustahkamlaydi! 💎💕"
     },
     {
       "id": 10,
-      "text": "Biz yana do'stlasha olamizmi?",
+      "text": "Mendan hali ham umid bor deb ayta olasizmi?",
       "emoji": "🌸",
       "theme": "roses",
-      "correctIndex": 2,
+      "correctIndex": 1,
       "options": [
-        "Yo'q",
-        "Bilmayman",
-        "Ha, men buni xohlayman 🌸",
-        "Vaqt ko'rsatadi"
+        "Bilmayman, hali...",
+        "Ha — umid bor, shuning uchun bu o'yinni o'ynayapman 🌸",
+        "Ko'ramiz",
+        "Qiyin savol"
       ],
-      "wrongMessage": "Iltimos... 🙏",
-      "correctMessage": "Bu so'zni eshitish uchun hamma narsaga tayyor edim! 🌸💕"
+      "wrongMessage": "Umid — yonmaydigan olov... 🌸",
+      "correctMessage": "Bu javob — mening eng katta umidim! 🌸💕"
     }
   ],
   "finalReward": {
     "type": "letter",
-    "headline": "Nafisa, chin dildan kechirim so'rayman 🙏",
-    "body": "So'zlarim kamlik qiladi, lekin bilasizmi: siz mening hayotimdagi eng qimmatli insonziz. Xato qildim — bu haqiqat. Lekin sizi yo'qotishdan qo'rqaman. Iltimos, menga bir imkon bering.",
-    "signoff": "Boburdan, chin dildan 🙏",
-    "bonusReveal": "💌 Va'da: Endi xuddi o'sha xatoni qaytarmaslikni so'z beraman — bu mening yuragimdan chiqayotgan va'da."
+    "headline": "[TO], chinakamiga kechirim so'rayman 🙏",
+    "body": "Bu o'yinni o'ynab, siz ko'rsatdingiz: kechirish kuch — bu haqiqat. Men xato qildim. Bu xato meni o'zgartirishi kerak. Va siz — bu o'zgarishga ishonishingiz — menga eng katta motivatsiya.",
+    "signoff": "[FROM]dan, chin dildan 🙏",
+    "bonusReveal": "💌 Va'da: O'sha xatoni qaytarmaslikka — bu yuragimdan chiqayotgan va'da. O'zim oldimga ham, siz oldingizga ham."
   }
 }

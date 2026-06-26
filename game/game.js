@@ -329,19 +329,20 @@ function fleeButton(btn) {
   // Mobil: puff efekti qo'shimcha
   if (isMob) spawnPuff(curLeft + w / 2, curTop + h / 2);
 
-  // Yangi pozitsiya hisoblash (boshlang'ich o'rindan tasodifiy burchakda)
-  const dist = 90 + 70 * (STATE.speedMultiplier - 1); // 90px → 300px (3x tezlikda)
+  // Masofa: dastlab kichik (50px), har urinishda ozgina o'sadi, max 120px
+  // Har doim BOSHLANG'ICH o'rindan hisoblanadi — juda uzoq ketmaydi
+  const dist = Math.min(50 + STATE.wrongAttempts * 12, 120);
   const angle = Math.random() * Math.PI * 2;
-  const orig = btn._originalRect;
+  const orig  = btn._originalRect;
 
-  let nx = orig.left + Math.cos(angle) * dist + (Math.random() - 0.5) * 50;
-  let ny = orig.top  + Math.sin(angle) * dist + (Math.random() - 0.5) * 50;
+  let nx = orig.left + Math.cos(angle) * dist;
+  let ny = orig.top  + Math.sin(angle) * dist;
 
   // Ekran chegarasi ichida saqlash
   nx = Math.max(8, Math.min(window.innerWidth  - w - 8, nx));
   ny = Math.max(64, Math.min(window.innerHeight - h - 8, ny));
 
-  btn.style.transition = 'left 0.22s cubic-bezier(0.25,0.46,0.45,0.94), top 0.22s cubic-bezier(0.25,0.46,0.45,0.94)';
+  btn.style.transition = 'left 0.2s cubic-bezier(0.25,0.46,0.45,0.94), top 0.2s cubic-bezier(0.25,0.46,0.45,0.94)';
   btn.style.left = nx + 'px';
   btn.style.top  = ny + 'px';
 }
@@ -642,15 +643,24 @@ function showReward() {
   document.getElementById('btnScreenshot').addEventListener('click', saveScreenshot, { once: true });
 }
 
+// URL parametrlaridan kelgan FROM/TO bilan JSON dagi [FROM]/[TO] ni almashtiradi
+function rn(text, from, to) {
+  if (!text) return '';
+  return String(text).replace(/\[FROM\]/g, from).replace(/\[TO\]/g, to);
+}
+
 function renderLetterReward(container, reward, from, to, special) {
-  const body = special || reward.body;
+  const body     = rn(special || reward.body, from, to);
+  const headline = rn(reward.headline, from, to);
+  const signoff  = rn(reward.signoff  || `${from}dan 💕`, from, to);
+  const bonus    = reward.bonusReveal ? rn(reward.bonusReveal, from, to) : '';
   container.innerHTML = `
     <div class="reward-letter glass-card">
       <span class="wax-seal">💌</span>
-      <div class="letter-headline">${escapeHtml(reward.headline)}</div>
+      <div class="letter-headline">${escapeHtml(headline)}</div>
       <div class="letter-body">${escapeHtml(body)}</div>
-      <div class="letter-signoff">${escapeHtml(reward.signoff || from + 'dan 💕')}</div>
-      ${reward.bonusReveal ? `<div class="letter-bonus">${escapeHtml(reward.bonusReveal)}</div>` : ''}
+      <div class="letter-signoff">${escapeHtml(signoff)}</div>
+      ${bonus ? `<div class="letter-bonus">${escapeHtml(bonus)}</div>` : ''}
     </div>
   `;
 }
@@ -699,7 +709,11 @@ function renderTicketReward(container, reward, from, to, loc, dt) {
   `;
 }
 
-function renderGiftReward(container, reward, from) {
+function renderGiftReward(container, reward, from, to) {
+  const headline = rn(reward.headline, from, to);
+  const body     = rn(reward.body,     from, to);
+  const signoff  = rn(reward.signoff  || `${from}dan 🎁`, from, to);
+  const bonus    = reward.bonusReveal ? rn(reward.bonusReveal, from, to) : '';
   container.innerHTML = `
     <div class="reward-gift glass-card">
       <div class="gift-box-wrapper">
@@ -707,10 +721,10 @@ function renderGiftReward(container, reward, from) {
       </div>
       <div class="gift-click-hint" id="giftHint">👆 Sovg'ani ochish uchun bosing!</div>
       <div class="gift-content" id="giftContent" style="display:none">
-        <div class="gift-headline">${escapeHtml(reward.headline)}</div>
-        <div class="gift-body">${escapeHtml(reward.body)}</div>
-        ${reward.bonusReveal ? `<div class="gift-bonus">${escapeHtml(reward.bonusReveal)}</div>` : ''}
-        <div class="letter-signoff" style="margin-top:16px">${escapeHtml(reward.signoff || from + 'dan 🎁')}</div>
+        <div class="gift-headline">${escapeHtml(headline)}</div>
+        <div class="gift-body">${escapeHtml(body)}</div>
+        ${bonus ? `<div class="gift-bonus">${escapeHtml(bonus)}</div>` : ''}
+        <div class="letter-signoff" style="margin-top:16px">${escapeHtml(signoff)}</div>
       </div>
     </div>
   `;
@@ -731,6 +745,13 @@ function renderGiftReward(container, reward, from) {
 }
 
 function renderCountdownReward(container, reward, from, to, catMeta) {
+  reward = {
+    ...reward,
+    headline:    rn(reward.headline,    from, to),
+    body:        rn(reward.body,        from, to),
+    signoff:     rn(reward.signoff || `${from}dan 💍`, from, to),
+    bonusReveal: rn(reward.bonusReveal, from, to),
+  };
   const targetDate = new Date(catMeta.endReward.countdownDate || '2027-01-01');
 
   function getTimeParts() {
@@ -746,7 +767,7 @@ function renderCountdownReward(container, reward, from, to, catMeta) {
   const t = getTimeParts();
   container.innerHTML = `
     <div class="reward-countdown glass-card">
-      <div class="countdown-headline">${escapeHtml(reward.headline)}</div>
+      <div class="countdown-headline">${escapeHtml(reward.headline || '')}</div>
       <div class="countdown-display">
         <div class="countdown-unit"><span class="countdown-num" id="cd-d">${t.d}</span><span class="countdown-label">Kun</span></div>
         <div class="countdown-unit"><span class="countdown-num" id="cd-h">${t.h}</span><span class="countdown-label">Soat</span></div>

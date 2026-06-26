@@ -6,160 +6,160 @@
   "questions": [
     {
       "id": 1,
-      "text": "Bizning uyimiz qanday bo'lishini tasavvur qilasiz?",
-      "emoji": "🏡",
-      "theme": "flowers",
-      "correctIndex": 2,
-      "options": [
-        "Katta va hashamatli",
-        "Shahar markazida kvartira",
-        "Iliq, gulzor bog'li, mehr to'la uy 🏡",
-        "Hali o'ylamadim"
-      ],
-      "wrongMessage": "Kattami, kichikmi — asosiysi mehr! 💕",
-      "correctMessage": "Aynan! Mehr to'la uy — eng yaxshi uy! 🏡💕"
-    },
-    {
-      "id": 2,
-      "text": "Qancha farzand ko'rishni xohlaysiz?",
-      "emoji": "👨‍👩‍👧‍👦",
-      "theme": "flowers",
-      "correctIndex": 1,
-      "options": [
-        "Birta",
-        "Ikkita — qiz va o'g'il 👨‍👩‍👧‍👦",
-        "Ko'p",
-        "Hali o'ylamadim"
-      ],
-      "wrongMessage": "Hammasi yaxshi, lekin men...",
-      "correctMessage": "Men ham xuddi shunday o'ylayman! 👨‍👩‍👧‍👦💕"
-    },
-    {
-      "id": 3,
-      "text": "10 yildan keyin qayerda bo'lishni xohlaysiz?",
+      "text": "5 yildan keyin o'zingizni qayerda ko'rasiz?",
       "emoji": "🌍",
       "theme": "stars",
       "correctIndex": 3,
       "options": [
-        "Xorijda",
-        "Boshqa shaharda",
-        "Shu yerda, o'zgarmasdan",
-        "Siz bilan istalgan joyda 🌍"
+        "Hali bilmayman",
+        "Yolg'iz, ishlayotgan",
+        "Xorijda, yangi hayotda",
+        "Sevgan odamim bilan, baxtli 🌍"
       ],
-      "wrongMessage": "Joy muhim emas, birgalikda bo'lsak bas! 💕",
-      "correctMessage": "Aynan! Birgalikda bo'lsak — har joy jannat! 🌍💕"
+      "wrongMessage": "Sevgan odamingiz bilan bo'lish kelajak rejasi emas? 🌍",
+      "correctMessage": "Ha! Sevgan odamim bilan — bu eng yaxshi reja! 🌍💕"
+    },
+    {
+      "id": 2,
+      "text": "Hayotingizning eng muhim qarorini qabul qilishda kimga maslahat solardingiz?",
+      "emoji": "💬",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Faqat o'zimga",
+        "Menga eng yaqin va ishongan odamimga 💬",
+        "Do'stlarimga",
+        "Internetdan qidirardim"
+      ],
+      "wrongMessage": "Eng yaqin odam — eng yaxshi maslahatchi! 💬",
+      "correctMessage": "Aynan! Ishongan odamning maslahati — oltindan qimmat! 💬💕"
+    },
+    {
+      "id": 3,
+      "text": "Birgalikda quradigan uyimizning bir xususiyatini aytasizmi?",
+      "emoji": "🏡",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Iliq, mehribon — eshigi doim ochiq bo'lsin 🏡",
+        "Katta va hashamatli",
+        "Shahar markazida",
+        "Yolg'iz uyim bo'lsin"
+      ],
+      "wrongMessage": "Katta va hashamatli emas, iliq va mehr to'la bo'lsin! 🏡",
+      "correctMessage": "Ha! Iliq uy — hamma narsadan yaxshi! 🏡💕"
     },
     {
       "id": 4,
-      "text": "Birinchi sarf qiladigan pulimiz nimaga sarflanishi kerak?",
-      "emoji": "💰",
-      "theme": "flowers",
-      "correctIndex": 0,
+      "text": "Birgalikda borishni orzu qilgan bir joy bormi?",
+      "emoji": "✈️",
+      "theme": "stars",
+      "correctIndex": 2,
       "options": [
-        "Sayohatga — xotiralar pulsiz yo'q! ✈️",
-        "Uyga",
-        "Mashinaga",
-        "Jamg'arma"
+        "Yo'q, hozircha yo'q",
+        "Ko'p, lekin aytmayman",
+        "Ha! Siz bilan istalgan joy — orzuim ✈️",
+        "Yolg'iz borishni afzal ko'raman"
       ],
-      "wrongMessage": "Ha, bularning hammasi muhim! Lekin...",
-      "correctMessage": "Ha! Birgalikdagi sayohat — eng yaxshi sarmoya! ✈️💕"
+      "wrongMessage": "Birgalikda sayohat — eng yaxshi sayohat! ✈️",
+      "correctMessage": "Siz bilan istalgan joy — jannat! ✈️💕"
     },
     {
       "id": 5,
-      "text": "Qariganimizda ham shunday muhabbat bo'lishiga ishonamizmi?",
+      "text": "Qariganingizda yoningizda kim bo'lishini xohlaysiz?",
       "emoji": "👴👵",
       "theme": "roses",
-      "correctIndex": 2,
+      "correctIndex": 3,
       "options": [
-        "Bilmayman",
-        "Ehtimol",
-        "Ha, umr bo'yi! 👴👵",
-        "Ko'ramiz..."
+        "Farzandlarim",
+        "Do'stlarim",
+        "Yolg'iz bo'lsam ham arzimaydi",
+        "Sevgan odamim — umr bo'yi 👴👵"
       ],
-      "wrongMessage": "Men ishonamannn! 🙏",
-      "correctMessage": "Umr bo'yi! Bu mening eng katta orzum! 👴👵💕"
+      "wrongMessage": "Qarilikda yolg'iz bo'lmaslik kerak-ku! 👴👵",
+      "correctMessage": "Umr bo'yi yonida bo'lish — bu mening ham orzuim! 👴👵💕"
     },
     {
       "id": 6,
-      "text": "Birgalikda qanday sayohat qilishni orzu qilasiz?",
-      "emoji": "✈️",
-      "theme": "stars",
+      "text": "Kelajakda qiyinchilik bo'lsa — birgalikda hal qila olamizmi?",
+      "emoji": "💪",
+      "theme": "hearts",
       "correctIndex": 1,
       "options": [
-        "Luksus mehmonxonalar",
-        "Chodirda, tabiatda, ikkovimiz 🏕️",
-        "Guruh sayohati",
-        "Hali o'ylamadim"
+        "Har kim o'zi hal qilsin",
+        "Ha! Ikkovimiz birgalikda — hamma narsa mumkin 💪",
+        "Qiyin, bilmayman",
+        "Ko'ramiz vaziyatga qarab"
       ],
-      "wrongMessage": "Luksusdan ko'ra tabiat yaxshi! 😊",
-      "correctMessage": "Chodirda, ikkovimiz — bu film kabi! 🏕️💕"
+      "wrongMessage": "Birgalikda kuchliroq! 💪",
+      "correctMessage": "Aynan! Birga bo'lsak — har qanday to'siq yengiladi! 💪💕"
     },
     {
       "id": 7,
-      "text": "Kelajakda nima haqida birga kulamiz deb o'ylaysiz?",
-      "emoji": "😂",
-      "theme": "flowers",
-      "correctIndex": 3,
-      "options": [
-        "Hech narsa haqida",
-        "Boshqalar haqida",
-        "Seriallar haqida",
-        "Bugungi ahmoqona holatlarimiz haqida 😂"
-      ],
-      "wrongMessage": "Ha, baribir kulamiz! 😄",
-      "correctMessage": "Ha! Bugungi kulimlari — ertangi xotiralar! 😂💕"
-    },
-    {
-      "id": 8,
-      "text": "Yillik nishonimizda nima qilishni xohlardingiz?",
-      "emoji": "🎊",
-      "theme": "roses",
-      "correctIndex": 0,
-      "options": [
-        "Birinchi uchrashgan yerimizga boramiz 🎊",
-        "Uyda nishonlaymiz",
-        "Katta ziyofat",
-        "Oddiy kun kabi"
-      ],
-      "wrongMessage": "Maxsus bo'lsin! 💕",
-      "correctMessage": "Birinchi joyimiz — albatta maxsus! 🎊💕"
-    },
-    {
-      "id": 9,
-      "text": "Kelishmaganlik bo'lsa, qanday hal qilasiz?",
-      "emoji": "🤝",
-      "theme": "hearts",
-      "correctIndex": 2,
-      "options": [
-        "Jim turaman",
-        "Jalb etaman",
-        "Gaplashib, birgalikda yechim topamiz 🤝",
-        "Ketib qolaman"
-      ],
-      "wrongMessage": "Muloqot — muhim! 💕",
-      "correctMessage": "To'g'ri! Birgalikda yechim — eng yaxshi yo'l! 🤝💕"
-    },
-    {
-      "id": 10,
-      "text": "Kelajagimiz yorqin bo'lishiga ishonamizmi?",
+      "text": "Birgalikda ko'rgan eng chiroyli tong — kelajakda ham shunday tonglar bo'lishini xohlaysizmi?",
       "emoji": "🌅",
       "theme": "stars",
       "correctIndex": 0,
       "options": [
-        "Ha, ishonaman — birgalikda har narsaga erishamiz! 🌅",
-        "Bilmayman",
-        "Ehtimol",
-        "Vaqt ko'rsatadi"
+        "Ha! Har tong siz bilan boshqacha bo'lar edi 🌅",
+        "Tong — oddiy narsa",
+        "Balki",
+        "Buni o'ylamaganman"
       ],
-      "wrongMessage": "Ishonamiz! Birgalikda kuchimiz ko'p! 💪",
-      "correctMessage": "ISHONAMANNN! Birgalikda — hamma narsa mumkin! 🌅💕"
+      "wrongMessage": "Har tong siz bilan — ajoyib boshliqlar bo'lar edi! 🌅",
+      "correctMessage": "Ha! Siz bilan har tong — yangi baxt boshlanishi! 🌅💕"
+    },
+    {
+      "id": 8,
+      "text": "Kelajakda bir-birimizga sabr ko'rsata olamizmi?",
+      "emoji": "🕊️",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Qiyin, men sabrsizman",
+        "Urinib ko'raman",
+        "Ha! Sabr — sevgining kuchi 🕊️",
+        "Bunday bo'lmasa yaxshi"
+      ],
+      "wrongMessage": "Sabr — kelajagimizning asosi! 🕊️",
+      "correctMessage": "Aynan! Sabr bilan har narsaga erishsa bo'ladi! 🕊️💕"
+    },
+    {
+      "id": 9,
+      "text": "Kelajakda birgalikda erishmoqchi bo'lgan bir orzuingiz bormi?",
+      "emoji": "⭐",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, hech narsani orzu qilmayman",
+        "Ko'p, lekin aytmayman",
+        "Hali o'ylamadim",
+        "Ha! Va bu orzuni birgalikda amalga oshirsam — baxtli bo'laman ⭐"
+      ],
+      "wrongMessage": "Birgalikdagi orzu — ikki marta kuchli! ⭐",
+      "correctMessage": "Birgalikda erishilgan orzu — eng mazali meva! ⭐💕"
+    },
+    {
+      "id": 10,
+      "text": "Kelajakdagi hayotingizda men muhim o'rin egallashinni xohlaysizmi?",
+      "emoji": "💖",
+      "theme": "roses",
+      "correctIndex": 1,
+      "options": [
+        "Bilmayman hali",
+        "Ha! Siz — kelajagimning muhim qismi 💖",
+        "Ko'ramiz vaqti kelganda",
+        "Bu erta hali"
+      ],
+      "wrongMessage": "Bu erta emas — bu hozir kerakli savol! 💖",
+      "correctMessage": "Bu so'z — mening kelajagimning eng yaxshi xabari! 💖💕"
     }
   ],
   "finalReward": {
     "type": "gift",
-    "headline": "Shahlo, kelajagimiz siz bilan yorqin! 🌟",
-    "body": "Birga o'ylaydigan orzularimiz, birga quradigan rejalarimiz — bularning hammasi mening eng katta boyligim. Siz bilan kelajak go'zal ko'rinadi.",
-    "signoff": "Jasurdan mehr bilan 🌟",
-    "bonusReveal": "🎁 Maxsus sovg'a: Siz bilan birgalikda sayohat rejasi allaqachon tayyorlanmoqda! ✈️"
+    "headline": "[TO], kelajagimiz siz bilan yorqin! 🌟",
+    "body": "Bu savollarni javoblab, ko'rsatdingiz: siz ham kelajakni birgalikda ko'rasiz. Bu — mening eng katta orzuim. Har bir orzumiz — bitta qadam.",
+    "signoff": "[FROM]dan mehr bilan 🌟",
+    "bonusReveal": "🎁 Maxsus: Siz bilan birgalikda amalga oshirmoqchi bo'lgan bitta orzuim bor — u haqida tez orada gaplashamiz ✨"
   }
 }

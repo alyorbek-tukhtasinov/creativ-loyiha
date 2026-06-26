@@ -6,160 +6,160 @@
   "questions": [
     {
       "id": 1,
-      "text": "Biz birinchi marta qayerda uchrashganmiz?",
+      "text": "Biz birinchi marta uchrashgan kun — o'sha kun hali ham esingizda bormi?",
       "emoji": "📍",
       "theme": "flowers",
-      "correctIndex": 1,
+      "correctIndex": 0,
       "options": [
-        "Bozorda",
-        "Universitetda 🎓",
-        "Metro bekatida",
-        "Do'stlar davrasida"
+        "Ha! Har bir tafsilot — xuddi kecha bo'lgandek 📍",
+        "Taxminan eslayman",
+        "Aniq eslay olmayman",
+        "Ko'p vaqt o'tdi"
       ],
-      "wrongMessage": "Eslaganingiz to'g'ri emas! 😄",
-      "correctMessage": "Ha! O'sha kun hayotimning eng yaxshi kuni bo'ldi! 🎓💕"
+      "wrongMessage": "O'sha kun — juda muhim edi! 📍",
+      "correctMessage": "Voy! Men ham o'sha kunni misli eslab turaman! 📍💕"
     },
     {
       "id": 2,
-      "text": "Birgalikda o'tkazgan birinchi dam olish kunimizda nima qilgan edik?",
-      "emoji": "🌳",
+      "text": "Birgalikda kulgili holatga tushib qolganmizmi? Eslab qulayapsizmi?",
+      "emoji": "😂",
       "theme": "flowers",
-      "correctIndex": 3,
+      "correctIndex": 2,
       "options": [
-        "Uyda film ko'rdik",
-        "Restorada ovqatlandik",
-        "Do'stlar bilan chiqishgan",
-        "Bog'da sayr qilib, muzqaymoq yedik 🍦"
+        "Yo'q, bunday bo'lmagan",
+        "Ba'zilarini eslardim",
+        "Ha! O'sha holatlar hali ham kuldiradi 😂",
+        "Eslamay qo'yganman"
       ],
-      "wrongMessage": "Xotirangiz yaxshi emas-ku! 😄",
-      "correctMessage": "Ha! O'sha muzqaymoq judayam mazali edi! 🍦💕"
+      "wrongMessage": "O'sha kulgili holatlar — eng qimmatli xotiralar! 😂",
+      "correctMessage": "Ha! O'sha onlar hali ham kuldiradi! 😂💕"
     },
     {
       "id": 3,
-      "text": "Sizni eng ko'p kuldirgan xotiramiz qaysi?",
-      "emoji": "😂",
+      "text": "Birgalikdagi birinchi suratimiz hali ham telefoningizda bormi?",
+      "emoji": "📷",
       "theme": "flowers",
-      "correctIndex": 0,
+      "correctIndex": 3,
       "options": [
-        "Yomg'irda qolganmizda 😂",
-        "Kinoda yiqilib tushganmizda",
-        "Marshrutka o'tkazib yuborgan vaqt",
-        "Do'stlar oldida uyalib qolganmizda"
+        "Yo'q, o'chirganman",
+        "Qaysi birini bilmayman",
+        "Bor, lekin ko'rmayapman",
+        "Ha! U mening eng sevimli suratim 📷"
       ],
-      "wrongMessage": "Ha, u ham kulgili edi, lekin...",
-      "correctMessage": "Yomg'irda qolganmiz! O'sha kun hali kuldiradi! 😂💕"
+      "wrongMessage": "O'sha surat — o'chirib bo'lmaydigan xotira edi! 📷",
+      "correctMessage": "Men ham o'sha suratni eng ko'p qaraydiganim! 📷💕"
     },
     {
       "id": 4,
-      "text": "Men sizga birinchi marta gulni qachon berdim?",
-      "emoji": "🌹",
-      "theme": "roses",
-      "correctIndex": 2,
+      "text": "Siz bilan bo'lgan qaysi lahzani qaytarib yashashni xohlardingiz?",
+      "emoji": "⏳",
+      "theme": "stars",
+      "correctIndex": 1,
       "options": [
-        "8-martda",
-        "Tug'ilgan kuningizda",
-        "Shunchaki baxtli bir kunda 🌹",
-        "Hech qachon bermadingiz"
+        "Hech birini — o'tgani o'tgan",
+        "Barchasini — har bir daqiqa qimmatli edi ⏳",
+        "Faqat yaxshilarini",
+        "Bilmayman, o'ylamaganman"
       ],
-      "wrongMessage": "Maxsus sababsiz ham gul berish mumkin! 😊",
-      "correctMessage": "Ha! Shunchaki 'seni yaxshi ko'raman' deb berdim! 🌹"
+      "wrongMessage": "Hech qaysi lahzani? 😢",
+      "correctMessage": "Aynan! Barchasi — yaxshisi ham, qiyini ham qimmatli! ⏳💕"
     },
     {
       "id": 5,
-      "text": "Bizning eng sevimli qo'shig'imiz qaysi?",
+      "text": "O'sha kuy eshitilsa — meni eslaydigan kuying bormi?",
       "emoji": "🎵",
       "theme": "night",
-      "correctIndex": 1,
+      "correctIndex": 0,
       "options": [
-        "Sharpening",
-        "Bizning 'maxsus qo'shig'imiz' 🎵",
-        "Tarona",
-        "Xabar yo'q"
+        "Ha! O'sha kuy eshitilsa, avtomatik siz ko'z oldimga kelasiz 🎵",
+        "Yo'q, kuy meni eslatmaydi",
+        "Bir nechta bor",
+        "Eslamayman"
       ],
-      "wrongMessage": "Bizning qo'shig'imizni unutdingizmi?! 😱",
-      "correctMessage": "Ha! O'sha kuy eshitilsa, siz ko'z oldimga kelasiz! 🎵💕"
+      "wrongMessage": "Bizning 'maxsus kuyi' bo'lishi kerak-ku! 🎵",
+      "correctMessage": "O'sha kuy — ikkovimizning simvoli! 🎵💕"
     },
     {
       "id": 6,
-      "text": "Birinchi bor qo'l ushlaganmizda qanday his qildingiz?",
-      "emoji": "🤝",
-      "theme": "hearts",
-      "correctIndex": 3,
-      "options": [
-        "Hech narsa sezmadim",
-        "Uyaldim va qo'limni tortib oldim",
-        "Sovuq edi",
-        "Yuragim tez-tez ura boshladi 💓"
-      ],
-      "wrongMessage": "Haqiqatan ham? 🤔",
-      "correctMessage": "Ha! Men ham xuddi shunday his qildim! 💓"
-    },
-    {
-      "id": 7,
-      "text": "Sizni bezovta qilgan vaqtimda nima qilgansiz?",
-      "emoji": "😤",
-      "theme": "night",
-      "correctIndex": 0,
-      "options": [
-        "Sabr qildim va tushuntirdim 😊",
-        "Jahl qildim va ketib qoldim",
-        "Yig'ladim",
-        "Jim turdim"
-      ],
-      "wrongMessage": "Sabr siz uchun muhim narsa! 😊",
-      "correctMessage": "Rahmat! Sizning sabringiz meni yaxshilashtirdi! 💕"
-    },
-    {
-      "id": 8,
-      "text": "Birgalikda tushirgan birinchi fotosuratimiz hali ham telefoningizda bormi?",
-      "emoji": "📷",
+      "text": "Xotiralarda eng ko'p qaysi hisni sezasiz?",
+      "emoji": "💛",
       "theme": "flowers",
       "correctIndex": 2,
       "options": [
-        "Yo'q, o'chirganman",
-        "Bilmayman",
-        "Ha, eng qimmatli foto o'sha! 📷",
-        "Bor, lekin ko'rmayapman"
+        "Afsuslanish",
+        "G'ayrioddiylik",
+        "Iliqlik va minnatdorlik 💛",
+        "Nostalgia"
       ],
-      "wrongMessage": "Aw... o'chirmasligi kerak edi 😢",
-      "correctMessage": "Voy! Men ham o'sha fotoni saqlabman! 📷💕"
+      "wrongMessage": "Iliqlik va minnatdorlik — eng to'g'ri his! 💛",
+      "correctMessage": "Ha! O'sha iliq his — eng qimmatli xotira belgisi! 💛💕"
+    },
+    {
+      "id": 7,
+      "text": "Birgalikdagi eng yaxshi xotiramiz hali kelmagandir — kelasi paytni kutayapsizmi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "O'tganlar yaxshi edi",
+        "Bilmayman, ko'ramiz",
+        "Ehtimol",
+        "Ha! Eng yaxshi xotiralar oldinda — men ishonaman 🌟"
+      ],
+      "wrongMessage": "Eng yaxshi xotiralaryimiz hali oldinda! 🌟",
+      "correctMessage": "ISHONAMAN! Oldindagi xotiralar yanada ajoyib bo'ladi! 🌟💕"
+    },
+    {
+      "id": 8,
+      "text": "Siz bilan birgalikda ovqat yegan kunlar eslab qulayapsizmi?",
+      "emoji": "🍽️",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Ovqatni eslab yuramanmi!",
+        "Ha! Birgalikdagi dasturxon boshqa bir his edi 🍽️",
+        "Nima yeganimizni eslay olmayman",
+        "Ular oddiy ovqat edi"
+      ],
+      "wrongMessage": "Birgalikdagi ovqat — oddiy emas, xotira! 🍽️",
+      "correctMessage": "Ha! U ovqatlar hozir ham mazali tuyuladi — sababini bilamiz 🍽️💕"
     },
     {
       "id": 9,
-      "text": "Bizning eng yaxshi xotiramiz deb nima deya olasiz?",
-      "emoji": "⭐",
-      "theme": "stars",
-      "correctIndex": 1,
+      "text": "Xotiralardagi bir lahzani birovga gapirishga to'g'ri kelsа — nimani gapirar edingiz?",
+      "emoji": "🗣️",
+      "theme": "hearts",
+      "correctIndex": 0,
       "options": [
-        "Hali yaratilmagan",
-        "Har bir daqiqa birgalikda ⭐",
-        "Faqat bayramlardagi",
-        "Birinchi uchrashuvimiz"
+        "O'sha kulgili va iliq lahzalarni — hammani hayratda qoldirardim 🗣️",
+        "Hech narsa gapiray olmasdim",
+        "Oddiy voqealar derdim",
+        "Bilmayman"
       ],
-      "wrongMessage": "Har bir daqiqa qimmatli-ku! 💕",
-      "correctMessage": "To'g'ri! Har bir daqiqamiz — oltin xotira! ⭐💕"
+      "wrongMessage": "Bizning xotiralarimiz — ajoyib hikoyalar! 🗣️",
+      "correctMessage": "Ha! O'sha hikoyalar — odamlarni jilmaytirar edi! 🗣️💕"
     },
     {
       "id": 10,
-      "text": "Yangi xotiralar yaratishni davom ettirishni xohlaysizmi?",
-      "emoji": "🌟",
+      "text": "Kelgusida birgalikda yangi xotiralar yaratishni xohlaysizmi?",
+      "emoji": "🎊",
       "theme": "stars",
-      "correctIndex": 0,
+      "correctIndex": 2,
       "options": [
-        "Ha, umr bo'yi! 🌟",
-        "Bilmayman",
-        "Ehtimol",
-        "Ko'ramiz..."
+        "O'tganlar yetarli",
+        "Ko'ramiz, qarab turamiz",
+        "Ha! Eng yaxshi xotiralar hali oldinda 🎊",
+        "Bilmayman"
       ],
-      "wrongMessage": "Birga davom etsak yaxshi bo'lardi... 🥺",
-      "correctMessage": "UMRBOD! Men ham shunday deya olaman! 🌟💕"
+      "wrongMessage": "Yangi xotiralar — yangi baxt! 🎊",
+      "correctMessage": "AYNAN! Yangi xotiralar — yangi boshliqlar! 🎊💕"
     }
   ],
   "finalReward": {
     "type": "letter",
-    "headline": "Dilnoza, bizning xotiralarimiz — eng qimmatli boylik! 📸",
-    "body": "Har bir kun siz bilan — yangi xotira. Kulishlar, yig'lashlar, kulgili holatlar — bularning hammasi bizni biz qiladi. Siz bilan har bir lahza aziz.",
-    "signoff": "Kamoldan sevgi bilan 💕",
-    "bonusReveal": "📸 Maxsus: Bizning birinchi fotomiz hali ham mening telefonimdagi eng sevimli foto!"
+    "headline": "[TO], bizning xotiralarimiz — umrbod 📸",
+    "body": "Bu savollarga javob berganingizda, ko'rdim — o'sha lahzalar sizning ham yuragingizda yashaydi. Xotiralar — eng kuchli narsa. Ularni birgalikda yaratganingiz uchun — minnatdorman.",
+    "signoff": "[FROM]dan, xotiralar bilan 💕",
+    "bonusReveal": "📸 Xotiramiz: Siz bilan birgalikda o'tkazgan har bir daqiqa — mening hayotimdagi eng qimmatli daqiqalar."
   }
 }

@@ -1,165 +1,165 @@
 {
   "categoryId": "custom",
-  "senderName": "Ism",
-  "receiverName": "Qabul qiluvchi",
-  "customMessage": "Bu maxsus sizga atab yaratildi ✨",
+  "senderName": "Sizning ismingiz",
+  "receiverName": "Aziz inson",
+  "customMessage": "Bu o'yin maxsus siz uchun yaratildi ✨",
   "questions": [
     {
       "id": 1,
-      "text": "Bu o'yinni kim siz uchun yaratdi deb o'ylaysiz?",
+      "text": "Kimdir siz haqingizda maxsus narsa tayyorlasa — nima his qilasiz?",
       "emoji": "✨",
       "theme": "stars",
       "correctIndex": 0,
       "options": [
-        "Sizi yaxshi ko'radigan biri! ✨",
-        "Bilmayman",
-        "Tasodifiy kishi",
-        "Kompyuter"
+        "Ichim jiz etadi va qadrlangan his qilaman ✨",
+        "Oddiy",
+        "Nima uchun qildi deb o'ylayman",
+        "Bilmayman"
       ],
-      "wrongMessage": "Bu yaqin odam yaratdi! 💕",
-      "correctMessage": "Ha! Sizni yaxshi ko'radigan biri! ✨"
+      "wrongMessage": "Qadrlangan his — eng yaxshi his! ✨",
+      "correctMessage": "Ha! Bu his — siz uchun maxsus yaratilganining belgisi! ✨"
     },
     {
       "id": 2,
-      "text": "Siz uchun maxsus narsalar yaratilganda qanday his qilasiz?",
-      "emoji": "🎁",
+      "text": "Yaxshi kun o'tkazish uchun eng muhim narsa nima?",
+      "emoji": "☀️",
       "theme": "flowers",
       "correctIndex": 2,
       "options": [
-        "Oddiy",
-        "Uyalib ketaman",
-        "Ichim jiz etadi va xursand bo'laman 🎁",
-        "Bilmayman"
+        "Ko'p pul sarflash",
+        "Ko'p dam olish",
+        "Yaqin odam bilan birga bo'lish ☀️",
+        "Hech narsa kerak emas"
       ],
-      "wrongMessage": "Maxsus narsalar juda yaxshi-ku! 🎁",
-      "correctMessage": "Ha! Shunday bo'lishi kerak! 🎁💕"
+      "wrongMessage": "Yaqin odam — kunni yanada yaxshi qiladi! ☀️",
+      "correctMessage": "Ha! Yaqin odamlar — eng yaxshi kun yaratuvchi! ☀️💕"
     },
     {
       "id": 3,
-      "text": "Agar bir kunlik erkin vaqt bo'lsa, nima qilardingiz?",
-      "emoji": "🌸",
-      "theme": "flowers",
-      "correctIndex": 1,
+      "text": "Kimdir sizni tushunsa va qabul qilsa — bu sizga muhimmi?",
+      "emoji": "🤍",
+      "theme": "hearts",
+      "correctIndex": 3,
       "options": [
-        "Uyda uxlab qolardim",
-        "Sevganlarim bilan bo'lardim 🌸",
-        "Ishlayman",
-        "Bilmayman"
+        "Yo'q, menga hech kim kerak emas",
+        "Faqat oilam",
+        "Ba'zan",
+        "Ha! Tushunish va qabul qilish — eng katta ehson 🤍"
       ],
-      "wrongMessage": "Sevganlar — eng muhim! 🌸",
-      "correctMessage": "Aynan! Sevganlar bilan vaqt — eng qimmatli! 🌸💕"
+      "wrongMessage": "Tushunilish — hamma uchun muhim! 🤍",
+      "correctMessage": "Ha! Bu — haqiqiy insoniy ehtiyoj! 🤍💕"
     },
     {
       "id": 4,
-      "text": "Baxt uchun sizga nima kerak?",
-      "emoji": "😊",
-      "theme": "hearts",
-      "correctIndex": 3,
-      "options": [
-        "Ko'p pul",
-        "Mashhurlik",
-        "Hamma narsa bo'lsin",
-        "Sog'lik, mehr va yaqinlar 😊"
-      ],
-      "wrongMessage": "Moddiy narsalar yetarli emas! 😊",
-      "correctMessage": "To'g'ri! Mehr va yaqinlar — eng katta boylik! 😊💕"
-    },
-    {
-      "id": 5,
-      "text": "Bu o'yinni o'ynashdan oldin qanday kayfiyatda edingiz?",
-      "emoji": "🌈",
-      "theme": "stars",
-      "correctIndex": 0,
-      "options": [
-        "Oddiy, lekin endi biroz xursandman 🌈",
-        "Xafa edim",
-        "Zerikdim",
-        "Bilmayman"
-      ],
-      "wrongMessage": "Umid qilamanki, biroz xursand bo'ldingiz! 🌈",
-      "correctMessage": "Xursandlangiz! Bu mening maqsadim edi! 🌈💕"
-    },
-    {
-      "id": 6,
-      "text": "Sizning eng kuchli tomoningiz nima?",
-      "emoji": "💪",
-      "theme": "flowers",
-      "correctIndex": 2,
-      "options": [
-        "Ko'rinishim",
-        "Aqilim",
-        "Yuragim va mehrim 💪",
-        "Bilmayman"
-      ],
-      "wrongMessage": "Yurak va mehr — eng katta kuch! 💪",
-      "correctMessage": "Ha! Yurak kuchi — hamma narsadan kuchli! 💪💕"
-    },
-    {
-      "id": 7,
-      "text": "Biror kishi sizga 'rahmat' demasa ham, yaxshilik qilasizmi?",
-      "emoji": "🤍",
+      "text": "Hayotingizdagi eng yaxshi narsa — oddiy ko'rinadigan, lekin qimmat narsa?",
+      "emoji": "💛",
       "theme": "flowers",
       "correctIndex": 1,
       "options": [
-        "Yo'q, qaytarim bo'lmasa qilmayman",
-        "Ha, yaxshilik uchun yaxshilik qilaman 🤍",
-        "Ba'zan",
+        "Pul",
+        "Yaqinlarimning kulishi va sog'ligi 💛",
+        "Muvaffaqiyat",
+        "Mashhurlik"
+      ],
+      "wrongMessage": "Oddiy ko'rinadigan narsa — eng qimmatli bo'lishi mumkin! 💛",
+      "correctMessage": "Aynan! Kulgi va sog'lik — pul bilan sotib olib bo'lmaydi! 💛💕"
+    },
+    {
+      "id": 5,
+      "text": "Biror kishi siz haqingizda o'ylasa — buning ta'siri bo'ladimi?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Kimningdir fikrlarida bo'lish — issiq his 💭",
+        "Yo'q, ta'siri yo'q",
+        "Bilmayman",
+        "Bu nima degan gap?"
+      ],
+      "wrongMessage": "Kimningdir xayolida bo'lish — baxtsiz emas! 💭",
+      "correctMessage": "Ha! Siz kimningdir xayolida edingiz — hozir ham! 💭💕"
+    },
+    {
+      "id": 6,
+      "text": "Bir kishi sizni xursand qilishga harakat qilsa — bunga ruxsat berasizmi?",
+      "emoji": "😊",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, o'zim o'zimni xursand qilaman",
+        "Faqat yaqinlarimga",
+        "Ha! Xursandchilikni qabul qilish — ham kuch kerak 😊",
         "Bilmayman"
       ],
-      "wrongMessage": "Yaxshilik uchun yaxshilik — eng go'zal xulq! 🤍",
-      "correctMessage": "Ha! Bu — siz haqingizda eng yaxshi narsa! 🤍💕"
+      "wrongMessage": "Xursandlikni qabul qilish — ham madaniyat! 😊",
+      "correctMessage": "Ha! Xursandlikni qabul qilish — kuch! 😊💕"
+    },
+    {
+      "id": 7,
+      "text": "Bugun nima yaxshi narsa bo'ldi — kichkina bo'lsa ham?",
+      "emoji": "🌸",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Hech narsa yaxshi bo'lmadi",
+        "Bilmayman, o'ylamaganman",
+        "Katta narsa bo'lmadi",
+        "Bu o'yinni o'ynadim — bu yaxshi narsa! 🌸"
+      ],
+      "wrongMessage": "Kichik narsalarda baxt topish — san'at! 🌸",
+      "correctMessage": "Ha! Bu o'yindan xursand bo'ldingiz — bu yaxshi narsa! 🌸💕"
     },
     {
       "id": 8,
-      "text": "Bu o'yinni kim yubordi deb o'ylaysiz?",
-      "emoji": "💌",
-      "theme": "hearts",
-      "correctIndex": 3,
+      "text": "Hayotingizda siz qadrlaydigan odam — siz haqingizda ham xuddi shunday o'ylaydimi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 1,
       "options": [
-        "Tasodifiy kishi",
-        "Bilmayman",
-        "Reklama",
-        "Sizi yaxshi ko'radigan va o'ylagan biri 💌"
+        "Yo'q, bilmayman",
+        "Ha! Va bu his — ikki tomonlama bo'lsa yanada yaxshi 🌟",
+        "Ehtimol",
+        "Buni so'raymagan edim"
       ],
-      "wrongMessage": "U siz haqingizda o'yladi! 💌",
-      "correctMessage": "Ha! U siz uchun vaqt sarfladi! 💌💕"
+      "wrongMessage": "Ikki tomonlama qadrlanish — eng yaxshi his! 🌟",
+      "correctMessage": "Ha! Munosabatlarda ikki tomonlama mehrni his qilish — baxt! 🌟💕"
     },
     {
       "id": 9,
-      "text": "Bu o'yin sizni kuld irdimi?",
+      "text": "Bu o'yin sizni jilmayttirdimi?",
       "emoji": "😄",
-      "theme": "flowers",
+      "theme": "hearts",
       "correctIndex": 0,
       "options": [
-        "Ha, biroz kuldim 😄",
-        "Yo'q",
+        "Ha! Kamida bir bor jilmaydim 😄",
+        "Yo'q, jilmamaдим",
         "Bilmayman",
-        "Ko'p emas"
+        "Ko'pamas"
       ],
-      "wrongMessage": "Kamida biroz kuldingiz deb umid qilaman! 😄",
-      "correctMessage": "Mana shu! Jilmayish — eng yaxshi narsa! 😄💕"
+      "wrongMessage": "Kamida bir bor jilmadingizmi? 😄",
+      "correctMessage": "Baxtiyorman! Jilmayish — bu o'yinning maqsadi! 😄💕"
     },
     {
       "id": 10,
-      "text": "Bu o'yinni yaratgan kishiga nima derdingiz?",
-      "emoji": "💕",
+      "text": "Bu o'yinni yuborgan odamga javob berasizmi?",
+      "emoji": "💌",
       "theme": "stars",
       "correctIndex": 2,
       "options": [
-        "Hech narsa",
-        "Bu g'alati edi",
-        "Rahmat, bu menga yoqdi! 💕",
-        "Nima bu?"
+        "Yo'q, kerak emas",
+        "Balki keiinroq",
+        "Ha! U vaqt sarfladi — javob berish insofdan 💌",
+        "Ko'ramiz"
       ],
-      "wrongMessage": "U sizni xursand qilishga harakat qildi! 💕",
-      "correctMessage": "Rahmat degan so'zingiz uni baxtli qiladi! 💕✨"
+      "wrongMessage": "U siz uchun vaqt sarfladi — bitta 'rahmat' yetarli! 💌",
+      "correctMessage": "Ha! Javob berish — eng yaxshi in'om! 💌💕"
     }
   ],
   "finalReward": {
     "type": "letter",
-    "headline": "Bu o'yin siz uchun maxsus yaratildi ✨",
-    "body": "Bu savollarni javobladingiz va o'zingiz haqingizda ko'p narsani ko'rsatdingiz. Siz ajoyib insonziz — bilasizmi? Bu o'yinni yuborgan kishi siz haqingizda o'yladi va bu bitta dalilat.",
-    "signoff": "Sizni qadrlagan biri ✨",
-    "bonusReveal": "💌 Maxsus sir: Siz doim kimningdir ko'zida yulduzday porlayziz ⭐"
+    "headline": "[TO], siz maxsus insonziz ✨",
+    "body": "Bu o'yinni o'ynashingiz — o'zida bir ma'noga ega. Kimdir siz uchun vaqt va mehr sarfladi. Bu oddiy narsa emas. Siz qadrlanasiz — bugungi kun ham, kelajakda ham.",
+    "signoff": "[FROM]dan, sizni qadrlagan holda ✨",
+    "bonusReveal": "💌 Maxfiy: Siz doim kimningdir ko'zida yulduzday porlayziz ⭐"
   }
 }

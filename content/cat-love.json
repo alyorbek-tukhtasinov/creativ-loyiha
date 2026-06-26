@@ -2,164 +2,164 @@
   "categoryId": "love",
   "senderName": "Amir",
   "receiverName": "Zulfiya",
-  "customMessage": "Bu o'yinni siz uchun yaratdim, chunki so'zlar yetarli emas 💕",
+  "customMessage": "Bu o'yinni siz uchun yaratdim — so'zlar yetmay qolganda... 💕",
   "questions": [
     {
       "id": 1,
-      "text": "Siz uchun sevgi nima?",
+      "text": "Agar men sizga 'yaxshi ko'raman' desam, javobingiz nima bo'lar edi?",
       "emoji": "💕",
       "theme": "roses",
       "correctIndex": 3,
       "options": [
-        "Faqat tuyg'u",
-        "Romantik kino",
-        "So'z",
-        "Hayotning ma'nosi 💕"
+        "Nima uchun menga? Xato qilmayapsizmi?",
+        "Rahmat, lekin...",
+        "Bilmayman nima deyishni",
+        "Men ham seni yaxshi ko'raman 💕"
       ],
-      "wrongMessage": "Hmm, men boshqacha o'ylayman... 🌹",
-      "correctMessage": "Ha! Sevgi hayotning ma'nosi! 💕"
+      "wrongMessage": "Bu javob meni biroz xafa qildi... 😢 Chin fikringiz nima?",
+      "correctMessage": "Bu so'zni eshitish uchun umrimda kutardim! 💕💕"
     },
     {
       "id": 2,
-      "text": "Kimdir sizni sevsa, birinchi navbatda nima qilishi kerak?",
-      "emoji": "🌹",
-      "theme": "roses",
-      "correctIndex": 0,
+      "text": "Kechasi uxlab ketolmay yotgan paytingizda nima haqida o'ylaysiz?",
+      "emoji": "🌙",
+      "theme": "night",
+      "correctIndex": 1,
       "options": [
-        "Hurmat ko'rsatish va qadrlash 🌹",
-        "Qimmat sovg'alar berish",
-        "Doimo yonida bo'lish",
-        "Ko'p xabar yozish"
+        "Ertangi ishlar haqida",
+        "Siz haqingizda ko'p o'ylayman 🌙",
+        "Ovqat haqida",
+        "Hech narsa — tez uxlab ketaman"
       ],
-      "wrongMessage": "Bu muhim, lekin asosiysi bu emas 😊",
-      "correctMessage": "To'g'ri! Hurmat va qadrlash — muhabbatning asosi! 🌹"
+      "wrongMessage": "Meni o'ylaysiz deb umid qilamannn! 🌙",
+      "correctMessage": "Men ham har kecha siz haqimda o'ylayman! 🌙💕"
     },
     {
       "id": 3,
-      "text": "Siz meni birinchi marta ko'rganingizda nima o'ylagan bo'lardingiz?",
-      "emoji": "👀",
-      "theme": "hearts",
-      "correctIndex": 2,
+      "text": "Men g'amgin bo'lsam, buning sababini bilmoqchi bo'lasizmi?",
+      "emoji": "🤍",
+      "theme": "flowers",
+      "correctIndex": 0,
       "options": [
-        "Hech narsa",
-        "Qanday kiyingan?",
-        "Bu odam qiziq... 💭",
-        "Nimaga qarayapti?"
+        "Ha, doim! Nima bo'ldi, aytib bering 🤍",
+        "O'tib ketadi, sabr qiling",
+        "Hammaning g'ami bo'ladi",
+        "Vaqt o'tsa yaxshi bo'ladi"
       ],
-      "wrongMessage": "Rostini ayting... 😄",
-      "correctMessage": "Voy! Men ham xuddi shuni o'yladim! 💕"
+      "wrongMessage": "Sabr bilan kuting deb ayta olmaysizmi? 🥺",
+      "correctMessage": "Aynan! Yoningizda bo'lishni istayman! 🤍💕"
     },
     {
       "id": 4,
-      "text": "Mendan nimani eng yaxshi ko'rasiz?",
-      "emoji": "✨",
+      "text": "Agar bir oyga ko'rinmay qolsam, sog'inardingizmi?",
+      "emoji": "💭",
       "theme": "stars",
-      "correctIndex": 1,
+      "correctIndex": 2,
       "options": [
-        "Ko'rinishingizni",
-        "Qalbingizni va tabasumingizni ✨",
-        "Ovozingizni",
-        "Kiyimingizni"
+        "Yo'q, vaqt o'tib ketadi",
+        "Ozgina, balki",
+        "Ha, judayam! Bir oy juda uzoq 💭",
+        "Bilmayman, sinab ko'rishim kerak"
       ],
-      "wrongMessage": "Ichki go'zallik muhimroq-ku! 😊",
-      "correctMessage": "Aynan! Qalb va tabassum — eng ajoyib narsa! ✨"
+      "wrongMessage": "Bir oy — bu juda ko'p vaqt-ku! 😢",
+      "correctMessage": "Voy! Men ham sizi bir kunsiz sog'inaman! 💭💕"
     },
     {
       "id": 5,
-      "text": "Sevgi deb ataladigan his qachon paydo bo'ladi?",
-      "emoji": "💗",
+      "text": "Men haqimda do'stlaringizga nima deya olasiz?",
+      "emoji": "😊",
       "theme": "flowers",
       "correctIndex": 3,
       "options": [
-        "Birinchi ko'rishda",
-        "Bir yildan keyin",
-        "Hech qachon bilmaysan",
-        "Qalblar bir-birini taniganda 💗"
+        "Hech narsa, ular bilishi shart emas",
+        "Oddiy tanishim deb aytaman",
+        "Ko'rgan do'stim bor deb aytaman",
+        "U menga juda yaqin odam deb aytaman 😊"
       ],
-      "wrongMessage": "Ha, ba'zan shunday bo'ladi, lekin... 🤔",
-      "correctMessage": "To'g'ri! Qalblar bir-birini tanisa — muhabbat boshlanadi 💗"
+      "wrongMessage": "Faqatgina tanish? Bu biroz og'ir eshitildi 🥺",
+      "correctMessage": "Yaqin odam! Bu so'z — menga eng qimmatli so'z! 😊💕"
     },
     {
       "id": 6,
-      "text": "Siz meni sevasizmi?",
-      "emoji": "❤️",
-      "theme": "roses",
-      "correctIndex": 0,
-      "options": [
-        "Ha, judayam! ❤️",
-        "Bilmayman",
-        "Shoyad...",
-        "Bu savol qiyin"
-      ],
-      "wrongMessage": "Iltimos, yana bir bor o'ylab ko'ring 🥺",
-      "correctMessage": "AAAAH! Bu so'zni eshitishni orzu qilardim! ❤️"
-    },
-    {
-      "id": 7,
-      "text": "Yonimda bo'lmagan vaqtlarda meni eslaysizmi?",
-      "emoji": "💭",
-      "theme": "night",
-      "correctIndex": 2,
-      "options": [
-        "Yo'q, band bo'laman",
-        "Ba'zan",
-        "Ha, doim! 💭",
-        "Faqat xabar yozsangiz"
-      ],
-      "wrongMessage": "Hmm... Siz meni kamroq eslaydigan bo'lsa kerak 😢",
-      "correctMessage": "Voy! Men ham sizni doim eslayman! 💭💕"
-    },
-    {
-      "id": 8,
-      "text": "Bizning munosabatimiz qanday bo'lishini xohlaysiz?",
-      "emoji": "🌈",
+      "text": "Birgalikda o'tkazadigan bir kunimiz bo'lsa, nima qilardingiz?",
+      "emoji": "☀️",
       "theme": "flowers",
       "correctIndex": 1,
       "options": [
-        "Oddiy do'stlik",
-        "Chuqur ishonch va sevgiga asoslangan 🌈",
-        "Faqat xabar yozib turish",
-        "Rasmiy"
+        "Uyda bo'lardim, siz keling",
+        "Sayr, qahva, gaplashish — shunchaki yonimda bo'lsangiz bas ☀️",
+        "Ish qilardim, ko'p narsam bor",
+        "Bilmayman, o'ylamaganman"
       ],
-      "wrongMessage": "Faqat shundaymi? 🤔",
-      "correctMessage": "Aynan! Men ham shunday munosabat istayman! 🌈💕"
+      "wrongMessage": "Bir kun siz bilan — bunga boshqa reja qo'yib bo'lmaydi! ☀️",
+      "correctMessage": "Mana bu! Shunchaki yonimda bo'lsangiz — bu yetarli! ☀️💕"
     },
     {
-      "id": 9,
-      "text": "Menga biror narsa yoqmasa, aytib berasizmi?",
-      "emoji": "🗣️",
+      "id": 7,
+      "text": "Men qilgan xatoni aytib bersam, qulog'ingiz ochiqmi?",
+      "emoji": "👂",
       "theme": "hearts",
       "correctIndex": 0,
       "options": [
-        "Ha, lekin muloyimlik bilan 💬",
-        "Yo'q, jimgina o'tiraman",
-        "Bilmayman",
-        "Faqat katta muammo bo'lsa"
+        "Ha, doim tinglayman 👂",
+        "Bilmayman, vaqtim bormi qarab",
+        "Keyinroq gaplashamiz",
+        "Aytib nima qilasiz, o'zi hal bo'ladi"
       ],
-      "wrongMessage": "Muloqot muhim! 😊",
-      "correctMessage": "Rahmat! Halollik — munosabatning asosi! 💬"
+      "wrongMessage": "Quloq solish — munosabatning asosi-ku! 👂",
+      "correctMessage": "Rahmat! Siz — eng yaxshi tinglovchi! 👂💕"
+    },
+    {
+      "id": 8,
+      "text": "Sizni kuldirish oson meniga?",
+      "emoji": "😄",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, hazillarim yoqmaydi",
+        "Ba'zan, kayfiyatga qarab",
+        "Ha! Siz bilan doim kulaman 😄",
+        "Boshqalar yaxshiroq kuldiradi"
+      ],
+      "wrongMessage": "Menga boshqa kishi topaylikmi? 😄😢",
+      "correctMessage": "Voy! Men ham siz bilan eng ko'p kulaman! 😄💕"
+    },
+    {
+      "id": 9,
+      "text": "Qiyinchilik vaqtimda yoningizda turgan odam bo'lishni xohlaysizmi?",
+      "emoji": "🤝",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Bu javobgarlik ko'p",
+        "Qo'limdan kelarmikan...",
+        "Urinib ko'raman",
+        "Ha! Qiyinchilikda yonida bo'lish — haqiqiy do'stlik 🤝"
+      ],
+      "wrongMessage": "Qiyinchilikda yonida bo'lish — bu sevgining o'zi! 🤝",
+      "correctMessage": "Aynan! Qiyinchilikda yonida turgan odam — eng qimmatli! 🤝💕"
     },
     {
       "id": 10,
-      "text": "Menga bir so'z bilan sevgingizni ifodalasangiz?",
+      "text": "Bu o'yinni o'ynab bo'lgach, meni o'ylaysizmi?",
       "emoji": "💌",
-      "theme": "roses",
-      "correctIndex": 3,
+      "theme": "stars",
+      "correctIndex": 1,
       "options": [
-        "Yaxshi",
-        "Normal",
-        "Ko'p",
-        "Cheksiz 💌"
+        "Yo'q, boshqa ishlarim bor",
+        "Ha, va bu o'yinni yuborgan odamga javob beraman 💌",
+        "Bilmayman",
+        "Ehtimol ertaga"
       ],
-      "wrongMessage": "Cheksiz sevgi uchun kattaroq so'z kerak! 😄",
-      "correctMessage": "CHEKSIZ! Xuddi mening sevgim kabi! 💌💕"
+      "wrongMessage": "Iltimos, bir daqiqa uchun o'ylab ko'ring... 💌",
+      "correctMessage": "Javobingizni sabrsizlik bilan kutaman! 💌💕"
     }
   ],
   "finalReward": {
     "type": "letter",
-    "headline": "Zulfiya, seni judayam sevaman! 💕",
-    "body": "Bu savollar orqali siz o'zingiz haqingizda ko'p narsalarni ko'rsatdingiz. Siz ajoyib insonziz va men sizni hayotimga kirganingiz uchun shukronaman. Bu tuyg'u — cheksiz va sofdir.",
-    "signoff": "Sizni sevgan Amirdan 💕",
-    "bonusReveal": "💌 Siz uchun maxsus sir: Siz mening har kuni kulib turishimning sababi ekansiz ✨"
+    "headline": "[TO], seni yaxshi ko'raman — bu oddiy so'z emas 💕",
+    "body": "Bu o'yinni o'ynash orqali siz o'zingiz haqingizda juda ko'p narsani ko'rsatdingiz. Siz mehribon, samimiy va ajoyib insonziz. Bu so'zlarni o'qiyotganda biling: ular chin yurakdan yozilgan.",
+    "signoff": "[FROM]dan, yuragining chuquridan 💕",
+    "bonusReveal": "💌 Sir: Siz bu o'yinni o'ynashdan oldin ham mening ko'nglimda eng muhim o'rinda edingiz."
   }
 }

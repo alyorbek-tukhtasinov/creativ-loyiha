@@ -6,161 +6,161 @@
   "questions": [
     {
       "id": 1,
-      "text": "Biz birgalikda bo'lgan yillar haqida nima deya olasiz?",
+      "text": "Birga bo'lganimizning bu kuniga nima deb nom berardingiz?",
       "emoji": "💍",
       "theme": "roses",
-      "correctIndex": 3,
+      "correctIndex": 0,
       "options": [
-        "Oddiy vaqt",
-        "Ba'zan yaxshi, ba'zan yo'q",
-        "Qiyin vaqtlar ham bo'ldi",
-        "Eng yaxshi yillarim — sizning yoningizdagilar 💍"
+        "Hayotimning eng qimmatli kuni — yildan-yilga 💍",
+        "Oddiy sana",
+        "Vaqt o'tishining belgisi",
+        "Esdan chiqib ketuvchi sana"
       ],
-      "wrongMessage": "Birga o'tgan vaqt — oltin! 💍",
-      "correctMessage": "Ha! Siz bilan o'tgan har lahza qimmatli! 💍💕"
+      "wrongMessage": "Oddiy sana emas — bu bizning sanамиз! 💍",
+      "correctMessage": "Aynan! Bu kun — har yili yangi ma'no kasb etadi! 💍💕"
     },
     {
       "id": 2,
-      "text": "Birinchi marta 'sevaman' deganingizda qanday his qildingiz?",
-      "emoji": "❤️",
-      "theme": "roses",
-      "correctIndex": 0,
-      "options": [
-        "Qo'rqib ketdim, lekin xursand bo'ldim ❤️",
-        "Hech narsa sezmadim",
-        "Uyaldim va ketib qoldim",
-        "Shunchaki so'z edi"
-      ],
-      "wrongMessage": "Ha... o'sha lahza maxsus bo'lgan! ❤️",
-      "correctMessage": "Men ham xuddi shunday his qildim! ❤️💕"
-    },
-    {
-      "id": 3,
-      "text": "Bu munosabatning eng yaxshi tomoni nima?",
-      "emoji": "🌺",
+      "text": "Birgalikda o'tgan vaqt — sizi qandayroq odam qildi?",
+      "emoji": "🌱",
       "theme": "flowers",
       "correctIndex": 2,
       "options": [
-        "Sovg'alar va dabdaba",
-        "Baham ko'rgan ovqatlar",
-        "Bir-birimizni qabul qilish va tushunish 🌺",
-        "Birga ko'rgan filmlar"
+        "Hech o'zgartirmadi",
+        "Biroz charchatdi",
+        "Yaxshiroq, kuchliroq va mehr to'la qildi 🌱",
+        "Bilmayman"
       ],
-      "wrongMessage": "Tushunish va qabul qilish — asosiy! 🌺",
-      "correctMessage": "Aynan! Bu — haqiqiy muhabbat belgilarimiz! 🌺💕"
+      "wrongMessage": "Birgalikda o'sish — birgalikdagi sovg'a! 🌱",
+      "correctMessage": "Ha! Siz bilan birga — har kuni yaxshiroq bo'lyapman! 🌱💕"
     },
     {
-      "id": 4,
-      "text": "Bizning eng og'ir vaqtimizda kim kuchli bo'ldi?",
-      "emoji": "💪",
-      "theme": "night",
-      "correctIndex": 1,
-      "options": [
-        "Men",
-        "Ikkovimiz ham bir-birimizga suyanib kuch oldik 💪",
-        "Siz",
-        "Hech kim"
-      ],
-      "wrongMessage": "Birgalikda kuchli bo'ldik-ku! 💪",
-      "correctMessage": "Ha! Birgalikda — ikki marta kuchlimiz! 💪💕"
-    },
-    {
-      "id": 5,
-      "text": "Yillik nishon kechasida nima qilishni orzu qilyapsiz?",
-      "emoji": "🌹",
-      "theme": "roses",
-      "correctIndex": 3,
-      "options": [
-        "Uyda qolish",
-        "Kino ko'rish",
-        "Do'stlar bilan nishonlash",
-        "Ikkovimiz uchun maxsus kecha — restoran va stargazing 🌹"
-      ],
-      "wrongMessage": "Maxsus kecha kerak-ku! 🌹",
-      "correctMessage": "Restoran va yulduzlar! Bu mening ham orzuim! 🌹💕"
-    },
-    {
-      "id": 6,
-      "text": "Agar o'tmishga qayta borolsam, o'zgartirmoqchi bo'lgan narsa bormi?",
-      "emoji": "⏳",
-      "theme": "stars",
-      "correctIndex": 0,
-      "options": [
-        "Yo'q, hamma narsa to'g'ri sodir bo'ldi ⏳",
-        "Ko'p narsa",
-        "Faqat ba'zi xatolar",
-        "Hamma narsani"
-      ],
-      "wrongMessage": "Hamma xato — saboq! O'zgartirmaslik kerak! ⏳",
-      "correctMessage": "To'g'ri! Har bir lahza bizni bugungi biz qildi! ⏳💕"
-    },
-    {
-      "id": 7,
-      "text": "Siz meni qachon ko'proq sevasiz?",
-      "emoji": "💖",
-      "theme": "hearts",
-      "correctIndex": 2,
-      "options": [
-        "Faqat xursand vaqtlarda",
-        "Sovg'a berganimda",
-        "Doim — har holda, har vaqt 💖",
-        "Yaxshi kiyinib chiqqanimda"
-      ],
-      "wrongMessage": "Faqat yaxshi vaqtlarda emas-ku! 💖",
-      "correctMessage": "DOIM! Bu javob — mening orzuim! 💖💕"
-    },
-    {
-      "id": 8,
-      "text": "Keyingi yillikda nima qilishni rejalashtiryapsiz?",
-      "emoji": "✈️",
-      "theme": "stars",
-      "correctIndex": 1,
-      "options": [
-        "Hali bilmayman",
-        "Birgalikda yangi joyga sayohat ✈️",
-        "Oddiy nishon",
-        "Uydagi kichik ziyofat"
-      ],
-      "wrongMessage": "Keling, maxsus reja qilaylik! ✈️",
-      "correctMessage": "Sayohat! Yangi xotiralar yaratamiz! ✈️💕"
-    },
-    {
-      "id": 9,
-      "text": "Siz mening qaysi xususiyatimdan ilhomlanyapsiz?",
+      "id": 3,
+      "text": "Birgalikda o'tkazgan eng unutilmas kunimiz qaysi deb o'ylaysiz?",
       "emoji": "⭐",
       "theme": "stars",
       "correctIndex": 3,
       "options": [
-        "Tashqi ko'rinishingizdan",
-        "Aqlingizdan",
-        "Hazil-muloqotingizdan",
-        "Hech qachon taslim bo'lmasligingiz va mehr-muhabbatingizdan ⭐"
+        "Birinchi uchrashgan kun",
+        "Bayramlar",
+        "Sayohat qilgan kunlar",
+        "Hammasi — chunki har kun birgalikda o'tkazgan kun — maxsus ⭐"
       ],
-      "wrongMessage": "Ichki sifatlar muhimroq! ⭐",
-      "correctMessage": "Bu javob... ko'zimni yoshlattirdi! ⭐💕"
+      "wrongMessage": "Faqat bitta emas — barchasi! ⭐",
+      "correctMessage": "Ha! Har bir kun birgalikda — xotira bo'lib qoladi! ⭐💕"
     },
     {
-      "id": 10,
-      "text": "Umr bo'yi birga bo'lishni xohlaysizmi?",
-      "emoji": "💍",
+      "id": 4,
+      "text": "Qiyinchilik paytimizda bir-birimizni qo'llab-quvvatlaylikmi degan edi miyangizda?",
+      "emoji": "🤝",
+      "theme": "hearts",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, har kim o'z muammosini o'zi hal qiladi",
+        "Ha, doim — bu birgalikda bo'lishning ma'nosi 🤝",
+        "Ba'zan",
+        "Qiyin bo'lsa ko'ramiz"
+      ],
+      "wrongMessage": "Qiyinlikda birgalikda bo'lish — munosabatning qalbi! 🤝",
+      "correctMessage": "Aynan! Qiyinda birgalikda bo'lish — eng katta quvvat! 🤝💕"
+    },
+    {
+      "id": 5,
+      "text": "Bu yillikni qanday nishonlashni xohlaysiz?",
+      "emoji": "🌹",
       "theme": "roses",
       "correctIndex": 0,
       "options": [
-        "Ha, umr bo'yi — shubhasiz! 💍",
-        "Ehtimol",
-        "Ko'ramiz",
-        "Bilmayman"
+        "Ikkovimiz uchun maxsus, tinch va iliq kecha 🌹",
+        "Katta ziyofat",
+        "Oddiy kun kabi",
+        "Do'stlar davrasida"
       ],
-      "wrongMessage": "Iltimos... 🥺 Men umidvorm",
-      "correctMessage": "UMRBOD! Bu so'z mening yuragimda naqsh bo'ldi! 💍💕"
+      "wrongMessage": "Bu kun — faqat ikkovimiz uchun! 🌹",
+      "correctMessage": "Ha! Faqat ikkovimiz — bu eng yaxshi nishon! 🌹💕"
+    },
+    {
+      "id": 6,
+      "text": "Keyingi yillikda ham birgalikda bo'lamizmi?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Ko'ramiz",
+        "Ehtimol",
+        "Ha! Shubhasiz — men bundan hech shubhalanmayman 🌈",
+        "Bilmayman, hayot..."
+      ],
+      "wrongMessage": "Men shubhalanmayman! 🌈",
+      "correctMessage": "Ha! Bu so'z — mening qalbimda eng kuchli ishonch! 🌈💕"
+    },
+    {
+      "id": 7,
+      "text": "Siz meni — o'sha birinchi kungizdek hali ham ko'rasizmi?",
+      "emoji": "👀",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Ko'nikib qoldim",
+        "O'zgardi ko'p narsa",
+        "Ba'zan",
+        "Ha! Balki undan ham yaxshiroq ko'raman endi 👀"
+      ],
+      "wrongMessage": "Ko'nikib qolmang... 👀",
+      "correctMessage": "Voy! Bu javob — meni erkin qildi! 👀💕"
+    },
+    {
+      "id": 8,
+      "text": "Birgalikdagi kelajagimiz haqida o'ylasangiz — nima his qilasiz?",
+      "emoji": "💫",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Qo'rqinch",
+        "Iliqlik, umid va xursandchilik 💫",
+        "Noma'lumlik",
+        "Hech nima"
+      ],
+      "wrongMessage": "Iliqlik va umid — to'g'ri his! 💫",
+      "correctMessage": "Ha! Kelajakni siz bilan o'ylash — eng yaxshi his! 💫💕"
+    },
+    {
+      "id": 9,
+      "text": "Men siz uchun qilgan bitta narsani — eslab shukrona aytasizmi?",
+      "emoji": "🌸",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Ko'p narsangiz uchun shukronam bor — barchasini aytolmayman 🌸",
+        "Eslay olmayman",
+        "Oddiy narsa edi",
+        "Hozir vaqtim yo'q"
+      ],
+      "wrongMessage": "Kichik narsalar ham esda qolishi kerak! 🌸",
+      "correctMessage": "Bu so'z — mening eng yaxshi mukofotim! 🌸💕"
+    },
+    {
+      "id": 10,
+      "text": "Yana yillar o'tsa ham — meni tanlaysizmi?",
+      "emoji": "❤️",
+      "theme": "roses",
+      "correctIndex": 2,
+      "options": [
+        "Bilmayman, hayot o'zgarib turadi",
+        "Ko'ramiz vaqti kelganda",
+        "Ha! Har kuni — ongli tanlov ❤️",
+        "Bu qiyin savol"
+      ],
+      "wrongMessage": "Sevgi — tanlov, tasodif emas... ❤️",
+      "correctMessage": "Ha! Har kuni sizni tanlash — mening ongli qarorim! ❤️💕"
     }
   ],
   "finalReward": {
     "type": "countdown",
-    "headline": "Fotima, birga bo'lganimizning nishoni muborak! 💍",
-    "body": "Har bir yil siz bilan yanada yaxshilanaman. Sizning kulishingiz, fikrlaringiz, mehr-muhabbatingiz — bularning hammasi mening hayotimni boyitadi. Yana ko'p yillar birgalikda!",
-    "signoff": "Ulugbekdan butun qalb bilan 💍",
-    "bonusReveal": "📅 Keyingi nishonimizga: Birgalikda sayohat rejalashtirildi!",
-    "countdownDate": "2027-06-25"
+    "headline": "[TO], yilligimiz muborak! Birgalikdagi har bir kun — nعمat 💍",
+    "body": "Birga o'tgan kunlar — ularning har biri meni yaxshiroq qildi. Siz bilan — hayot go'zal. Yana ko'p yillar birgalikda, yanada kuchliroq bo'lamiz.",
+    "signoff": "[FROM]dan, butun qalb bilan 💍",
+    "bonusReveal": "📅 Keyingi yiligimizga rejamiz: Birgalikda yangi joy, yangi xotira!",
+    "countdownDate": "2027-06-26"
   }
 }
