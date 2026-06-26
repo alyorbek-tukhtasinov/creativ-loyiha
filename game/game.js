@@ -14,6 +14,9 @@ const STATE = {
   speedMultiplier: 1,
   isMobile: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent),
   audioCtx: null,
+  bgMusic: null,
+  musicStarted: false,
+  musicSourceReady: false,
 };
 
 // ─── AUDIO ───────────────────────────────────────────────────────────────────
@@ -59,6 +62,103 @@ function playFinale() {
   }, notes.length * 100 + 200);
 }
 
+function initBackgroundMusic() {
+  STATE.bgMusic = document.getElementById('bgMusic');
+  if (!STATE.bgMusic) return;
+
+  STATE.bgMusic.volume = 0.32;
+  ensureRomanticLoopSource();
+
+  ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
+    window.addEventListener(eventName, startBackgroundMusic, { once: true, passive: true });
+  });
+}
+
+function ensureRomanticLoopSource() {
+  if (!STATE.bgMusic || STATE.musicSourceReady) return;
+  STATE.bgMusic.src = createRomanticLoopDataUri();
+  STATE.musicSourceReady = true;
+}
+
+async function startBackgroundMusic() {
+  if (!STATE.bgMusic || STATE.muted) return;
+
+  ensureRomanticLoopSource();
+  try {
+    STATE.bgMusic.volume = 0.32;
+    await STATE.bgMusic.play();
+    STATE.musicStarted = true;
+  } catch(e) {
+    STATE.musicStarted = false;
+  }
+}
+
+function createRomanticLoopDataUri() {
+  const sampleRate = 22050;
+  const seconds = 16;
+  const totalSamples = sampleRate * seconds;
+  const channels = 1;
+  const bytesPerSample = 2;
+  const dataSize = totalSamples * channels * bytesPerSample;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+
+  function writeString(offset, str) {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  }
+
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, channels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * channels * bytesPerSample, true);
+  view.setUint16(32, channels * bytesPerSample, true);
+  view.setUint16(34, 16, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataSize, true);
+
+  const chords = [
+    [261.63, 329.63, 392.00, 523.25],
+    [220.00, 261.63, 329.63, 440.00],
+    [174.61, 261.63, 349.23, 440.00],
+    [196.00, 246.94, 329.63, 392.00]
+  ];
+
+  for (let i = 0; i < totalSamples; i++) {
+    const t = i / sampleRate;
+    const chord = chords[Math.floor(t / 4) % chords.length];
+    const local = t % 4;
+    const fadeIn = Math.min(1, t / 1.2);
+    const fadeOut = Math.min(1, (seconds - t) / 1.2);
+    const chordFade = Math.min(1, local / 0.45, (4 - local) / 0.45);
+    const envelope = Math.max(0, Math.min(fadeIn, fadeOut, chordFade));
+    const shimmer = Math.sin(2 * Math.PI * 880 * t) * 0.015 * Math.sin(Math.PI * local / 4);
+    let sample = shimmer;
+
+    chord.forEach((freq, idx) => {
+      const detune = 1 + (idx - 1.5) * 0.0015;
+      sample += Math.sin(2 * Math.PI * freq * detune * t) * (0.075 / (idx + 1));
+      sample += Math.sin(2 * Math.PI * freq * 2 * t) * (0.018 / (idx + 1));
+    });
+
+    sample *= envelope;
+    sample = Math.max(-1, Math.min(1, sample));
+    view.setInt16(44 + i * 2, sample * 32767, true);
+  }
+
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return `data:audio/wav;base64,${btoa(binary)}`;
+}
+
 // ─── URL PARAMS ──────────────────────────────────────────────────────────────
 function parseParams() {
   const p = new URLSearchParams(window.location.search);
@@ -85,6 +185,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   parseParams();
   createBgParticles();
   loadMuteState();
+  initBackgroundMusic();
 
   if (STATE.isPreview) {
     document.getElementById('previewBadge').classList.remove('hidden');
@@ -163,6 +264,7 @@ function typewriterEffect(el, text, speed = 55) {
 
 // ─── GAME ─────────────────────────────────────────────────────────────────────
 function startGame() {
+  startBackgroundMusic();
   STATE.currentQ = 0;
   STATE.streak = 0;
   STATE.stars = [];
@@ -255,19 +357,34 @@ function renderOptions(q) {
       btn.addEventListener('click', () => handleCorrect(btn, q));
     } else {
       // ── FLEE MEXANIKASI ──
-      // Faqat BOSILGANDA qochadi, sichqon o'tganda emas
+      // Noto'g'ri javoblar yaqinlashganda ham, bosilganda ham qochadi.
       if (!STATE.isPreview) {
-        btn.addEventListener('mousedown', (e) => {
-          e.preventDefault(); // click eventni bloklaydi
+        btn.addEventListener('pointerenter', (e) => {
+          if (btn.classList.contains('disabled')) return;
+          handleWrongInteraction(btn, e.clientX, e.clientY, q);
+        });
+        btn.addEventListener('pointerdown', (e) => {
+          e.preventDefault();
+          if (btn.classList.contains('disabled')) return;
+          handleWrongInteraction(btn, e.clientX, e.clientY, q);
+        });
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
           if (btn.classList.contains('disabled')) return;
           handleWrongInteraction(btn, e.clientX, e.clientY, q);
         });
         btn.addEventListener('touchstart', (e) => {
           e.preventDefault();
           if (btn.classList.contains('disabled')) return;
-          const t = e.touches[0];
+          const t = e.touches[0] || { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 };
           handleWrongInteraction(btn, t.clientX, t.clientY, q);
         }, { passive: false });
+        btn.addEventListener('focus', () => {
+          if (btn.classList.contains('disabled')) return;
+          const rect = btn.getBoundingClientRect();
+          handleWrongInteraction(btn, rect.left + rect.width / 2, rect.top + rect.height / 2, q);
+        });
       } else {
         // Preview rejimida: qochmaydi, faqat xabar ko'rsatadi
         btn.addEventListener('click', () => {
@@ -286,14 +403,18 @@ function renderOptions(q) {
 
 // Noto'g'ri tugma bosilganda: feedback + tovush + qochish
 function handleWrongInteraction(btn, clientX, clientY, q) {
+  const now = performance.now();
+  if (btn._lastFleeAt && now - btn._lastFleeAt < 140) return;
+  btn._lastFleeAt = now;
+
   onWrongAttempt(btn, q);
   playWrong();
   spawnReactionEmoji(clientX, clientY);
-  fleeButton(btn);
+  fleeButton(btn, clientX, clientY);
 }
 
 // Tugmani qochirish — birinchi bosilishda placeholder yaratib, keyingilarida yangi pozitsiyaga o'tkazadi
-function fleeButton(btn) {
+function fleeButton(btn, clientX, clientY) {
   const isMob = STATE.isMobile;
 
   if (!btn._originalRect) {
@@ -329,20 +450,29 @@ function fleeButton(btn) {
   // Mobil: puff efekti qo'shimcha
   if (isMob) spawnPuff(curLeft + w / 2, curTop + h / 2);
 
-  // Masofa: dastlab kichik (50px), har urinishda ozgina o'sadi, max 120px
-  // Har doim BOSHLANG'ICH o'rindan hisoblanadi — juda uzoq ketmaydi
-  const dist = Math.min(50 + STATE.wrongAttempts * 12, 120);
-  const angle = Math.random() * Math.PI * 2;
-  const orig  = btn._originalRect;
+  // Ekran ichidan kursor/touch nuqtasidan uzoqroq xavfsiz joy tanlaymiz.
+  const pad = STATE.isMobile ? 14 : 24;
+  const minTop = 64;
+  const maxX = Math.max(pad, window.innerWidth - w - pad);
+  const maxY = Math.max(minTop, window.innerHeight - h - pad);
+  const dangerX = Number.isFinite(clientX) ? clientX : curLeft + w / 2;
+  const dangerY = Number.isFinite(clientY) ? clientY : curTop + h / 2;
+  let best = { x: curLeft, y: curTop, score: -1 };
 
-  let nx = orig.left + Math.cos(angle) * dist;
-  let ny = orig.top  + Math.sin(angle) * dist;
+  for (let i = 0; i < 18; i++) {
+    const candidateX = pad + Math.random() * Math.max(1, maxX - pad);
+    const candidateY = minTop + Math.random() * Math.max(1, maxY - minTop);
+    const centerX = candidateX + w / 2;
+    const centerY = candidateY + h / 2;
+    const score = Math.hypot(centerX - dangerX, centerY - dangerY);
+    if (score > best.score) best = { x: candidateX, y: candidateY, score };
+  }
 
-  // Ekran chegarasi ichida saqlash
-  nx = Math.max(8, Math.min(window.innerWidth  - w - 8, nx));
-  ny = Math.max(64, Math.min(window.innerHeight - h - 8, ny));
+  const nx = Math.max(pad, Math.min(maxX, best.x));
+  const ny = Math.max(minTop, Math.min(maxY, best.y));
 
-  btn.style.transition = 'left 0.2s cubic-bezier(0.25,0.46,0.45,0.94), top 0.2s cubic-bezier(0.25,0.46,0.45,0.94)';
+  btn.style.transition = 'left 0.28s cubic-bezier(0.16,1,0.3,1), top 0.28s cubic-bezier(0.16,1,0.3,1), transform 0.28s cubic-bezier(0.16,1,0.3,1)';
+  btn.style.transform = `rotate(${(Math.random() * 10 - 5).toFixed(2)}deg)`;
   btn.style.left = nx + 'px';
   btn.style.top  = ny + 'px';
 }
@@ -847,6 +977,14 @@ function toggleMute() {
   STATE.muted = !STATE.muted;
   document.getElementById('muteBtn').textContent = STATE.muted ? '🔇' : '🔊';
   localStorage.setItem('hq_muted', STATE.muted ? '1' : '');
+
+  if (STATE.bgMusic) {
+    if (STATE.muted) {
+      STATE.bgMusic.pause();
+    } else {
+      startBackgroundMusic();
+    }
+  }
 }
 
 function loadMuteState() {

@@ -1,0 +1,5284 @@
+LOYIHA KODLARI TO'PLAMI
+================================================================================
+
+Loyiha papkasi: C:\Users\HP\Desktop\Nimadir\heartquest
+
+
+================================================================================
+FAYL: collect_code_to_txt.py
+================================================================================
+
+from pathlib import Path
+import sys
+
+# Qaysi fayl turlarini yig'ish kerak
+CODE_EXTENSIONS = {
+    ".py", ".js", ".ts", ".jsx", ".tsx",
+    ".html", ".css",
+    ".json", ".md",
+    ".bat", ".ps1",
+    ".yml", ".yaml",
+    ".txt"
+}
+
+# Qaysi papkalarni o'tkazib yuborish kerak
+EXCLUDE_DIRS = {
+    "venv", ".venv", "__pycache__", ".git",
+    "node_modules", ".next", "dist", "build",
+    "logs", "data", "exports",
+    ".idea", ".vscode"
+}
+
+# Qaysi fayllarni o'tkazib yuborish kerak
+EXCLUDE_FILES = {
+    ".env", ".env.local", ".env.production",
+    "package-lock.json",
+    "all_codes.txt"
+}
+
+MAX_FILE_SIZE_MB = 2
+
+
+def should_skip_file(file_path: Path) -> bool:
+    if file_path.name in EXCLUDE_FILES:
+        return True
+
+    if file_path.suffix.lower() not in CODE_EXTENSIONS:
+        return True
+
+    try:
+        size_mb = file_path.stat().st_size / (1024 * 1024)
+        if size_mb > MAX_FILE_SIZE_MB:
+            return True
+    except Exception:
+        return True
+
+    return False
+
+
+def collect_code(project_path: Path, output_file: Path):
+    total_files = 0
+
+    with output_file.open("w", encoding="utf-8") as out:
+        out.write("LOYIHA KODLARI TO'PLAMI\n")
+        out.write("=" * 80 + "\n\n")
+        out.write(f"Loyiha papkasi: {project_path}\n\n")
+
+        for file_path in project_path.rglob("*"):
+            if file_path.is_dir():
+                continue
+
+            # Agar fayl exclude qilingan papka ichida bo'lsa, tashlab ketadi
+            if any(part in EXCLUDE_DIRS for part in file_path.parts):
+                continue
+
+            if should_skip_file(file_path):
+                continue
+
+            try:
+                relative_path = file_path.relative_to(project_path)
+                content = file_path.read_text(encoding="utf-8", errors="replace")
+
+                out.write("\n" + "=" * 80 + "\n")
+                out.write(f"FAYL: {relative_path}\n")
+                out.write("=" * 80 + "\n\n")
+                out.write(content)
+                out.write("\n\n")
+
+                total_files += 1
+
+            except Exception as e:
+                out.write("\n" + "=" * 80 + "\n")
+                out.write(f"FAYL O'QILMADI: {file_path}\n")
+                out.write(f"XATO: {e}\n")
+                out.write("=" * 80 + "\n\n")
+
+    print(f"Tayyor! {total_files} ta fayl yig'ildi.")
+    print(f"Natija: {output_file}")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        project_dir = Path(sys.argv[1]).resolve()
+    else:
+        project_dir = Path.cwd()
+
+    if not project_dir.exists():
+        print("Xato: ko'rsatilgan papka topilmadi.")
+        sys.exit(1)
+
+    output = project_dir / "all_codes.txt"
+    collect_code(project_dir, output)
+
+
+================================================================================
+FAYL: index.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeartQuest 💕 — Sevgi O'yini</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #FF6B9D;
+      --accent: #6B9DFF;
+      --gold: #FFD700;
+      --dark: #2D1B33;
+      --medium: #7B5C8A;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #FFF0F5 0%, #F0F4FF 50%, #FFF5E0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    /* Particles */
+    .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+    .particle {
+      position: absolute; user-select: none; font-size: 14px; opacity: 0.1;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100px) rotate(360deg); }
+    }
+
+    /* Main card */
+    .hero {
+      position: relative; z-index: 10;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 28px;
+      box-shadow: 0 12px 48px rgba(255,107,157,0.12);
+      padding: 52px 48px;
+      text-align: center;
+      max-width: 560px;
+      width: 100%;
+      animation: slideUp 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .logo-heart {
+      font-size: 72px; display: block;
+      animation: heartbeat 1.4s ease-in-out infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes heartbeat {
+      0%,100% { transform: scale(1); }
+      14% { transform: scale(1.18); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.1); }
+    }
+
+    .logo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px; font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .logo-tagline {
+      font-family: 'Dancing Script', cursive;
+      font-size: 22px; color: var(--medium);
+      margin-bottom: 36px;
+    }
+
+    .features {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 40px; text-align: left;
+    }
+
+    .feature {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,107,157,0.06);
+      border: 1px solid rgba(255,107,157,0.12);
+      border-radius: 14px; padding: 12px 16px;
+    }
+
+    .feature-icon { font-size: 24px; flex-shrink: 0; }
+    .feature-text { font-size: 14px; color: var(--medium); font-weight: 600; }
+
+    .actions { display: flex; flex-direction: column; gap: 12px; }
+
+    .btn-admin {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--primary), #FF4B8B);
+      color: white; text-decoration: none;
+      border-radius: 50px;
+      font-size: 18px; font-weight: 800;
+      box-shadow: 0 6px 24px rgba(255,107,157,0.4);
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-admin:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 36px rgba(255,107,157,0.5);
+    }
+
+    .btn-demo {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.9);
+      color: var(--dark); text-decoration: none;
+      border: 2px solid rgba(107,157,255,0.3);
+      border-radius: 50px;
+      font-size: 16px; font-weight: 700;
+      transition: all 0.3s;
+    }
+    .btn-demo:hover {
+      border-color: var(--accent);
+      background: rgba(107,157,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      margin-top: 28px;
+      font-size: 13px; color: var(--medium);
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 36px 24px; }
+      .logo-title { font-size: 36px; }
+      .logo-heart { font-size: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <div class="hero">
+    <span class="logo-heart">💕</span>
+    <div class="logo-title">HeartQuest</div>
+    <div class="logo-tagline">Sevgi o'yini platformasi</div>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature-icon">🔗</span>
+        <span class="feature-text">Maxsus link yarating va sevgiliningizga yuboring</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🏃</span>
+        <span class="feature-text">Noto'g'ri javoblar bosilganda qochib ketadi!</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">🎁</span>
+        <span class="feature-text">O'yin oxirida maxsus sovg'a: xat, chipta yoki taklif</span>
+      </div>
+      <div class="feature">
+        <span class="feature-icon">✨</span>
+        <span class="feature-text">10 ta kategoriya — bitta sevgi ifodasi</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="/admin/" class="btn-admin">
+        <span>🔗</span>
+        <span>Link yaratish — Admin paneli</span>
+      </a>
+      <a href="/game/?cat=love&from=Sardor&to=Siz&preview=true" class="btn-demo">
+        <span>🎮</span>
+        <span>Demo o'yinni ko'rish</span>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      HeartQuest — sevgini o'yinga aylantiring 💕
+    </div>
+  </div>
+
+  <script>
+    const syms = ['💕','✨','🌸','⭐','💫','🌹','💗','🎀','🌟','💖'];
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.textContent = syms[i % syms.length];
+      p.style.left = Math.random() * 100 + '%';
+      p.style.fontSize = (11 + Math.random() * 12) + 'px';
+      p.style.animationDuration = (9 + Math.random() * 13) + 's';
+      p.style.animationDelay = (-Math.random() * 13) + 's';
+      pc.appendChild(p);
+    }
+  </script>
+</body>
+</html>
+
+
+
+================================================================================
+FAYL: package.json
+================================================================================
+
+{
+  "name": "heartquest",
+  "version": "1.0.0",
+  "description": "HeartQuest - Sevgi o'yini platformasi",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . --listen 3000"
+  },
+  "keywords": ["love", "quiz", "uzbek", "heartquest"],
+  "author": "HeartQuest",
+  "license": "MIT"
+}
+
+
+
+================================================================================
+FAYL: vercel.json
+================================================================================
+
+{
+  "rewrites": [
+    { "source": "/play/:path*", "destination": "/game/index.html" },
+    { "source": "/admin", "destination": "/admin/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/content/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ]
+}
+
+
+
+================================================================================
+FAYL: admin\admin.css
+================================================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #FF6B9D;
+  --primary-soft: #FFB3CC;
+  --accent: #6B9DFF;
+  --accent-soft: #B3C9FF;
+  --gold: #FFD700;
+  --bg-gradient: linear-gradient(135deg, #FFF0F5 0%, #F0F4FF 50%, #FFF5E0 100%);
+  --text-dark: #2D1B33;
+  --text-medium: #7B5C8A;
+  --card-bg: rgba(255,255,255,0.85);
+  --shadow: 0 8px 32px rgba(255,107,157,0.12);
+  --radius: 20px;
+  --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* Particle Background */
+.particles {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-size: 16px;
+  opacity: 0.09;
+  animation: floatUp linear infinite;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.09; }
+  90% { opacity: 0.09; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+/* Header */
+.admin-header {
+  position: relative; z-index: 10;
+  padding: 32px 24px 24px;
+  text-align: center;
+}
+
+.header-inner { display: inline-block; }
+
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  justify-content: center; margin-bottom: 8px;
+}
+
+.logo-heart {
+  font-size: 32px;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  56% { transform: scale(1); }
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-badge {
+  background: var(--primary);
+  color: white; font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+.header-sub {
+  color: var(--text-medium); font-size: 15px;
+  font-weight: 400;
+}
+
+/* Main Layout */
+.admin-main {
+  position: relative; z-index: 10;
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* Steps */
+.step { margin-bottom: 40px; }
+.step.hidden { display: none; }
+
+.step-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px; flex-wrap: wrap;
+}
+
+.step-num {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--primary), #FF4B8B);
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(255,107,157,0.4);
+}
+
+.step-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: var(--text-dark);
+}
+
+.btn-back {
+  margin-left: auto;
+  background: none; border: 2px solid var(--primary-soft);
+  color: var(--text-medium); padding: 8px 18px;
+  border-radius: 50px; cursor: pointer; font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 600; transition: var(--transition);
+}
+.btn-back:hover {
+  background: var(--primary-soft); color: var(--primary);
+  transform: translateX(-3px);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+/* Categories Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.category-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--cat-color, var(--primary));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.category-card:hover::before { opacity: 0.06; }
+
+.category-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+  border-color: var(--cat-color, var(--primary));
+}
+
+.category-card.selected {
+  border-color: var(--cat-color, var(--primary));
+  box-shadow: 0 0 0 3px var(--cat-color, var(--primary)), 0 16px 48px rgba(0,0,0,0.15);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.category-card.selected::before { opacity: 0.08; }
+
+.cat-emoji {
+  font-size: 40px; display: block;
+  margin-bottom: 12px; position: relative; z-index: 1;
+  transition: transform 0.3s;
+}
+.category-card:hover .cat-emoji { transform: scale(1.15) rotate(5deg); }
+
+.cat-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 6px;
+  position: relative; z-index: 1;
+}
+
+.cat-desc {
+  font-size: 13px; color: var(--text-medium);
+  line-height: 1.4; position: relative; z-index: 1;
+}
+
+.cat-count {
+  margin-top: 10px;
+  font-size: 11px; color: var(--text-medium);
+  position: relative; z-index: 1;
+}
+
+.cat-check {
+  position: absolute; top: 12px; right: 12px;
+  width: 24px; height: 24px;
+  background: var(--cat-color, var(--primary));
+  color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  opacity: 0; transform: scale(0);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.category-card.selected .cat-check {
+  opacity: 1; transform: scale(1);
+}
+
+/* Customizer */
+.customizer-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .customizer-layout { grid-template-columns: 1fr; }
+}
+
+.selected-category-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  position: sticky; top: 20px;
+}
+
+.selected-cat-emoji { font-size: 56px; display: block; margin-bottom: 12px; }
+.selected-cat-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600; color: var(--text-dark);
+  margin-bottom: 6px;
+}
+.selected-cat-desc { font-size: 13px; color: var(--text-medium); line-height: 1.4; }
+
+.reward-preview {
+  margin-top: 16px;
+  padding: 12px; border-radius: 12px;
+  font-size: 13px; color: var(--text-medium);
+}
+
+/* Form */
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+  display: block; margin-bottom: 8px;
+  font-size: 14px; font-weight: 700; color: var(--text-dark);
+}
+
+.label-icon { margin-right: 4px; }
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid rgba(255,107,157,0.2);
+  border-radius: 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; color: var(--text-dark);
+  background: rgba(255,255,255,0.8);
+  transition: all 0.2s;
+  outline: none; resize: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255,107,157,0.15);
+  background: white;
+}
+
+.char-count {
+  display: block; text-align: right;
+  font-size: 12px; color: var(--text-medium);
+  margin-top: 4px;
+}
+
+.extra-fields { transition: all 0.3s; }
+.extra-fields.hidden { display: none; }
+
+.btn-generate {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--primary), #FF4B8B);
+  color: white; border: none; border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px; font-weight: 800;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  gap: 10px; margin-top: 8px;
+  transition: var(--transition);
+  box-shadow: 0 6px 24px rgba(255,107,157,0.4);
+}
+
+.btn-generate:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 32px rgba(255,107,157,0.5);
+}
+
+.btn-generate:active { transform: scale(0.98); }
+
+.btn-icon { font-size: 20px; }
+
+/* Result */
+.result-layout {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 680px) {
+  .result-layout { grid-template-columns: 1fr; }
+}
+
+.link-label, .qr-label {
+  font-size: 13px; font-weight: 700;
+  color: var(--text-medium); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 12px;
+}
+
+.link-box {
+  display: flex; gap: 10px; align-items: center;
+}
+
+.link-box input {
+  flex: 1; padding: 13px 16px;
+  border: 2px solid rgba(107,157,255,0.3);
+  border-radius: 14px; font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-dark); background: rgba(255,255,255,0.9);
+  outline: none;
+}
+
+.btn-copy {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--accent), #4B7BFF);
+  border: none; border-radius: 14px;
+  font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(107,157,255,0.3);
+}
+.btn-copy:hover { transform: scale(1.1); }
+
+.copy-success {
+  font-size: 14px; font-weight: 700; color: #2ecc71;
+  margin-top: 8px; transition: all 0.3s;
+}
+.copy-success.hidden { display: none; }
+
+.action-btns {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-preview, .btn-share, .btn-new {
+  flex: 1; min-width: 120px;
+  padding: 12px 16px;
+  border-radius: 50px; border: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: var(--transition);
+}
+
+.btn-preview {
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  color: white;
+  box-shadow: 0 4px 16px rgba(107,157,255,0.3);
+}
+.btn-preview:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,157,255,0.4); }
+
+.btn-share {
+  background: linear-gradient(135deg, #B5EAD7, #2ecc71);
+  color: white;
+  box-shadow: 0 4px 16px rgba(46,204,113,0.3);
+}
+.btn-share:hover { transform: translateY(-2px); }
+
+.btn-new {
+  background: linear-gradient(135deg, var(--primary-soft), var(--primary));
+  color: white;
+  box-shadow: 0 4px 16px rgba(255,107,157,0.3);
+}
+.btn-new:hover { transform: translateY(-2px); }
+
+/* QR */
+.qr-card { text-align: center; }
+#qrcode {
+  display: inline-block;
+  background: white; padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  margin: 8px 0;
+}
+#qrcode img, #qrcode canvas { display: block; }
+.qr-hint { font-size: 12px; color: var(--text-medium); margin-top: 8px; }
+
+/* Stats */
+.stats-panel h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; margin-bottom: 16px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.stat-item {
+  background: rgba(255,107,157,0.07);
+  border-radius: 14px; padding: 14px 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.stat-emoji { font-size: 24px; }
+.stat-info { flex: 1; }
+.stat-title { font-size: 12px; color: var(--text-medium); font-weight: 600; }
+.stat-count {
+  font-size: 22px; font-weight: 800;
+  color: var(--primary);
+  font-family: 'Playfair Display', serif;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step:not(.hidden) {
+  animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,157,0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(255,107,157,0); }
+}
+
+.category-card.selected { animation: pulse 2s infinite; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-header { padding: 24px 16px 16px; }
+  .logo-text { font-size: 26px; }
+  .categories-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .glass-card { padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .categories-grid { grid-template-columns: 1fr 1fr; }
+  .category-card { padding: 18px 14px; }
+  .cat-emoji { font-size: 32px; }
+}
+
+
+
+================================================================================
+FAYL: admin\admin.js
+================================================================================
+
+'use strict';
+
+const BASE = window.location.origin;
+let categories = [];
+let selectedCategory = null;
+
+async function init() {
+  createParticles();
+  await loadCategories();
+  renderStats();
+  bindEvents();
+}
+
+async function loadCategories() {
+  try {
+    const res = await fetch('../content/categories.json');
+    categories = await res.json();
+    renderCategories();
+  } catch (e) {
+    console.error('Failed to load categories:', e);
+    document.getElementById('categoriesGrid').innerHTML =
+      '<p style="color:#FF6B9D;padding:20px">Kategoriyalarni yuklashda xato. Lokal server ishga tushirilganmi?</p>';
+  }
+}
+
+function renderCategories() {
+  const grid = document.getElementById('categoriesGrid');
+  grid.innerHTML = '';
+
+  categories.forEach((cat, i) => {
+    const card = document.createElement('div');
+    card.className = 'category-card';
+    card.style.setProperty('--cat-color', cat.color);
+    card.style.animationDelay = `${i * 0.06}s`;
+    card.innerHTML = `
+      <span class="cat-emoji">${cat.emoji}</span>
+      <div class="cat-title">${cat.title}</div>
+      <div class="cat-desc">${cat.description}</div>
+      <div class="cat-count">📊 ${getLinkCount(cat.id)} ta link yaratildi</div>
+      <div class="cat-check">✓</div>
+    `;
+    card.addEventListener('click', () => selectCategory(cat, card));
+    grid.appendChild(card);
+  });
+}
+
+function selectCategory(cat, cardEl) {
+  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+  cardEl.classList.add('selected');
+  selectedCategory = cat;
+
+  setTimeout(() => {
+    document.getElementById('step-categories').classList.add('hidden');
+    document.getElementById('step-customizer').classList.remove('hidden');
+    renderSelectedCard(cat);
+    showExtraFields(cat);
+    document.getElementById('step-customizer').scrollIntoView({ behavior: 'smooth' });
+  }, 300);
+}
+
+function renderSelectedCard(cat) {
+  document.getElementById('selectedCategoryCard').innerHTML = `
+    <span class="selected-cat-emoji">${cat.emoji}</span>
+    <div class="selected-cat-title">${cat.title}</div>
+    <div class="selected-cat-desc">${cat.description}</div>
+    <div class="reward-preview" style="background:${cat.color}18; border: 1px solid ${cat.color}33; margin-top:16px; border-radius:12px; padding:12px;">
+      <strong style="color:${cat.color}">🎁 Sovg'a:</strong><br>
+      <span style="font-size:13px;color:#7B5C8A">${cat.endReward.title}</span>
+    </div>
+  `;
+}
+
+function showExtraFields(cat) {
+  document.getElementById('locationFields').classList.add('hidden');
+  document.getElementById('longDistanceFields').classList.add('hidden');
+
+  if (cat.id === 'date') {
+    document.getElementById('locationFields').classList.remove('hidden');
+  } else if (cat.id === 'longdistance') {
+    document.getElementById('longDistanceFields').classList.remove('hidden');
+  }
+}
+
+function bindEvents() {
+  document.getElementById('btnBack').addEventListener('click', () => {
+    document.getElementById('step-customizer').classList.add('hidden');
+    document.getElementById('step-categories').classList.remove('hidden');
+    document.getElementById('step-result').classList.add('hidden');
+  });
+
+  document.getElementById('inputMsg').addEventListener('input', function () {
+    document.getElementById('charCount').textContent = this.value.length;
+  });
+
+  document.getElementById('btnGenerate').addEventListener('click', generateLink);
+  document.getElementById('btnCopy').addEventListener('click', copyLink);
+  document.getElementById('btnPreview').addEventListener('click', openPreview);
+  document.getElementById('btnShare').addEventListener('click', shareLink);
+  document.getElementById('btnNew').addEventListener('click', () => {
+    document.getElementById('step-result').classList.add('hidden');
+    document.getElementById('step-categories').classList.remove('hidden');
+    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+    selectedCategory = null;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function generateLink() {
+  const from = document.getElementById('inputFrom').value.trim();
+  const to = document.getElementById('inputTo').value.trim();
+  const msg = document.getElementById('inputMsg').value.trim();
+
+  let hasError = false;
+  if (!from) { shakeElement(document.getElementById('inputFrom')); hasError = true; }
+  if (!to)   { shakeElement(document.getElementById('inputTo'));   hasError = true; }
+  if (hasError) return;
+
+  const params = new URLSearchParams();
+  params.set('cat', selectedCategory.id);
+  params.set('from', from);
+  params.set('to', to);
+  if (msg) params.set('msg', btoa(encodeURIComponent(msg)));
+
+  if (selectedCategory.id === 'date') {
+    const loc = document.getElementById('inputLocation').value.trim();
+    const date = document.getElementById('inputDate').value.trim();
+    if (loc) params.set('loc', btoa(encodeURIComponent(loc)));
+    if (date) params.set('dt', btoa(encodeURIComponent(date)));
+  }
+
+  if (selectedCategory.id === 'longdistance') {
+    const sm = document.getElementById('inputSpecialMsg').value.trim();
+    if (sm) params.set('special', btoa(encodeURIComponent(sm)));
+  }
+
+  const link = `${BASE}/game/?${params.toString()}`;
+
+  document.getElementById('generatedLink').value = link;
+
+  incrementLinkCount(selectedCategory.id);
+  renderStats();
+
+  generateQR(link);
+
+  document.getElementById('step-customizer').classList.add('hidden');
+  document.getElementById('step-result').classList.remove('hidden');
+  document.getElementById('step-result').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateQR(url) {
+  const el = document.getElementById('qrcode');
+  el.innerHTML = '';
+  new QRCode(el, {
+    text: url,
+    width: 160,
+    height: 160,
+    colorDark: '#2D1B33',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+
+function copyLink() {
+  const input = document.getElementById('generatedLink');
+  input.select();
+  navigator.clipboard.writeText(input.value).then(() => {
+    document.getElementById('copyIcon').textContent = '✅';
+    document.getElementById('copySuccess').classList.remove('hidden');
+    setTimeout(() => {
+      document.getElementById('copyIcon').textContent = '📋';
+      document.getElementById('copySuccess').classList.add('hidden');
+    }, 2000);
+  }).catch(() => {
+    document.execCommand('copy');
+  });
+}
+
+function openPreview() {
+  const link = document.getElementById('generatedLink').value;
+  const previewUrl = link + (link.includes('?') ? '&' : '?') + 'preview=true';
+  window.open(previewUrl, '_blank');
+}
+
+function shareLink() {
+  const link = document.getElementById('generatedLink').value;
+  if (navigator.share) {
+    navigator.share({
+      title: 'HeartQuest — Sevgi o\'yini',
+      text: `${selectedCategory.emoji} ${selectedCategory.title} o'yinini o'ynang!`,
+      url: link
+    });
+  } else {
+    copyLink();
+  }
+}
+
+function getLinkCount(catId) {
+  const stats = JSON.parse(localStorage.getItem('hq_stats') || '{}');
+  return stats[catId] || 0;
+}
+
+function incrementLinkCount(catId) {
+  const stats = JSON.parse(localStorage.getItem('hq_stats') || '{}');
+  stats[catId] = (stats[catId] || 0) + 1;
+  localStorage.setItem('hq_stats', JSON.stringify(stats));
+}
+
+function renderStats() {
+  const grid = document.getElementById('statsGrid');
+  if (!grid || !categories.length) return;
+  grid.innerHTML = '';
+
+  categories.forEach(cat => {
+    const count = getLinkCount(cat.id);
+    const item = document.createElement('div');
+    item.className = 'stat-item';
+    item.innerHTML = `
+      <span class="stat-emoji">${cat.emoji}</span>
+      <div class="stat-info">
+        <div class="stat-title">${cat.title}</div>
+        <div class="stat-count">${count}</div>
+      </div>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+function shakeElement(el) {
+  el.style.animation = 'none';
+  el.style.borderColor = '#FF4B8B';
+  el.style.boxShadow = '0 0 0 3px rgba(255,75,139,0.3)';
+  el.offsetHeight;
+  el.style.animation = 'shake 0.4s ease';
+  setTimeout(() => {
+    el.style.borderColor = '';
+    el.style.boxShadow = '';
+    el.style.animation = '';
+  }, 500);
+}
+
+function createParticles() {
+  const container = document.getElementById('particles');
+  const symbols = ['💕', '✨', '🌹', '⭐', '💫', '🌸', '💗', '🎀'];
+  const count = 24;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = symbols[i % symbols.length];
+    p.style.left = `${Math.random() * 100}%`;
+    p.style.fontSize = `${12 + Math.random() * 12}px`;
+    p.style.animationDuration = `${8 + Math.random() * 12}s`;
+    p.style.animationDelay = `${Math.random() * 10}s`;
+    container.appendChild(p);
+  }
+}
+
+const shakeCSS = document.createElement('style');
+shakeCSS.textContent = `
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}`;
+document.head.appendChild(shakeCSS);
+
+document.addEventListener('DOMContentLoaded', init);
+
+
+
+================================================================================
+FAYL: admin\index.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HeartQuest Admin — Link Yaratish</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <header class="admin-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-heart">💕</span>
+        <span class="logo-text">HeartQuest</span>
+        <span class="logo-badge">Admin</span>
+      </div>
+      <p class="header-sub">Sevgi o'yini linkini yarating</p>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <!-- Step 1: Category Selection -->
+    <section class="step" id="step-categories">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <h2>Kategoriya tanlang</h2>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Step 2: Customizer Panel -->
+    <section class="step hidden" id="step-customizer">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <h2>O'yinni moslashtiring</h2>
+        <button class="btn-back" id="btnBack">← Orqaga</button>
+      </div>
+
+      <div class="customizer-layout">
+        <div class="selected-category-card" id="selectedCategoryCard"></div>
+
+        <div class="customizer-form glass-card">
+          <div class="form-group">
+            <label for="inputFrom">
+              <span class="label-icon">👤</span> Kimdan:
+            </label>
+            <input type="text" id="inputFrom" placeholder="Sizning ismingiz" maxlength="30">
+          </div>
+
+          <div class="form-group">
+            <label for="inputTo">
+              <span class="label-icon">💕</span> Kimga:
+            </label>
+            <input type="text" id="inputTo" placeholder="Sevgiliningiz ismi" maxlength="30">
+          </div>
+
+          <div class="form-group">
+            <label for="inputMsg">
+              <span class="label-icon">✍️</span> Shaxsiy xabar (ixtiyoriy):
+            </label>
+            <textarea id="inputMsg" placeholder="Maxsus xabar yozing... (200 ta belgi)" maxlength="200" rows="3"></textarea>
+            <span class="char-count"><span id="charCount">0</span>/200</span>
+          </div>
+
+          <div class="form-group extra-fields hidden" id="locationFields">
+            <label for="inputLocation">
+              <span class="label-icon">📍</span> Joy:
+            </label>
+            <input type="text" id="inputLocation" placeholder="Uchrashish joyi" maxlength="50">
+            <label for="inputDate" style="margin-top:12px">
+              <span class="label-icon">📅</span> Sana:
+            </label>
+            <input type="text" id="inputDate" placeholder="Masalan: 15-iyul, shanba kechqurun" maxlength="50">
+          </div>
+
+          <div class="form-group extra-fields hidden" id="longDistanceFields">
+            <label for="inputSpecialMsg">
+              <span class="label-icon">💌</span> Maxsus xabar (uzoqdagi sevgiliga):
+            </label>
+            <textarea id="inputSpecialMsg" placeholder="Unga aytmoqchi bo'lgan so'zlaringiz..." maxlength="300" rows="4"></textarea>
+          </div>
+
+          <button class="btn-generate" id="btnGenerate">
+            <span>Link yaratish</span>
+            <span class="btn-icon">🔗</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Generated Link -->
+    <section class="step hidden" id="step-result">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <h2>Linkingiz tayyor! 🎉</h2>
+      </div>
+
+      <div class="result-layout">
+        <div class="link-card glass-card">
+          <div class="link-label">O'yin linki:</div>
+          <div class="link-box">
+            <input type="text" id="generatedLink" readonly>
+            <button class="btn-copy" id="btnCopy" title="Nusxalash">
+              <span id="copyIcon">📋</span>
+            </button>
+          </div>
+          <div class="copy-success hidden" id="copySuccess">✅ Nusxalandi!</div>
+
+          <div class="action-btns">
+            <button class="btn-preview" id="btnPreview">
+              <span>Ko'rib chiqish 👁️</span>
+            </button>
+            <button class="btn-share" id="btnShare">
+              <span>Ulashish 📤</span>
+            </button>
+            <button class="btn-new" id="btnNew">
+              <span>Yangi link ✨</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="qr-card glass-card">
+          <div class="qr-label">QR Kod:</div>
+          <div id="qrcode"></div>
+          <p class="qr-hint">Telefon kamerasi bilan skanerlang</p>
+        </div>
+      </div>
+
+      <!-- Stats Panel -->
+      <div class="stats-panel glass-card" id="statsPanel">
+        <h3>📊 Statistika</h3>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
+
+
+
+================================================================================
+FAYL: content\cat-anniversary.json
+================================================================================
+
+{
+  "categoryId": "anniversary",
+  "senderName": "Ulugbek",
+  "receiverName": "Fotima",
+  "customMessage": "Birga bo'lganimizning har bir yili — oltin sahifa 💍",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Birga bo'lganimizning bu kuniga nima deb nom berardingiz?",
+      "emoji": "💍",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Hayotimning eng qimmatli kuni — yildan-yilga 💍",
+        "Oddiy sana",
+        "Vaqt o'tishining belgisi",
+        "Esdan chiqib ketuvchi sana"
+      ],
+      "wrongMessage": "Oddiy sana emas — bu bizning sanамиз! 💍",
+      "correctMessage": "Aynan! Bu kun — har yili yangi ma'no kasb etadi! 💍💕"
+    },
+    {
+      "id": 2,
+      "text": "Birgalikda o'tgan vaqt — sizi qandayroq odam qildi?",
+      "emoji": "🌱",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Hech o'zgartirmadi",
+        "Biroz charchatdi",
+        "Yaxshiroq, kuchliroq va mehr to'la qildi 🌱",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Birgalikda o'sish — birgalikdagi sovg'a! 🌱",
+      "correctMessage": "Ha! Siz bilan birga — har kuni yaxshiroq bo'lyapman! 🌱💕"
+    },
+    {
+      "id": 3,
+      "text": "Birgalikda o'tkazgan eng unutilmas kunimiz qaysi deb o'ylaysiz?",
+      "emoji": "⭐",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Birinchi uchrashgan kun",
+        "Bayramlar",
+        "Sayohat qilgan kunlar",
+        "Hammasi — chunki har kun birgalikda o'tkazgan kun — maxsus ⭐"
+      ],
+      "wrongMessage": "Faqat bitta emas — barchasi! ⭐",
+      "correctMessage": "Ha! Har bir kun birgalikda — xotira bo'lib qoladi! ⭐💕"
+    },
+    {
+      "id": 4,
+      "text": "Qiyinchilik paytimizda bir-birimizni qo'llab-quvvatlaylikmi degan edi miyangizda?",
+      "emoji": "🤝",
+      "theme": "hearts",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, har kim o'z muammosini o'zi hal qiladi",
+        "Ha, doim — bu birgalikda bo'lishning ma'nosi 🤝",
+        "Ba'zan",
+        "Qiyin bo'lsa ko'ramiz"
+      ],
+      "wrongMessage": "Qiyinlikda birgalikda bo'lish — munosabatning qalbi! 🤝",
+      "correctMessage": "Aynan! Qiyinda birgalikda bo'lish — eng katta quvvat! 🤝💕"
+    },
+    {
+      "id": 5,
+      "text": "Bu yillikni qanday nishonlashni xohlaysiz?",
+      "emoji": "🌹",
+      "theme": "roses",
+      "correctIndex": 0,
+      "options": [
+        "Ikkovimiz uchun maxsus, tinch va iliq kecha 🌹",
+        "Katta ziyofat",
+        "Oddiy kun kabi",
+        "Do'stlar davrasida"
+      ],
+      "wrongMessage": "Bu kun — faqat ikkovimiz uchun! 🌹",
+      "correctMessage": "Ha! Faqat ikkovimiz — bu eng yaxshi nishon! 🌹💕"
+    },
+    {
+      "id": 6,
+      "text": "Keyingi yillikda ham birgalikda bo'lamizmi?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Ko'ramiz",
+        "Ehtimol",
+        "Ha! Shubhasiz — men bundan hech shubhalanmayman 🌈",
+        "Bilmayman, hayot..."
+      ],
+      "wrongMessage": "Men shubhalanmayman! 🌈",
+      "correctMessage": "Ha! Bu so'z — mening qalbimda eng kuchli ishonch! 🌈💕"
+    },
+    {
+      "id": 7,
+      "text": "Siz meni — o'sha birinchi kungizdek hali ham ko'rasizmi?",
+      "emoji": "👀",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Ko'nikib qoldim",
+        "O'zgardi ko'p narsa",
+        "Ba'zan",
+        "Ha! Balki undan ham yaxshiroq ko'raman endi 👀"
+      ],
+      "wrongMessage": "Ko'nikib qolmang... 👀",
+      "correctMessage": "Voy! Bu javob — meni erkin qildi! 👀💕"
+    },
+    {
+      "id": 8,
+      "text": "Birgalikdagi kelajagimiz haqida o'ylasangiz — nima his qilasiz?",
+      "emoji": "💫",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Qo'rqinch",
+        "Iliqlik, umid va xursandchilik 💫",
+        "Noma'lumlik",
+        "Hech nima"
+      ],
+      "wrongMessage": "Iliqlik va umid — to'g'ri his! 💫",
+      "correctMessage": "Ha! Kelajakni siz bilan o'ylash — eng yaxshi his! 💫💕"
+    },
+    {
+      "id": 9,
+      "text": "Men siz uchun qilgan bitta narsani — eslab shukrona aytasizmi?",
+      "emoji": "🌸",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Ko'p narsangiz uchun shukronam bor — barchasini aytolmayman 🌸",
+        "Eslay olmayman",
+        "Oddiy narsa edi",
+        "Hozir vaqtim yo'q"
+      ],
+      "wrongMessage": "Kichik narsalar ham esda qolishi kerak! 🌸",
+      "correctMessage": "Bu so'z — mening eng yaxshi mukofotim! 🌸💕"
+    },
+    {
+      "id": 10,
+      "text": "Yana yillar o'tsa ham — meni tanlaysizmi?",
+      "emoji": "❤️",
+      "theme": "roses",
+      "correctIndex": 2,
+      "options": [
+        "Bilmayman, hayot o'zgarib turadi",
+        "Ko'ramiz vaqti kelganda",
+        "Ha! Har kuni — ongli tanlov ❤️",
+        "Bu qiyin savol"
+      ],
+      "wrongMessage": "Sevgi — tanlov, tasodif emas... ❤️",
+      "correctMessage": "Ha! Har kuni sizni tanlash — mening ongli qarorim! ❤️💕"
+    }
+  ],
+  "finalReward": {
+    "type": "countdown",
+    "headline": "[TO], yilligimiz muborak! Birgalikdagi har bir kun — nعمat 💍",
+    "body": "Birga o'tgan kunlar — ularning har biri meni yaxshiroq qildi. Siz bilan — hayot go'zal. Yana ko'p yillar birgalikda, yanada kuchliroq bo'lamiz.",
+    "signoff": "[FROM]dan, butun qalb bilan 💍",
+    "bonusReveal": "📅 Keyingi yiligimizga rejamiz: Birgalikda yangi joy, yangi xotira!",
+    "countdownDate": "2027-06-26"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-apology.json
+================================================================================
+
+{
+  "categoryId": "apology",
+  "senderName": "Bobur",
+  "receiverName": "Nafisa",
+  "customMessage": "Kechirim so'rash uchun so'zlar topish qiyin. Shu o'yin orqali eshiting... 🙏",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Kimdir xato qilib, chin yurakdan kechirim so'rasa — kechira olasizmi?",
+      "emoji": "🙏",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, hech qachon",
+        "Vaqt kerak, bilmayman",
+        "Ha, agar kechirim chin dildan bo'lsa 🙏",
+        "Nima qilganiga qarab"
+      ],
+      "wrongMessage": "Chin dildan so'rash — bu mening holatim... 🙏",
+      "correctMessage": "Rahmat! Bu so'z meni yengillattirdi... 🙏💕"
+    },
+    {
+      "id": 2,
+      "text": "Xata qilgan odam ikkinchi imkon olishga loyiqmi?",
+      "emoji": "🤍",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, bir marta xata — tamom",
+        "Ha, agar o'zgarmоqchi bo'lsa — albatta 🤍",
+        "Faqat katta odamlar",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Hamma bir marta yanglishishi mumkin... 🤍",
+      "correctMessage": "Ha! O'zgarish — kechirishdan ko'ra muhimroq! 🤍💕"
+    },
+    {
+      "id": 3,
+      "text": "Xafa bo'lgan paytingizda jimgina o'tirish afzalmi yoki gaplashish?",
+      "emoji": "💬",
+      "theme": "night",
+      "correctIndex": 3,
+      "options": [
+        "Jimgina, hech narsa demay",
+        "Jahl bilan gapiraman",
+        "Ketib qolaman",
+        "Biroz jimlik, keyin gaplashish 💬"
+      ],
+      "wrongMessage": "Gaplashmasdan hal bo'lmaydi-ku! 💬",
+      "correctMessage": "Aynan! Biroz vaqt, keyin suhbat — bu to'g'ri yo'l! 💬💕"
+    },
+    {
+      "id": 4,
+      "text": "Kechirim so'ragan odam bilan munosabatni qayta tiklash mumkinmi?",
+      "emoji": "🌱",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha, yangi boshlanish mumkin 🌱",
+        "Yo'q, sindirgan narsa tuzalmaydi",
+        "Faqat ba'zan",
+        "Bilmayman, ko'ramiz"
+      ],
+      "wrongMessage": "Yangi boshlanish — har doim mumkin! 🌱",
+      "correctMessage": "Ha! Yangi boshlanish — bu ikkovimiz uchun ham mumkin! 🌱💕"
+    },
+    {
+      "id": 5,
+      "text": "Xata qilgan odam haqida qanday o'ylaysiz: yomon insonmi?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Ha, yomon odamlar xato qiladi",
+        "Xatosi bor — yomon bo'ladi",
+        "Yo'q — yaxshi odamlar ham xato qiladi 💭",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Hamma xato qiladi — bu insoniylik! 💭",
+      "correctMessage": "Ha! Xato qilish — insonning belgisi, kechirim so'rash — kuchining! 💭💕"
+    },
+    {
+      "id": 6,
+      "text": "Agar men biror narsani o'zgartirmoqchi bo'lsam — bunga ishonamizmi?",
+      "emoji": "🔄",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, odamlar o'zgarmaydi",
+        "Ko'rinadigan ish emas",
+        "Bilmayman, sinab ko'rishim kerak",
+        "Ha, harakat qilsa — o'zgarish mumkin 🔄"
+      ],
+      "wrongMessage": "O'zgarish mumkin — agar chin istaklangan bo'lsa! 🔄",
+      "correctMessage": "Ha! O'zgarishga ishonish — eng katta qo'llab-quvvatlash! 🔄💕"
+    },
+    {
+      "id": 7,
+      "text": "Kechirgandan keyin — eski kayfiyatga qaytish mumkinmi?",
+      "emoji": "🌈",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, narsa o'zgarib qoladi",
+        "Ha, balki undan ham yaxshisi — yangi bosqich 🌈",
+        "Ehtimol",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Yangi bosqich — eskisidan yaxshidir! 🌈",
+      "correctMessage": "Aynan! Kechirim — yangi va yaxshiroq bosqichning boshlanishi! 🌈💕"
+    },
+    {
+      "id": 8,
+      "text": "Xafalikni endi qo'yib yubora olasizmi?",
+      "emoji": "🕊️",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha, qo'yib yubormoqchiman — bu men uchun ham yaxshi 🕊️",
+        "Hali bilmayman",
+        "Vaqt kerak",
+        "Qiyin"
+      ],
+      "wrongMessage": "Og'irlikni ko'tarib yurish — o'zingizga ham qiyin... 🕊️",
+      "correctMessage": "Rahmat! Qo'yib yuborish — kuchning belgilaridan biri! 🕊️💕"
+    },
+    {
+      "id": 9,
+      "text": "Kechirim so'ragandan so'ng — munosabat avvalgidan mustahkamroq bo'lishi mumkinmi?",
+      "emoji": "💎",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, kamchiligi qoladi",
+        "Bilmayman",
+        "Ha! Qiyinchilikdan o'tgan narsa — mustahkamroq bo'ladi 💎",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Qiyinchilikdan o'tgan oltin — sofroq bo'ladi! 💎",
+      "correctMessage": "Ha! Sinov — munosabatni mustahkamlaydi! 💎💕"
+    },
+    {
+      "id": 10,
+      "text": "Mendan hali ham umid bor deb ayta olasizmi?",
+      "emoji": "🌸",
+      "theme": "roses",
+      "correctIndex": 1,
+      "options": [
+        "Bilmayman, hali...",
+        "Ha — umid bor, shuning uchun bu o'yinni o'ynayapman 🌸",
+        "Ko'ramiz",
+        "Qiyin savol"
+      ],
+      "wrongMessage": "Umid — yonmaydigan olov... 🌸",
+      "correctMessage": "Bu javob — mening eng katta umidim! 🌸💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], chinakamiga kechirim so'rayman 🙏",
+    "body": "Bu o'yinni o'ynab, siz ko'rsatdingiz: kechirish kuch — bu haqiqat. Men xato qildim. Bu xato meni o'zgartirishi kerak. Va siz — bu o'zgarishga ishonishingiz — menga eng katta motivatsiya.",
+    "signoff": "[FROM]dan, chin dildan 🙏",
+    "bonusReveal": "💌 Va'da: O'sha xatoni qaytarmaslikka — bu yuragimdan chiqayotgan va'da. O'zim oldimga ham, siz oldingizga ham."
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-birthday.json
+================================================================================
+
+{
+  "categoryId": "birthday",
+  "senderName": "Sherzod",
+  "receiverName": "Gulnora",
+  "customMessage": "Bugun sizning maxsus kuningiz! Bu o'yin faqat siz uchun 🎂",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Bugun tug'ilgan kuningizda birinchi xabar kimdan kelishini xohlardingiz?",
+      "emoji": "📱",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Ota-onamdan",
+        "Do'stlarimdan",
+        "Eng yaqin va aziz odamimdan 📱",
+        "Ish joyimdan"
+      ],
+      "wrongMessage": "Eng aziz odam — birinchi tabrikchi bo'lishi kerak! 📱",
+      "correctMessage": "Men birinchi bo'lishga harakat qildim — muvaffaq bo'ldimmi? 📱🎂"
+    },
+    {
+      "id": 2,
+      "text": "Tug'ilgan kuningizda nimani eng ko'p xohlaysiz?",
+      "emoji": "🎁",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Qimmat sovg'a",
+        "Ziyofat va ko'p odamlar",
+        "Dam olish",
+        "Sevgan odamlarimning mehri va diqqati 🎁"
+      ],
+      "wrongMessage": "Qimmat sovg'a emas — mehr eng qimmat sovg'a! 🎁",
+      "correctMessage": "Mehr va diqqat — bu so'zni eshitib xursand bo'ldim! 🎁💕"
+    },
+    {
+      "id": 3,
+      "text": "Shamni uchirish paytida nima tiloysiz?",
+      "emoji": "🕯️",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Ko'p pul va muvaffaqiyat",
+        "Sog'lik, baxt va yonimda aziz odamlarim bo'lsin 🕯️",
+        "Mashhur bo'lish",
+        "Hech narsa — tilaklar amalga oshmaydi"
+      ],
+      "wrongMessage": "Baxt va sog'lik — eng kuchli tilaklardan! 🕯️",
+      "correctMessage": "Bu tilak — chin yurakdan! Baraka toping! 🕯️💕"
+    },
+    {
+      "id": 4,
+      "text": "Bu tug'ilgan kuningizni boshqalaridan farqli qiladigan narsa nima bo'lishi kerak?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Yaqin odamlarimning chin mehri va maxsus lahzalar ✨",
+        "Ko'p pul sarflash",
+        "Katta dabdaba",
+        "Hech narsa farqli bo'lmasa ham mayli"
+      ],
+      "wrongMessage": "Bu kun — maxsus bo'lishi kerak! ✨",
+      "correctMessage": "Ha! Maxsus lahzalar — pul bilan o'lchab bo'lmaydi! ✨💕"
+    },
+    {
+      "id": 5,
+      "text": "Bu yil eng ko'p neni o'rgandingiz hayotdan?",
+      "emoji": "📚",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Hech narsa yangi emas",
+        "Faqat ish sohasida",
+        "O'zim va yaqinlarim haqida ko'p narsani angladim 📚",
+        "Bilmayman, o'ylamaganman"
+      ],
+      "wrongMessage": "Hayot doim o'rgatadi — bilgisi bor odamga! 📚",
+      "correctMessage": "O'z-o'zini anglash — eng katta o'rganish! 📚💕"
+    },
+    {
+      "id": 6,
+      "text": "Bu kunni birgalikda nishonlashni xohlaysizmi?",
+      "emoji": "🎉",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, yolg'iz",
+        "Faqat oilam bilan",
+        "Ko'ramiz",
+        "Ha! Siz bilan nishonlash — eng yaxshi kun bo'lar edi 🎉"
+      ],
+      "wrongMessage": "Bu kunni birgalikda o'tkazsak yaxshi bo'lmasmi? 🎉",
+      "correctMessage": "Men ham birgalikda nishonlashni xohlayman! 🎉💕"
+    },
+    {
+      "id": 7,
+      "text": "Yillar o'tishi siz uchun qo'rqinchli his qiladimi?",
+      "emoji": "⏰",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Ha, qarilik qo'rqinchli",
+        "Yo'q! Har yil — yangi imkoniyat va tajriba ⏰",
+        "Ba'zan o'ylab qo'rqib ketaman",
+        "Buni o'ylamaganman"
+      ],
+      "wrongMessage": "Yillar — sovg'a, nafaqat o'tib ketayotgan vaqt! ⏰",
+      "correctMessage": "Ha! Har yil yangi imkoniyat — bu chin so'z! ⏰💕"
+    },
+    {
+      "id": 8,
+      "text": "Kelasi yil qanday odam bo'lmoqchisiz?",
+      "emoji": "🌱",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Yaxshiroq, mehr-muhabbatliroq va o'z qadrini biladigan odam 🌱",
+        "Boyroq",
+        "Mashhurroq",
+        "O'zgarish kerak emas"
+      ],
+      "wrongMessage": "Ichki boylik — tashqi boylikdan qimmat! 🌱",
+      "correctMessage": "Bu maqsad bilan kelasi yil yanada ajoyib bo'ladi! 🌱💕"
+    },
+    {
+      "id": 9,
+      "text": "Bu tug'ilgan kuningizga necha yosh kirdi — aytib berasizmi?",
+      "emoji": "🎂",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yoshimni aytmayman",
+        "Bu maxfiy ma'lumot",
+        "Aytaman — har bir yosh — faxr! 🎂",
+        "Taxmin qiling"
+      ],
+      "wrongMessage": "Yoshingiz — faxr belgisi, sir emas! 🎂",
+      "correctMessage": "Ha! Har bir yosh — katta hayot tajribasi! 🎂💕"
+    },
+    {
+      "id": 10,
+      "text": "Bu tug'ilgan kun — yaxshi xotira bo'lib qolishini xohlaysizmi?",
+      "emoji": "💫",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Oddiy kun bo'lib o'tsa ham mayli",
+        "Ha! Bu kun — umrbod esladigan kun bo'lsin 💫",
+        "Bilmayman",
+        "Farqi yo'q"
+      ],
+      "wrongMessage": "Bu kun — maxsus, oddiy emas! 💫",
+      "correctMessage": "Men ham shu istagim bor! Bu kunni maxsus qilaylik! 💫💕"
+    }
+  ],
+  "finalReward": {
+    "type": "gift",
+    "headline": "[TO], tug'ilgan kuningiz muborak! 🎂",
+    "body": "Siz faqat yangi yosh emas — yangi hikoya boshlamoqdasiz. Hayotingizning har bir sahifasi go'zal. Bu kun — siz uchun maxsus, va siz — men uchun maxsus. Baxtli, sog'lom va mehr to'la yil tilayman!",
+    "signoff": "[FROM]dan katta mehr bilan 🎂",
+    "bonusReveal": "🎁 Sovg'a: Bugun kechqurun sizni kutayotgan maxsus narsa bor — tayyormi?"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-custom.json
+================================================================================
+
+{
+  "categoryId": "custom",
+  "senderName": "Sizning ismingiz",
+  "receiverName": "Aziz inson",
+  "customMessage": "Bu o'yin maxsus siz uchun yaratildi ✨",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Kimdir siz haqingizda maxsus narsa tayyorlasa — nima his qilasiz?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Ichim jiz etadi va qadrlangan his qilaman ✨",
+        "Oddiy",
+        "Nima uchun qildi deb o'ylayman",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Qadrlangan his — eng yaxshi his! ✨",
+      "correctMessage": "Ha! Bu his — siz uchun maxsus yaratilganining belgisi! ✨"
+    },
+    {
+      "id": 2,
+      "text": "Yaxshi kun o'tkazish uchun eng muhim narsa nima?",
+      "emoji": "☀️",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Ko'p pul sarflash",
+        "Ko'p dam olish",
+        "Yaqin odam bilan birga bo'lish ☀️",
+        "Hech narsa kerak emas"
+      ],
+      "wrongMessage": "Yaqin odam — kunni yanada yaxshi qiladi! ☀️",
+      "correctMessage": "Ha! Yaqin odamlar — eng yaxshi kun yaratuvchi! ☀️💕"
+    },
+    {
+      "id": 3,
+      "text": "Kimdir sizni tushunsa va qabul qilsa — bu sizga muhimmi?",
+      "emoji": "🤍",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, menga hech kim kerak emas",
+        "Faqat oilam",
+        "Ba'zan",
+        "Ha! Tushunish va qabul qilish — eng katta ehson 🤍"
+      ],
+      "wrongMessage": "Tushunilish — hamma uchun muhim! 🤍",
+      "correctMessage": "Ha! Bu — haqiqiy insoniy ehtiyoj! 🤍💕"
+    },
+    {
+      "id": 4,
+      "text": "Hayotingizdagi eng yaxshi narsa — oddiy ko'rinadigan, lekin qimmat narsa?",
+      "emoji": "💛",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Pul",
+        "Yaqinlarimning kulishi va sog'ligi 💛",
+        "Muvaffaqiyat",
+        "Mashhurlik"
+      ],
+      "wrongMessage": "Oddiy ko'rinadigan narsa — eng qimmatli bo'lishi mumkin! 💛",
+      "correctMessage": "Aynan! Kulgi va sog'lik — pul bilan sotib olib bo'lmaydi! 💛💕"
+    },
+    {
+      "id": 5,
+      "text": "Biror kishi siz haqingizda o'ylasa — buning ta'siri bo'ladimi?",
+      "emoji": "💭",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Kimningdir fikrlarida bo'lish — issiq his 💭",
+        "Yo'q, ta'siri yo'q",
+        "Bilmayman",
+        "Bu nima degan gap?"
+      ],
+      "wrongMessage": "Kimningdir xayolida bo'lish — baxtsiz emas! 💭",
+      "correctMessage": "Ha! Siz kimningdir xayolida edingiz — hozir ham! 💭💕"
+    },
+    {
+      "id": 6,
+      "text": "Bir kishi sizni xursand qilishga harakat qilsa — bunga ruxsat berasizmi?",
+      "emoji": "😊",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, o'zim o'zimni xursand qilaman",
+        "Faqat yaqinlarimga",
+        "Ha! Xursandchilikni qabul qilish — ham kuch kerak 😊",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Xursandlikni qabul qilish — ham madaniyat! 😊",
+      "correctMessage": "Ha! Xursandlikni qabul qilish — kuch! 😊💕"
+    },
+    {
+      "id": 7,
+      "text": "Bugun nima yaxshi narsa bo'ldi — kichkina bo'lsa ham?",
+      "emoji": "🌸",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Hech narsa yaxshi bo'lmadi",
+        "Bilmayman, o'ylamaganman",
+        "Katta narsa bo'lmadi",
+        "Bu o'yinni o'ynadim — bu yaxshi narsa! 🌸"
+      ],
+      "wrongMessage": "Kichik narsalarda baxt topish — san'at! 🌸",
+      "correctMessage": "Ha! Bu o'yindan xursand bo'ldingiz — bu yaxshi narsa! 🌸💕"
+    },
+    {
+      "id": 8,
+      "text": "Hayotingizda siz qadrlaydigan odam — siz haqingizda ham xuddi shunday o'ylaydimi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, bilmayman",
+        "Ha! Va bu his — ikki tomonlama bo'lsa yanada yaxshi 🌟",
+        "Ehtimol",
+        "Buni so'raymagan edim"
+      ],
+      "wrongMessage": "Ikki tomonlama qadrlanish — eng yaxshi his! 🌟",
+      "correctMessage": "Ha! Munosabatlarda ikki tomonlama mehrni his qilish — baxt! 🌟💕"
+    },
+    {
+      "id": 9,
+      "text": "Bu o'yin sizni jilmayttirdimi?",
+      "emoji": "😄",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Kamida bir bor jilmaydim 😄",
+        "Yo'q, jilmamaдим",
+        "Bilmayman",
+        "Ko'pamas"
+      ],
+      "wrongMessage": "Kamida bir bor jilmadingizmi? 😄",
+      "correctMessage": "Baxtiyorman! Jilmayish — bu o'yinning maqsadi! 😄💕"
+    },
+    {
+      "id": 10,
+      "text": "Bu o'yinni yuborgan odamga javob berasizmi?",
+      "emoji": "💌",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, kerak emas",
+        "Balki keiinroq",
+        "Ha! U vaqt sarfladi — javob berish insofdan 💌",
+        "Ko'ramiz"
+      ],
+      "wrongMessage": "U siz uchun vaqt sarfladi — bitta 'rahmat' yetarli! 💌",
+      "correctMessage": "Ha! Javob berish — eng yaxshi in'om! 💌💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], siz maxsus insonziz ✨",
+    "body": "Bu o'yinni o'ynashingiz — o'zida bir ma'noga ega. Kimdir siz uchun vaqt va mehr sarfladi. Bu oddiy narsa emas. Siz qadrlanasiz — bugungi kun ham, kelajakda ham.",
+    "signoff": "[FROM]dan, sizni qadrlagan holda ✨",
+    "bonusReveal": "💌 Maxfiy: Siz doim kimningdir ko'zida yulduzday porlayziz ⭐"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-date.json
+================================================================================
+
+{
+  "categoryId": "date",
+  "senderName": "Sardor",
+  "receiverName": "Malika",
+  "customMessage": "Siz bilan birga bo'lgan har bir daqiqa menga baxt keltiradi 🎬",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Bugun kechqurun kinoga borish taklifimni qabul qilasizmi?",
+      "emoji": "🎬",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha, albatta! Soat nechada? 🎉",
+        "Balki boshqa kun...",
+        "Vaqtim yo'q, kechirasiz",
+        "Uyda film ko'rsak ham bo'lmasmi?"
+      ],
+      "wrongMessage": "Bu javob ko'nglimni sindirdi 😢 Yana bir bor o'ylab ko'ring...",
+      "correctMessage": "YEY! Men ham sabrsizlanib kutayapman! 🎉🎬"
+    },
+    {
+      "id": 2,
+      "text": "Kino boshlanishidan 10 daqiqa oldin sizni kutib olsam, kelasizmi?",
+      "emoji": "⏰",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Albatta kechikaman, siz kiraveravering",
+        "Yo'q, o'zim borib o'tiraman",
+        "Ha! Birga kiramiz — shunisi yaxshi 🚶‍♀️🚶",
+        "Bilmayman, qarab turamiz"
+      ],
+      "wrongMessage": "Birga kirmasak bo'lmaydi-ku! 😄",
+      "correctMessage": "Aynan! Birga kelish — eng yaxshisi! 🚶‍♀️🚶✨"
+    },
+    {
+      "id": 3,
+      "text": "Kino zalida yonma-yon o'tirishga rozi bo'lasizmi?",
+      "emoji": "🎭",
+      "theme": "night",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, boshqa qatorda o'tiraman",
+        "O'rtada bitta joy bo'lsin",
+        "Farqi yo'q, qaerda bo'lsa",
+        "Ha, yonida o'tirish — eng yaxshi joy 🥰"
+      ],
+      "wrongMessage": "Yon-yonimda o'tirmaslik nima uchun? 🥺",
+      "correctMessage": "Bilardim! Siz yonimda — film ikki marta yaxshi! 🥰"
+    },
+    {
+      "id": 4,
+      "text": "Popcorn yeyish paytida men sizdан bir donasini olsam, xafami bo'lasiz?",
+      "emoji": "🍿",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Ha, o'zimniki o'zim yeyman",
+        "Yo'q, birgalikda yeyamiz-ku 😄",
+        "Sizga boshqa narsa olib beraman",
+        "Oldindan aytib qo'ying"
+      ],
+      "wrongMessage": "Popcornni ulashish — do'stlik belgisi-ku! 😄",
+      "correctMessage": "Ha! Birgalikda yemoq — kinoning eng mazali qismi! 🍿"
+    },
+    {
+      "id": 5,
+      "text": "Qo'rqinchli sahnada qo'lim bilan qo'lingizni ushlasam, tortib olasizmi?",
+      "emoji": "😱",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Yo'q, men ham qo'rqib ketaman — mahkam ushlang! 😅",
+        "Ha, noqulay bo'ladi",
+        "Avval ruxsat so'rang",
+        "Kerak emas shuni"
+      ],
+      "wrongMessage": "Birgalikda qo'rqish — undan ham qiziqroq-ku! 😄",
+      "correctMessage": "Haha! Ikkovimiz ham qo'rqib bir-birimizni ushlaymiz! 😅💕"
+    },
+    {
+      "id": 6,
+      "text": "Film tugagandan keyin ozgina sayr qilamizmi?",
+      "emoji": "🌙",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, charchab qolaman",
+        "Kerak emas, tezroq uyga ketaman",
+        "Ha! Tunda sayr — o'zga bir his 🌙",
+        "Bilmayman, havoga qarab"
+      ],
+      "wrongMessage": "Kechki sayrni o'tkazib yubormoqchimisiz? 🌙",
+      "correctMessage": "Aynan! Tunda siz bilan sayr — bu filmdan ham yaxshi! 🌙✨"
+    },
+    {
+      "id": 7,
+      "text": "Agar kino yomon chiqib qolsa, ayblab qoldingiz deysizmi?",
+      "emoji": "😬",
+      "theme": "night",
+      "correctIndex": 3,
+      "options": [
+        "Ha, siz taklif qildingiz",
+        "Pul bergi bo'ladi-da",
+        "Albatta, kim tanladi?",
+        "Yo'q! Siz bilan o'tirish yoqadi — kino ikkinchi o'rinda 😊"
+      ],
+      "wrongMessage": "Kafolat berib bo'lmaydi-ku filmga! 😄",
+      "correctMessage": "Bu javob — mening yuragimga tegdi! 💕"
+    },
+    {
+      "id": 8,
+      "text": "Bu kechadan keyin yana uchrashishni xohlaysizmi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Bir marta yetarli",
+        "Ha, albatta! Bu birinchi, oxirgi emas 🌟",
+        "Bilmayman, ko'ramiz",
+        "Siz xohlasangiz, balki"
+      ],
+      "wrongMessage": "Bir martadan ko'p uchrashish mumkin-ku! 🥺",
+      "correctMessage": "YEY! Men ham xuddi shunday o'ylayman! 🌟💕"
+    },
+    {
+      "id": 9,
+      "text": "Chipta pulini kim to'lashi kerak deb o'ylaysiz?",
+      "emoji": "🎟️",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Albatta men o'zim to'layman",
+        "Yarim-yarim qilamiz",
+        "Siz taklif qildingiz — siz to'lang! (to'g'ri javob shu 😄)",
+        "Navbat bilan to'laymiz"
+      ],
+      "wrongMessage": "Men taklif qildim, demak... 😄",
+      "correctMessage": "Ha-ha! To'g'ri! Taklif qilgan kishi to'laydi — qoidasi shu! 😄"
+    },
+    {
+      "id": 10,
+      "text": "Bu kechani umrda bir karra eslab qolasizmi?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Ha, doim eslab qolaman ✨",
+        "Ehtimol, bilmayman",
+        "Boshqa kinolar ham bo'ladi",
+        "Oddiy kecha-da"
+      ],
+      "wrongMessage": "Oddiy emas, bu maxsus kecha bo'ladi! ✨",
+      "correctMessage": "Men ham! Bu kecha — ikkovimiz uchun maxsus bo'ladi! ✨💕"
+    }
+  ],
+  "finalReward": {
+    "type": "ticket",
+    "headline": "[TO], siz menga rozi bo'ldingiz! 🎬",
+    "body": "Siz barcha savollarga to'g'ri javob berdingiz! Demak, bu kecha ikkimiz uchun ajoyib bo'ladi. Mana sizning chiptangiz — bu siz uchun maxsus tayyorlandi.",
+    "signoff": "[FROM] 💕",
+    "bonusReveal": "📍 Joy: [FROM] sizni kutayotgan joy\n📅 Sana: Siz aytgan kun"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-flirt.json
+================================================================================
+
+{
+  "categoryId": "flirt",
+  "senderName": "Otabek",
+  "receiverName": "Barno",
+  "customMessage": "Siz meni beixtiyor jilmaytirasiz... bu o'yinni o'ynamay ko'ring! 😘",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Kimdir sizga kutilmaganda savol yuborsa — 'salom, qanday kun o'tdi?' — nima qilasiz?",
+      "emoji": "😊",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Javob bermayman, bilmayman",
+        "Kim ekanini so'rayman",
+        "Jilmayib, batafsil javob beraman 😊",
+        "Qisqacha 'yaxshi' deb qo'yaman"
+      ],
+      "wrongMessage": "Batafsil gaplashish yaxshimi? 😊",
+      "correctMessage": "Ha! Batafsil javob — suhbatni davom ettirish ishtiyoqi! 😊💕"
+    },
+    {
+      "id": 2,
+      "text": "Biror kishi sizni xursand qiladigan narsani bilsa va shuni qilsa — ta'sir qiladimi?",
+      "emoji": "💝",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, bu oddiy narsa",
+        "Ha! E'tibor — eng yaxshi taassurot 💝",
+        "Bilmayman",
+        "Ba'zan"
+      ],
+      "wrongMessage": "E'tibor — ko'ngilni yutar! 💝",
+      "correctMessage": "Aynan! E'tibor ko'rsatish — eng yaxshi ish! 💝💕"
+    },
+    {
+      "id": 3,
+      "text": "Agar men sizga 'bugungi eng chiroyli narsa siz edingiz' desam, nima derdingiz?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Hazilmi bu?",
+        "Indamayman, qizarib ketaman",
+        "Bu gapni eshitmaganman",
+        "Qizarib, jilmayib, 'rahmat' deyman ✨"
+      ],
+      "wrongMessage": "Maqtov eshitganda qizarish — eng chiroyli javob! ✨",
+      "correctMessage": "Qizargan chehrangizni ko'rishni xohlardim! ✨💕"
+    },
+    {
+      "id": 4,
+      "text": "Kechasi telefon qo'yib bo'lgandan keyin 'juda yaxshi gaplashdik' deb o'ylaysizmi?",
+      "emoji": "📱",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Va yana gaplashshni istayman 📱",
+        "Yo'q, odatdagidek",
+        "Ba'zan shunday bo'ladi",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Suhbatdan keyin yana gaplashgisi kelishi — yaxshi belgi! 📱",
+      "correctMessage": "Ha! Bu his — eng yaxshi his! 📱💕"
+    },
+    {
+      "id": 5,
+      "text": "Agar men sizga qahva taklif qilsam — shunchaki ikkovimiz — qabul qilasizmi?",
+      "emoji": "☕",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Vaqtim yo'q",
+        "Boshqa odamlar bilan bo'lsa mayli",
+        "Ha! Ikkovimiz qahva — bu ajoyib uchrashuv bo'lar edi ☕",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Ikkovimiz qahva — oddiy ham qiziqarli! ☕",
+      "correctMessage": "Ha! Qahva bahonasi — suhbat uchun eng yaxshi boshlanish! ☕💕"
+    },
+    {
+      "id": 6,
+      "text": "Birov siz uchun kulgili va kutilmagan narsa qilsa — e'tibor berasizmi?",
+      "emoji": "😄",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, bunday narsalarga ahamiyat bermayman",
+        "Faqat jiddiy odamlar yoqadi",
+        "Bilmayman",
+        "Ha! Kulgi va kutilmagan lahzalar — eng yaxshi xotira 😄"
+      ],
+      "wrongMessage": "Kulgi — hayotning tuzi-ku! 😄",
+      "correctMessage": "Ha! Kulgili lahzalar — eng yaxshi boshliqlar! 😄💕"
+    },
+    {
+      "id": 7,
+      "text": "Siz bilan suhbat qilish qiziqarlimi?",
+      "emoji": "💬",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Bilmayman, o'zim baholay olmayman",
+        "Ha deb o'ylayman — lekin siz aytib bering 😄",
+        "Oddiy",
+        "Ko'p odamlar shunday deydi"
+      ],
+      "wrongMessage": "Siz bilan suhbat — oddiy emas! 💬",
+      "correctMessage": "Ha! Siz bilan suhbat — qiziqarli va yaxshi! 💬💕"
+    },
+    {
+      "id": 8,
+      "text": "Birinchi uchrashuvda eng muhim nima — ko'rinishmi yoki suhbatmi?",
+      "emoji": "👁️",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Suhbat — ko'rinish ketadi, so'z qoladi 👁️",
+        "Ko'rinish — birinchi taassurot",
+        "Ikkalasi bir xil",
+        "Bilmayman"
+      ],
+      "wrongMessage": "So'z qoladi — bu chin! 👁️",
+      "correctMessage": "Ha! So'z va suhbat — uzoqroq esda qoladi! 👁️💕"
+    },
+    {
+      "id": 9,
+      "text": "Agar men sizni xursand qilmoqchi bo'lsam — buni sezasizmi?",
+      "emoji": "💡",
+      "theme": "hearts",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, payqamayman",
+        "Faqat katta narsalarda",
+        "Ha! Kichik narsalarda ham sezaman 💡",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Kichik narsalarda ham sezish — ajoyib fazilatdir! 💡",
+      "correctMessage": "Ha! Kichik e'tibor — eng kuchli til! 💡💕"
+    },
+    {
+      "id": 10,
+      "text": "Bu o'yinni yuborgan odam haqida nima o'ylaysiz?",
+      "emoji": "🤔",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "Bilmayman kim u",
+        "G'alati",
+        "Zerikarli emas",
+        "Qiziqarli, ijodkor va e'tiborli — xursandman bu o'yindan 🤔"
+      ],
+      "wrongMessage": "G'alati? Bu fikrni o'zgartiring... 😄",
+      "correctMessage": "Ha! Bu odam siz uchun vaqt sarfladi — bu e'tibor! 🤔💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], siz meni jilmaytirasiz 😘",
+    "body": "Bu o'yinni o'ynab bo'lsangiz, bilasiz — sizga diqqat berildi. Kichik narsalar haqida, kulgili savollar orqali. Keyingisi qachon? Balki qahva ustida...",
+    "signoff": "[FROM]dan, jilmayib 😘",
+    "bonusReveal": "☕ Taklif: Yaqin orada qahva va haqiqiy suhbat — qabul qilasizmi?"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-future.json
+================================================================================
+
+{
+  "categoryId": "future",
+  "senderName": "Jasur",
+  "receiverName": "Shahlo",
+  "customMessage": "Shahlo, hozirgi sinovlarimiz ham bir kun shirin xotiraga aylanadi. Men seni kutayotgan emasman, men sen tomon yurib kelyapman. 🌙",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Uzoqlar orasida yuraklarimiz charchasa, bizga eng ko'p nima kuch beradi?",
+      "emoji": "🌙",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "🌙 Bir oz sukut, keyin sovuq xabar",
+        "💌 Oddiy gaplar, ammo yarim ishonch",
+        "🤍 Sabr, duo va bir-birimizga vafo",
+        "✨ Vaqt o'tsin, keyin ko'ramiz degan so'z"
+      ],
+      "wrongMessage": "Yo'q, jonim, bizni yarim ishonch emas, sabr va vafo ushlab turadi. 🤍",
+      "correctMessage": "Ha, Shahlo. Sabrimiz ham duo, vafomiz ham yo'l: ikkovimiz shu yo'ldan birga o'tamiz. 🤍"
+    },
+    {
+      "id": 2,
+      "text": "Oilaviy bosim yuragingni siqsa, Jasurdan qanday va'dani eshitging keladi?",
+      "emoji": "🤲",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "🤲 Men seni yolg'iz qoldirmayman, azizam",
+        "🌸 Biroz kutaylik, balki hammasi unutilar",
+        "💫 Hozir jim turaylik, keyin gaplashamiz",
+        "🌙 Har kim taqdirini o'zi ko'tarsin"
+      ],
+      "wrongMessage": "Sen bu og'irlikni yolg'iz ko'tarmaysan. Men yoningdaman, har kuni. 🤲",
+      "correctMessage": "Aynan shuni bil: men seni yolg'iz qoldirmayman. Seni halol niyat bilan so'rab borish uchun harakatdaman. 🤲"
+    },
+    {
+      "id": 3,
+      "text": "Sovchilar eshigingizga kirib keladigan kunni tasavvur qilsak, yuragimiz nima deydi?",
+      "emoji": "💍",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "🌹 Shunchaki kunlardan biri bo'lsa kerak",
+        "💫 Hali uzoq, orzu qilib turaveramiz",
+        "🤍 Bilmadim, yurak sekinroq ursin",
+        "💍 Mana, duolarimiz eshik qoqib keldi"
+      ],
+      "wrongMessage": "Bu kun shunchaki kun emas, Shahlo. U kun duolarimizning ovozi bo'ladi. 💍",
+      "correctMessage": "Ha, jonim. Sovchilar kelganida yuragim: \"nihoyat, sevgimizga yo'l ochildi\", deydi. 💍"
+    },
+    {
+      "id": 4,
+      "text": "Masofalar cho'zilganda, bir-birimizga qanday ko'z bilan qarashimiz kerak?",
+      "emoji": "✨",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "🌙 Bugunni og'ir deb, ertani unutib",
+        "✨ Uzoqni yaqin qiladigan ishonch bilan",
+        "🌸 Xafa bo'lsak, gapirmay qo'yish bilan",
+        "💌 Faqat sog'inchni ichimizga yutib"
+      ],
+      "wrongMessage": "Masofa yurakni sovutmasin. Biz unga ishonch bilan javob beramiz. ✨",
+      "correctMessage": "To'g'ri, sevgilim. Ishonchimiz masofadan ham uzun, sog'inchimizdan ham kuchli bo'ladi. ✨"
+    },
+    {
+      "id": 5,
+      "text": "Biz quradigan uy qanday bo'lsa, Shahlo o'zini eng xotirjam his qiladi?",
+      "emoji": "🏡",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "🌷 Chiroyli, lekin biroz sovuq uy",
+        "🕯️ Katta, ammo yuraklar jim uy",
+        "🏡 Mehr, duo va kulgi to'lgan uy",
+        "🌙 Hamma band, har kim o'zicha uy"
+      ],
+      "wrongMessage": "Bizning uyimiz devor bilan emas, mehr va xotirjamlik bilan quriladi. 🏡",
+      "correctMessage": "Ha, Shahlo. Uyimizda sen qo'rqmay nafas olasan, men esa har kuni seni asrab yashayman. 🏡"
+    },
+    {
+      "id": 6,
+      "text": "Agar yo'limizda yana sinov chiqsa, Jasur va Shahlo qanday turadi?",
+      "emoji": "🫶",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "🫶 Qo'lni qo'ldan qo'ymay, bir safda",
+        "🌙 Bir oz chekinib, jim kuzatib",
+        "💫 Har kim o'z dardini yashirib",
+        "🌸 Vaziyat tinishini kutib turib"
+      ],
+      "wrongMessage": "Sinov bizni ajratish uchun emas, yanada mahkamroq tutishtirish uchun keladi. 🫶",
+      "correctMessage": "Ha, azizam. Men sening yoningda turaman, sen mening yonimda: shunda hech bir bosim bizdan katta bo'lmaydi. 🫶"
+    },
+    {
+      "id": 7,
+      "text": "Kelajakdagi birinchi sokin tongimizda nimani eng avval sezamiz?",
+      "emoji": "🌅",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "☕ Shunchaki choyning iliq bug'ini",
+        "🌅 Nihoyat yonma-yon uyg'ongan baxtni",
+        "🌷 Kunlar yana odatdagidek o'tishini",
+        "💌 Telefon ovozisiz jimlik bo'lishini"
+      ],
+      "wrongMessage": "U tong oddiy bo'lmaydi. U tongda masofalar nihoyat tugaydi. 🌅",
+      "correctMessage": "Ha, Shahlo. O'sha tongda men seni ko'rib, ichimdan: \"mana mening uyim\", deyman. 🌅"
+    },
+    {
+      "id": 8,
+      "text": "Kutish og'ir kelgan paytda yuragimizga qaysi gap malham bo'ladi?",
+      "emoji": "💌",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "🌙 Sabr qil, lekin yolg'iz chidagin",
+        "🌸 Bugun og'ir, ertaga ko'ramiz",
+        "✨ Hammasini vaqtning o'zi aytsin",
+        "💌 Men kelyapman, sening umidingman"
+      ],
+      "wrongMessage": "Kutish yolg'iz chidash degani emas. Men sen tomon harakat qilyapman. 💌",
+      "correctMessage": "Ha, jonim. Men kelyapman: gap bilan emas, niyat, harakat va halol qadamlar bilan. 💌"
+    },
+    {
+      "id": 9,
+      "text": "Jasur oilasini ko'ndirishga urinayotganida, Shahloning yuragi nimaga suyansin?",
+      "emoji": "🤍",
+      "theme": "roses",
+      "correctIndex": 2,
+      "options": [
+        "🌹 Faqat taxminlarga va jim xabarlarga",
+        "🌙 Qo'rquvga, go'yo hammasi kechikadi",
+        "🤍 Jasurning niyati, duosi va harakatiga",
+        "💫 Tasodifga, balki o'zi hal bo'lar"
+      ],
+      "wrongMessage": "Men tasodifga tashlab qo'ymayapman, Shahlo. Seni so'rab borish uchun jonim bilan harakatdaman. 🤍",
+      "correctMessage": "To'g'ri, azizam. Mening niyatim pok: oilam rozi bo'lib, seni munosib hurmat bilan so'rab borishimizni xohlayman. 🤍"
+    },
+    {
+      "id": 10,
+      "text": "Bu sinovli davr tugaganida, sevgimiz haqida qanday hikoya aytamiz?",
+      "emoji": "🌟",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "🌟 Biz sabr qildik va birga g'alaba qildik",
+        "🌙 Biz ko'p qo'rqdik, keyin unutdik",
+        "🌸 Biz uzoq kutdik, ammo sukut qildik",
+        "💫 Biz yo'lni taqdirga topshirdik"
+      ],
+      "wrongMessage": "Bizning hikoyamiz qo'rquv haqida emas. U sabr, vafo va birga yutish haqida bo'ladi. 🌟",
+      "correctMessage": "Ha, mening Shahloyim. Bir kun bu kunlarni eslab kulamiz: \"biz sabr qildik, sevgi esa bizni uyga olib keldi\", deymiz. 🌟"
+    }
+  ],
+  "finalReward": {
+    "type": "gift",
+    "headline": "[TO], kelajagimiz sen bilan nurli 🌟",
+    "body": "Shahlo, bu savollarning har birida men senga bitta narsani aytmoqchi bo'ldim: sen kutayotgan sevgi bekor kutmayapti. Men seni oilam roziligi, sovchilar hurmati va halol niyat bilan so'rab borish uchun harakat qilyapman. Hozirgi bosimlar o'tadi, masofalar qisqaradi, qo'rquvlar tinadi. Biz esa bir kuni o'z uyimizda, xotirjam tongda, hammasiga arzigani uchun Allohga shukr qilamiz.",
+    "signoff": "[FROM]dan, seni tanlagan yurakdan 🤍",
+    "bonusReveal": "🎁 Maxsus va'da: men seni faqat so'z bilan ovutmoqchi emasman. Men seni hurmat bilan, duolar bilan, sovchilar bilan so'rab boradigan kun uchun kurashyapman. Sen mening kelajagimdagi mehmon emas, uyimning egasisan. ✨"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-longdistance.json
+================================================================================
+
+{
+  "categoryId": "longdistance",
+  "senderName": "Sardor",
+  "receiverName": "Malika",
+  "customMessage": "Seni judayam sog'indim. Bu o'yinni men sening uchun yaratdim 💙",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Telefon qo'yib bo'lgandan keyin ko'pincha nima deyisiz o'zingizga?",
+      "emoji": "📱",
+      "theme": "night",
+      "correctIndex": 2,
+      "options": [
+        "Yaxshi bo'ldi, ishlarim ko'p edi",
+        "Endi nima qilaman...",
+        "Yana qachon qo'ng'iroq qiladi ekan... 💙",
+        "Ovqat yeyish kerak edi"
+      ],
+      "wrongMessage": "Mendan keyin ovqat o'ylaganmisiz?! 😄",
+      "correctMessage": "Men ham xuddi shunday deb o'ylayman! 💙"
+    },
+    {
+      "id": 2,
+      "text": "Kechasi yulduzlarga qarasangiz, ular siz bilan ham birga ekanini his qilasizmi?",
+      "emoji": "⭐",
+      "theme": "stars",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Yulduzlar — ikkovimizning umumiy osmoni ⭐",
+        "Yo'q, yulduzlarga qaramayman",
+        "Bu romantik, lekin...",
+        "Men balkondan ko'rinmaydi"
+      ],
+      "wrongMessage": "Bir karra osmonni ko'ring — o'sha yulduzlar mening ham osmonimdagi! ⭐",
+      "correctMessage": "Ha! Bir xil osmonga qarasak — masofа yo'q! ⭐💙"
+    },
+    {
+      "id": 3,
+      "text": "Men ko'rgan nimadir — kino, kuy, tabiat — sizni eslatsa, menga yuborasizmi?",
+      "emoji": "💌",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, o'zim saqlab qolaman",
+        "Ha, lekin ko'p yubormayman",
+        "Faqat katta narsalar bo'lsa",
+        "Ha, har bir narsani — kichik bo'lsa ham 💌"
+      ],
+      "wrongMessage": "Kichik narsalar ham muhim-ku! 💌",
+      "correctMessage": "Rahmat! Men ham har bir kichik narsani siz bilan baham ko'raman! 💌💙"
+    },
+    {
+      "id": 4,
+      "text": "Eng qiyin payt — siz bilan gaplasha olmasam — nima qilasiz?",
+      "emoji": "😔",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Boshqa birov bilan gaplashaman",
+        "Sabr qilib, vaqti kelganda yana urinaman 😔",
+        "Xabar yozib xafa bo'lib qolaman",
+        "Ahamiyat bermayman"
+      ],
+      "wrongMessage": "Menga bog'liq bo'lmasdan yashamang! 😄",
+      "correctMessage": "Sabr! Bu eng qiyin his — lekin siz buni bilasiz... 😔💙"
+    },
+    {
+      "id": 5,
+      "text": "Agar men ertaga eshigingizni taqillatib kelsam, eshikni ochasizmi?",
+      "emoji": "🚪",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Hech narsa so'ramasdan, quchog'imga olaman 🚪",
+        "Kim ekanini bilib olaman avval",
+        "Nima uchun aytmasdan kelasiz?",
+        "Ko'chada kutib olaman"
+      ],
+      "wrongMessage": "Pasportim ham yo'q bo'lsa ham kiriting! 😄",
+      "correctMessage": "AYNAN! Birinchi ish — quchog'imga olish! 🚪💙"
+    },
+    {
+      "id": 6,
+      "text": "Masofali munosabat qiyin. Bunga qaramay davom etishga tayyormisiz?",
+      "emoji": "✈️",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Bilmayman, charchab qoldim",
+        "Qiyin savol bu",
+        "Ha, chunki natija bunga arziydi ✈️",
+        "Ko'ramiz..."
+      ],
+      "wrongMessage": "Bu javoб meni biroz xafa qildi... Yana o'ylang 🥺",
+      "correctMessage": "Ha! Har qanday masofa — vaqtinchalik! ✈️💙"
+    },
+    {
+      "id": 7,
+      "text": "Tug'ilgan kuningizda yoningizda bo'lishimni xohlaysizmi?",
+      "emoji": "🎂",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Kerak emas, onlayn ham bo'ladi",
+        "Bu sizga qiyin bo'ladi",
+        "Odamlar ko'p, e'tiborga muhtoj emasman",
+        "Ha! Eng ko'p istagan narsam shu 🎂"
+      ],
+      "wrongMessage": "Yoningizda bo'lishni istasangiz — bu xohish boshqa! 🎂",
+      "correctMessage": "Bu so'z uchun hamma narsaga tayyor bo'laman! 🎂💙"
+    },
+    {
+      "id": 8,
+      "text": "Bir kuni birlashib yashashni xohlaysizmi?",
+      "emoji": "🏠",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Hali erta bunday gaplar",
+        "Ha! Bu orzu — mening eng katta orzum 🏠",
+        "Bilmayman, vaziyatga qarab",
+        "Bu ancha uzoqda"
+      ],
+      "wrongMessage": "Orzu qilish — bepul-ku! 🏠",
+      "correctMessage": "Bu orzuimiz birgalikda amalga oshadi! 🏠💙"
+    },
+    {
+      "id": 9,
+      "text": "Masofa ikkovimizni uzoqlashtirdimi yoki yaqinlashtirdimi?",
+      "emoji": "💫",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Yaqinlashtirdi — qadrimizni bildik 💫",
+        "Uzoqlashtirdi, albatta",
+        "Ikkalasi ham",
+        "Hech qanday ta'siri yo'q"
+      ],
+      "wrongMessage": "Men yaqinlashdik deb o'ylayman... 💫",
+      "correctMessage": "Ha! Masofа — qadrimizni bilishga majbur qildi! 💫💙"
+    },
+    {
+      "id": 10,
+      "text": "Tez orada ko'rishimizga ishonamizmi?",
+      "emoji": "🌈",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Qiyin, bilmayman",
+        "Ko'ramiz, Xudo xohlasa",
+        "Ha! Ishonaman va kutaman 🌈",
+        "Umid bor, lekin..."
+      ],
+      "wrongMessage": "Ishon! Har masofa — vaqtinchalik! 🌈",
+      "correctMessage": "ISHONAMAN! Ko'rishganimizda — shu onimizni eslaymiz! 🌈💙"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], sen haqimda o'ylayapman 💙",
+    "body": "Bu o'yinni o'ynab bo'lgandan so'ng, bilasan — masofa jismoniy bo'lishi mumkin, lekin yurak doim yaqin. Har kecha, har yulduzga qarasam — seni o'ylayman. Tez orada ko'rishamiz.",
+    "signoff": "[FROM]dan, yulduzlar ostidan 💙",
+    "bonusReveal": "📍 Va'da: Ko'rishganimizda birinchi ishim — seni quchoqlayman va buni uzoq vaqt qo'yib yubormayman ✈️"
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-love.json
+================================================================================
+
+{
+  "categoryId": "love",
+  "senderName": "Amir",
+  "receiverName": "Zulfiya",
+  "customMessage": "Bu o'yinni siz uchun yaratdim — so'zlar yetmay qolganda... 💕",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Agar men sizga 'yaxshi ko'raman' desam, javobingiz nima bo'lar edi?",
+      "emoji": "💕",
+      "theme": "roses",
+      "correctIndex": 3,
+      "options": [
+        "Nima uchun menga? Xato qilmayapsizmi?",
+        "Rahmat, lekin...",
+        "Bilmayman nima deyishni",
+        "Men ham seni yaxshi ko'raman 💕"
+      ],
+      "wrongMessage": "Bu javob meni biroz xafa qildi... 😢 Chin fikringiz nima?",
+      "correctMessage": "Bu so'zni eshitish uchun umrimda kutardim! 💕💕"
+    },
+    {
+      "id": 2,
+      "text": "Kechasi uxlab ketolmay yotgan paytingizda nima haqida o'ylaysiz?",
+      "emoji": "🌙",
+      "theme": "night",
+      "correctIndex": 1,
+      "options": [
+        "Ertangi ishlar haqida",
+        "Siz haqingizda ko'p o'ylayman 🌙",
+        "Ovqat haqida",
+        "Hech narsa — tez uxlab ketaman"
+      ],
+      "wrongMessage": "Meni o'ylaysiz deb umid qilamannn! 🌙",
+      "correctMessage": "Men ham har kecha siz haqimda o'ylayman! 🌙💕"
+    },
+    {
+      "id": 3,
+      "text": "Men g'amgin bo'lsam, buning sababini bilmoqchi bo'lasizmi?",
+      "emoji": "🤍",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha, doim! Nima bo'ldi, aytib bering 🤍",
+        "O'tib ketadi, sabr qiling",
+        "Hammaning g'ami bo'ladi",
+        "Vaqt o'tsa yaxshi bo'ladi"
+      ],
+      "wrongMessage": "Sabr bilan kuting deb ayta olmaysizmi? 🥺",
+      "correctMessage": "Aynan! Yoningizda bo'lishni istayman! 🤍💕"
+    },
+    {
+      "id": 4,
+      "text": "Agar bir oyga ko'rinmay qolsam, sog'inardingizmi?",
+      "emoji": "💭",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, vaqt o'tib ketadi",
+        "Ozgina, balki",
+        "Ha, judayam! Bir oy juda uzoq 💭",
+        "Bilmayman, sinab ko'rishim kerak"
+      ],
+      "wrongMessage": "Bir oy — bu juda ko'p vaqt-ku! 😢",
+      "correctMessage": "Voy! Men ham sizi bir kunsiz sog'inaman! 💭💕"
+    },
+    {
+      "id": 5,
+      "text": "Men haqimda do'stlaringizga nima deya olasiz?",
+      "emoji": "😊",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Hech narsa, ular bilishi shart emas",
+        "Oddiy tanishim deb aytaman",
+        "Ko'rgan do'stim bor deb aytaman",
+        "U menga juda yaqin odam deb aytaman 😊"
+      ],
+      "wrongMessage": "Faqatgina tanish? Bu biroz og'ir eshitildi 🥺",
+      "correctMessage": "Yaqin odam! Bu so'z — menga eng qimmatli so'z! 😊💕"
+    },
+    {
+      "id": 6,
+      "text": "Birgalikda o'tkazadigan bir kunimiz bo'lsa, nima qilardingiz?",
+      "emoji": "☀️",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Uyda bo'lardim, siz keling",
+        "Sayr, qahva, gaplashish — shunchaki yonimda bo'lsangiz bas ☀️",
+        "Ish qilardim, ko'p narsam bor",
+        "Bilmayman, o'ylamaganman"
+      ],
+      "wrongMessage": "Bir kun siz bilan — bunga boshqa reja qo'yib bo'lmaydi! ☀️",
+      "correctMessage": "Mana bu! Shunchaki yonimda bo'lsangiz — bu yetarli! ☀️💕"
+    },
+    {
+      "id": 7,
+      "text": "Men qilgan xatoni aytib bersam, qulog'ingiz ochiqmi?",
+      "emoji": "👂",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "Ha, doim tinglayman 👂",
+        "Bilmayman, vaqtim bormi qarab",
+        "Keyinroq gaplashamiz",
+        "Aytib nima qilasiz, o'zi hal bo'ladi"
+      ],
+      "wrongMessage": "Quloq solish — munosabatning asosi-ku! 👂",
+      "correctMessage": "Rahmat! Siz — eng yaxshi tinglovchi! 👂💕"
+    },
+    {
+      "id": 8,
+      "text": "Sizni kuldirish oson meniga?",
+      "emoji": "😄",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, hazillarim yoqmaydi",
+        "Ba'zan, kayfiyatga qarab",
+        "Ha! Siz bilan doim kulaman 😄",
+        "Boshqalar yaxshiroq kuldiradi"
+      ],
+      "wrongMessage": "Menga boshqa kishi topaylikmi? 😄😢",
+      "correctMessage": "Voy! Men ham siz bilan eng ko'p kulaman! 😄💕"
+    },
+    {
+      "id": 9,
+      "text": "Qiyinchilik vaqtimda yoningizda turgan odam bo'lishni xohlaysizmi?",
+      "emoji": "🤝",
+      "theme": "hearts",
+      "correctIndex": 3,
+      "options": [
+        "Bu javobgarlik ko'p",
+        "Qo'limdan kelarmikan...",
+        "Urinib ko'raman",
+        "Ha! Qiyinchilikda yonida bo'lish — haqiqiy do'stlik 🤝"
+      ],
+      "wrongMessage": "Qiyinchilikda yonida bo'lish — bu sevgining o'zi! 🤝",
+      "correctMessage": "Aynan! Qiyinchilikda yonida turgan odam — eng qimmatli! 🤝💕"
+    },
+    {
+      "id": 10,
+      "text": "Bu o'yinni o'ynab bo'lgach, meni o'ylaysizmi?",
+      "emoji": "💌",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Yo'q, boshqa ishlarim bor",
+        "Ha, va bu o'yinni yuborgan odamga javob beraman 💌",
+        "Bilmayman",
+        "Ehtimol ertaga"
+      ],
+      "wrongMessage": "Iltimos, bir daqiqa uchun o'ylab ko'ring... 💌",
+      "correctMessage": "Javobingizni sabrsizlik bilan kutaman! 💌💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], seni yaxshi ko'raman — bu oddiy so'z emas 💕",
+    "body": "Bu o'yinni o'ynash orqali siz o'zingiz haqingizda juda ko'p narsani ko'rsatdingiz. Siz mehribon, samimiy va ajoyib insonziz. Bu so'zlarni o'qiyotganda biling: ular chin yurakdan yozilgan.",
+    "signoff": "[FROM]dan, yuragining chuquridan 💕",
+    "bonusReveal": "💌 Sir: Siz bu o'yinni o'ynashdan oldin ham mening ko'nglimda eng muhim o'rinda edingiz."
+  }
+}
+
+
+
+================================================================================
+FAYL: content\cat-memory.json
+================================================================================
+
+{
+  "categoryId": "memory",
+  "senderName": "Kamol",
+  "receiverName": "Dilnoza",
+  "customMessage": "Bizning birgalikdagi xotiralarimiz — dunyodagi eng qimmatli xazina 📸",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Biz birinchi marta uchrashgan kun — o'sha kun hali ham esingizda bormi?",
+      "emoji": "📍",
+      "theme": "flowers",
+      "correctIndex": 0,
+      "options": [
+        "Ha! Har bir tafsilot — xuddi kecha bo'lgandek 📍",
+        "Taxminan eslayman",
+        "Aniq eslay olmayman",
+        "Ko'p vaqt o'tdi"
+      ],
+      "wrongMessage": "O'sha kun — juda muhim edi! 📍",
+      "correctMessage": "Voy! Men ham o'sha kunni misli eslab turaman! 📍💕"
+    },
+    {
+      "id": 2,
+      "text": "Birgalikda kulgili holatga tushib qolganmizmi? Eslab qulayapsizmi?",
+      "emoji": "😂",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Yo'q, bunday bo'lmagan",
+        "Ba'zilarini eslardim",
+        "Ha! O'sha holatlar hali ham kuldiradi 😂",
+        "Eslamay qo'yganman"
+      ],
+      "wrongMessage": "O'sha kulgili holatlar — eng qimmatli xotiralar! 😂",
+      "correctMessage": "Ha! O'sha onlar hali ham kuldiradi! 😂💕"
+    },
+    {
+      "id": 3,
+      "text": "Birgalikdagi birinchi suratimiz hali ham telefoningizda bormi?",
+      "emoji": "📷",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "Yo'q, o'chirganman",
+        "Qaysi birini bilmayman",
+        "Bor, lekin ko'rmayapman",
+        "Ha! U mening eng sevimli suratim 📷"
+      ],
+      "wrongMessage": "O'sha surat — o'chirib bo'lmaydigan xotira edi! 📷",
+      "correctMessage": "Men ham o'sha suratni eng ko'p qaraydiganim! 📷💕"
+    },
+    {
+      "id": 4,
+      "text": "Siz bilan bo'lgan qaysi lahzani qaytarib yashashni xohlardingiz?",
+      "emoji": "⏳",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "Hech birini — o'tgani o'tgan",
+        "Barchasini — har bir daqiqa qimmatli edi ⏳",
+        "Faqat yaxshilarini",
+        "Bilmayman, o'ylamaganman"
+      ],
+      "wrongMessage": "Hech qaysi lahzani? 😢",
+      "correctMessage": "Aynan! Barchasi — yaxshisi ham, qiyini ham qimmatli! ⏳💕"
+    },
+    {
+      "id": 5,
+      "text": "O'sha kuy eshitilsa — meni eslaydigan kuying bormi?",
+      "emoji": "🎵",
+      "theme": "night",
+      "correctIndex": 0,
+      "options": [
+        "Ha! O'sha kuy eshitilsa, avtomatik siz ko'z oldimga kelasiz 🎵",
+        "Yo'q, kuy meni eslatmaydi",
+        "Bir nechta bor",
+        "Eslamayman"
+      ],
+      "wrongMessage": "Bizning 'maxsus kuyi' bo'lishi kerak-ku! 🎵",
+      "correctMessage": "O'sha kuy — ikkovimizning simvoli! 🎵💕"
+    },
+    {
+      "id": 6,
+      "text": "Xotiralarda eng ko'p qaysi hisni sezasiz?",
+      "emoji": "💛",
+      "theme": "flowers",
+      "correctIndex": 2,
+      "options": [
+        "Afsuslanish",
+        "G'ayrioddiylik",
+        "Iliqlik va minnatdorlik 💛",
+        "Nostalgia"
+      ],
+      "wrongMessage": "Iliqlik va minnatdorlik — eng to'g'ri his! 💛",
+      "correctMessage": "Ha! O'sha iliq his — eng qimmatli xotira belgisi! 💛💕"
+    },
+    {
+      "id": 7,
+      "text": "Birgalikdagi eng yaxshi xotiramiz hali kelmagandir — kelasi paytni kutayapsizmi?",
+      "emoji": "🌟",
+      "theme": "stars",
+      "correctIndex": 3,
+      "options": [
+        "O'tganlar yaxshi edi",
+        "Bilmayman, ko'ramiz",
+        "Ehtimol",
+        "Ha! Eng yaxshi xotiralar oldinda — men ishonaman 🌟"
+      ],
+      "wrongMessage": "Eng yaxshi xotiralaryimiz hali oldinda! 🌟",
+      "correctMessage": "ISHONAMAN! Oldindagi xotiralar yanada ajoyib bo'ladi! 🌟💕"
+    },
+    {
+      "id": 8,
+      "text": "Siz bilan birgalikda ovqat yegan kunlar eslab qulayapsizmi?",
+      "emoji": "🍽️",
+      "theme": "flowers",
+      "correctIndex": 1,
+      "options": [
+        "Ovqatni eslab yuramanmi!",
+        "Ha! Birgalikdagi dasturxon boshqa bir his edi 🍽️",
+        "Nima yeganimizni eslay olmayman",
+        "Ular oddiy ovqat edi"
+      ],
+      "wrongMessage": "Birgalikdagi ovqat — oddiy emas, xotira! 🍽️",
+      "correctMessage": "Ha! U ovqatlar hozir ham mazali tuyuladi — sababini bilamiz 🍽️💕"
+    },
+    {
+      "id": 9,
+      "text": "Xotiralardagi bir lahzani birovga gapirishga to'g'ri kelsа — nimani gapirar edingiz?",
+      "emoji": "🗣️",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "O'sha kulgili va iliq lahzalarni — hammani hayratda qoldirardim 🗣️",
+        "Hech narsa gapiray olmasdim",
+        "Oddiy voqealar derdim",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Bizning xotiralarimiz — ajoyib hikoyalar! 🗣️",
+      "correctMessage": "Ha! O'sha hikoyalar — odamlarni jilmaytirar edi! 🗣️💕"
+    },
+    {
+      "id": 10,
+      "text": "Kelgusida birgalikda yangi xotiralar yaratishni xohlaysizmi?",
+      "emoji": "🎊",
+      "theme": "stars",
+      "correctIndex": 2,
+      "options": [
+        "O'tganlar yetarli",
+        "Ko'ramiz, qarab turamiz",
+        "Ha! Eng yaxshi xotiralar hali oldinda 🎊",
+        "Bilmayman"
+      ],
+      "wrongMessage": "Yangi xotiralar — yangi baxt! 🎊",
+      "correctMessage": "AYNAN! Yangi xotiralar — yangi boshliqlar! 🎊💕"
+    }
+  ],
+  "finalReward": {
+    "type": "letter",
+    "headline": "[TO], bizning xotiralarimiz — umrbod 📸",
+    "body": "Bu savollarga javob berganingizda, ko'rdim — o'sha lahzalar sizning ham yuragingizda yashaydi. Xotiralar — eng kuchli narsa. Ularni birgalikda yaratganingiz uchun — minnatdorman.",
+    "signoff": "[FROM]dan, xotiralar bilan 💕",
+    "bonusReveal": "📸 Xotiramiz: Siz bilan birgalikda o'tkazgan har bir daqiqa — mening hayotimdagi eng qimmatli daqiqalar."
+  }
+}
+
+
+
+================================================================================
+FAYL: content\categories.json
+================================================================================
+
+[
+  {
+    "id": "date",
+    "file": "cat-date.json",
+    "emoji": "🎬",
+    "title": "Uchrashuvga taklif",
+    "description": "Sevgilini uchrashuvga chaqirish uchun",
+    "color": "#FF6B9D",
+    "bgTheme": "roses",
+    "endReward": {
+      "type": "ticket",
+      "title": "Kino chiptasi 🎬",
+      "message": "Siz menga rozi bo'ldingiz! Mana sizning chiptangiz...",
+      "details": "2 kishi • Toshkent, Cinemark • Yaqin orada"
+    }
+  },
+  {
+    "id": "love",
+    "file": "cat-love.json",
+    "emoji": "💕",
+    "title": "Sevgi e'tirofi",
+    "description": "Sevgingizni aytish uchun maxsus o'yin",
+    "color": "#FF4B8B",
+    "bgTheme": "hearts",
+    "endReward": {
+      "type": "letter",
+      "title": "Sevgi xati 💕",
+      "message": "Yuragimning so'zlari...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "longdistance",
+    "file": "cat-longdistance.json",
+    "emoji": "✈️",
+    "title": "Uzoqdagi sevgi",
+    "description": "Uzoqda bo'lgan sevgilini ko'nglini ko'tarish",
+    "color": "#6B9DFF",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "letter",
+      "title": "Maxfiy xat 💌",
+      "message": "Barcha savollarga to'g'ri javob berdingiz! Sizga maxsus xabar bor...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "memory",
+    "file": "cat-memory.json",
+    "emoji": "📸",
+    "title": "Xotiralar",
+    "description": "Birgalikda o'tkazgan vaqtlarni eslash",
+    "color": "#9B6BFF",
+    "bgTheme": "flowers",
+    "endReward": {
+      "type": "letter",
+      "title": "Xotiralar albomi 📸",
+      "message": "Bizning eng ajoyib xotiralarimiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "future",
+    "file": "cat-future.json",
+    "emoji": "🌟",
+    "title": "Kelajak rejalari",
+    "description": "Birga quradigan kelajak haqida o'yin",
+    "color": "#FFB347",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "gift",
+      "title": "Kelajak rejasi 🌟",
+      "message": "Bizning birgalikdagi kelajagimiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "apology",
+    "file": "cat-apology.json",
+    "emoji": "🙏",
+    "title": "Kechirim so'rash",
+    "description": "Yurakdan kechirim so'rash uchun maxsus o'yin",
+    "color": "#A8D8EA",
+    "bgTheme": "night",
+    "endReward": {
+      "type": "letter",
+      "title": "Yurakdan kechirim 🙏",
+      "message": "Men chin dildan kechirim so'rayman...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "birthday",
+    "file": "cat-birthday.json",
+    "emoji": "🎂",
+    "title": "Tug'ilgan kun",
+    "description": "Tug'ilgan kunni maxsus nishonlash",
+    "color": "#FF6B6B",
+    "bgTheme": "flowers",
+    "endReward": {
+      "type": "gift",
+      "title": "Tug'ilgan kun sovg'asi 🎂",
+      "message": "Sizga maxsus sovg'a tayyorladim!",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "anniversary",
+    "file": "cat-anniversary.json",
+    "emoji": "💍",
+    "title": "Yillik nishon",
+    "description": "Birgalikdagi yillikni nishonlash",
+    "color": "#C9A96E",
+    "bgTheme": "roses",
+    "endReward": {
+      "type": "countdown",
+      "title": "Yillik nishon 💍",
+      "message": "Bizning ajoyib sayohatimiz davom etmoqda...",
+      "details": "custom_message_field",
+      "countdownDate": "2027-06-25"
+    }
+  },
+  {
+    "id": "flirt",
+    "file": "cat-flirt.json",
+    "emoji": "😘",
+    "title": "Flirt",
+    "description": "Yengil va qiziqarli flirt o'yini",
+    "color": "#FF8C69",
+    "bgTheme": "hearts",
+    "endReward": {
+      "type": "letter",
+      "title": "Sirli xabar 😘",
+      "message": "Bilasizmi, siz meni qiziqtirasiz...",
+      "details": "custom_message_field"
+    }
+  },
+  {
+    "id": "custom",
+    "file": "cat-custom.json",
+    "emoji": "✨",
+    "title": "Maxsus",
+    "description": "O'zingiz to'liq moslashtira oladigan kategoriya",
+    "color": "#B5EAD7",
+    "bgTheme": "stars",
+    "endReward": {
+      "type": "letter",
+      "title": "Maxsus xabar ✨",
+      "message": "Siz uchun maxsus yaratildi...",
+      "details": "custom_message_field"
+    }
+  }
+]
+
+
+
+================================================================================
+FAYL: content\README.txt
+================================================================================
+
+╔══════════════════════════════════════════════════════════════╗
+║         HEARTQUEST - SAVOLLARNI TAHRIRLASH QO'LLANMASI       ║
+╚══════════════════════════════════════════════════════════════╝
+
+Salom! Bu papkadagi fayllarni tahrirlash orqali o'yinni o'zingizga
+moslashtirish mumkin. Hech qanday dasturlash bilimlari shart emas!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 FAYLLAR TAVSIFI:
+  • categories.json    - Barcha kategoriyalar ro'yxati
+  • cat-date.json      - "Uchrashuvga taklif" savollari
+  • cat-love.json      - "Sevgi e'tirofi" savollari
+  • cat-longdistance.json - "Uzoqdagi sevgi" savollari
+  • cat-memory.json    - "Xotiralar" savollari
+  • cat-future.json    - "Kelajak rejalari" savollari
+  • cat-apology.json   - "Kechirim so'rash" savollari
+  • cat-birthday.json  - "Tug'ilgan kun" savollari
+  • cat-anniversary.json - "Yillik nishon" savollari
+  • cat-flirt.json     - "Flirt" savollari
+  • cat-custom.json    - "Maxsus" (to'liq moslashtirish)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 SAVOL QO'SHISH UCHUN:
+
+1. Tegishli cat-*.json faylini oching (masalan: cat-date.json)
+2. "questions" bo'limini toping
+3. Yangi savol qo'shing, namuna:
+
+{
+  "id": 11,
+  "text": "Sevimli rangingiz qaysi?",
+  "emoji": "🎨",
+  "correctIndex": 2,
+  "options": [
+    "Qora",
+    "Oq",
+    "Pushti",
+    "Ko'k"
+  ],
+  "wrongMessage": "Yo'q-yo'q, boshqasi! 😄",
+  "correctMessage": "Ha, bilardim! 💕"
+}
+
+MUHIM ESLATMALAR:
+  ✅ "correctIndex" 0 dan boshlanadi:
+     0 = birinchi variant (Qora)
+     1 = ikkinchi variant (Oq)
+     2 = uchinchi variant (Pushti) ← to'g'ri javob
+     3 = to'rtinchi variant (Ko'k)
+
+  ✅ Har bir savolning "id" raqami boshqacha bo'lishi kerak
+  ✅ To'rttadan ko'p variant qo'shish mumkin emas
+  ✅ Faqat bitta to'g'ri javob bo'lishi kerak
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎨 KATEGORIYA RANGINI O'ZGARTIRISH:
+
+categories.json faylini oching va tegishli kategoriyaning
+"color" maydonini o'zgartiring:
+
+"color": "#FF6B9D"   ← shu yerda rangni o'zgartiring
+                        (masalan: "#FF0000" = qizil)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎁 OXIRGI SOVG'ANI O'ZGARTIRISH:
+
+categories.json → "endReward" → "details" maydonini toping:
+
+"details": "2 kishi • [LOCATION] • [DATE]"
+                       ↑              ↑
+               Joyni yozing    Sanani yozing
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✏️ NOMLARNI O'ZGARTIRISH:
+
+cat-*.json faylida:
+  "senderName": "Sardor"    ← kimdan yuborilmoqda
+  "receiverName": "Malika"  ← kimga yuborilmoqda
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️  XATOLARDAN SAQLANING:
+  ❌ Vergulni unutmang { "key": "value" [VERGUL KERAK] "key2": ... }
+  ❌ Qo'shtirnoqlarni yoping: "matn" (ikkalasi ham kerak)
+  ❌ Oxirgi elementdan keyin vergul qo'ymang
+
+Saqlash tugmasini bosish ✓ (Ctrl+S)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Savol bo'lsa: admin panelidan foydalaning → /admin
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+
+================================================================================
+FAYL: game\game.css
+================================================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #FF6B9D;
+  --primary-soft: #FFB3CC;
+  --accent: #6B9DFF;
+  --accent-soft: #B3C9FF;
+  --gold: #FFD700;
+  --bg: linear-gradient(135deg, #FFF0F5 0%, #F0F4FF 50%, #FFF5E0 100%);
+  --text-dark: #2D1B33;
+  --text-medium: #7B5C8A;
+  --card-bg: rgba(255,255,255,0.88);
+  --radius: 24px;
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,0.34), rgba(255,255,255,0) 38%),
+    repeating-linear-gradient(135deg, rgba(255,107,157,0.035) 0 1px, transparent 1px 18px);
+}
+
+/* Canvas */
+#confettiCanvas {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Preview Badge */
+.preview-badge {
+  position: fixed; top: 16px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,75,139,0.9);
+  color: white; font-size: 11px; font-weight: 800;
+  padding: 4px 14px; border-radius: 20px;
+  letter-spacing: 2px; z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+.preview-badge.hidden { display: none; }
+
+/* Mute Button */
+.mute-btn {
+  position: fixed; top: 16px; right: 16px;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,107,157,0.2);
+  border-radius: 50%; cursor: pointer;
+  font-size: 20px; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.mute-btn:hover { transform: scale(1.1); }
+
+/* Heartbeat Indicator */
+.heartbeat-indicator {
+  position: fixed; bottom: 20px; right: 20px;
+  font-size: 28px; z-index: 1000;
+  animation: hb-slow 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(255,107,157,0.5));
+  cursor: default; user-select: none;
+}
+
+@keyframes hb-slow {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.2); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.12); }
+  56% { transform: scale(1); }
+}
+
+.heartbeat-indicator.fast {
+  animation: hb-fast 0.5s ease-in-out infinite;
+}
+
+@keyframes hb-fast {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+/* BG Particles */
+.bg-particles {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+
+.bp {
+  position: absolute;
+  animation: bp-float linear infinite;
+  user-select: none; font-size: 14px;
+  opacity: 0.1;
+}
+
+@keyframes bp-float {
+  0% { transform: translateY(110vh) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.75);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 40px rgba(255,107,157,0.1), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* SCREENS */
+.screen {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10; padding: 20px;
+  overflow-y: auto;
+}
+
+.screen.hidden { display: none !important; }
+
+/* ─── LOADING ─── */
+.loading-content { text-align: center; }
+
+.loading-heart {
+  font-size: 64px;
+  display: block; margin-bottom: 20px;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.18); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.12); }
+}
+
+.loading-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px; color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.loading-dots { display: flex; gap: 8px; justify-content: center; }
+.loading-dots span {
+  width: 10px; height: 10px;
+  background: var(--primary); border-radius: 50%;
+  animation: dot-bounce 1.2s ease-in-out infinite;
+}
+.loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+/* ─── INTRO ─── */
+.intro-card {
+  max-width: 520px; width: 100%;
+  padding: 40px 36px;
+  text-align: center;
+  animation: slideUp 0.6s var(--spring) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.intro-sender {
+  font-size: 14px; color: var(--text-medium);
+  font-weight: 600; letter-spacing: 1px;
+  margin-bottom: 16px; text-transform: uppercase;
+  min-height: 20px;
+}
+
+.intro-emoji {
+  font-size: 64px; margin-bottom: 16px;
+  display: block;
+  animation: bounceIn 0.8s var(--spring) 0.3s both;
+}
+
+@keyframes bounceIn {
+  from { opacity: 0; transform: scale(0) rotate(-10deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.intro-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--text-dark); margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.intro-message {
+  font-size: 16px; color: var(--text-medium);
+  line-height: 1.6; margin-bottom: 24px;
+  font-style: italic;
+}
+
+.intro-receiver {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px; color: var(--primary);
+  margin-bottom: 28px;
+}
+
+.btn-start {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--primary), #FF4B8B);
+  color: white; border: none; border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px; font-weight: 800;
+  cursor: pointer; transition: all 0.3s var(--spring);
+  box-shadow: 0 6px 24px rgba(255,107,157,0.45);
+  letter-spacing: 0.3px;
+}
+
+.btn-start:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 36px rgba(255,107,157,0.55);
+}
+
+.btn-start:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* ─── GAME ─── */
+#screenGame {
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 16px;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* Progress */
+.progress-bar-container {
+  position: relative; z-index: 20;
+  width: 100%; max-width: 600px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  gap: 12px; padding: 0 4px;
+}
+
+.progress-hearts {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  flex: 1;
+}
+
+.progress-heart {
+  font-size: 20px; transition: all 0.3s var(--spring);
+}
+
+.progress-heart.filled { opacity: 1; transform: scale(1); }
+.progress-heart.empty { opacity: 0.25; transform: scale(0.85); }
+
+.question-counter {
+  font-size: 14px; font-weight: 700;
+  color: var(--text-medium); white-space: nowrap;
+  background: rgba(255,255,255,0.8);
+  padding: 4px 12px; border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* Streak Badge */
+.streak-badge {
+  position: fixed; top: 70px; left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #FF6B9D, #FFD700);
+  color: white; font-size: 16px; font-weight: 800;
+  padding: 8px 20px; border-radius: 30px;
+  z-index: 200; animation: streakPop 0.5s var(--spring) both;
+  box-shadow: 0 4px 20px rgba(255,107,157,0.4);
+}
+
+.streak-badge.hidden { display: none; }
+
+@keyframes streakPop {
+  from { transform: translateX(-50%) scale(0); }
+  to { transform: translateX(-50%) scale(1); }
+}
+
+/* Question Wrapper */
+.question-wrapper {
+  width: 100%; max-width: 600px;
+  position: relative; flex: 1;
+  display: flex; align-items: center;
+  justify-content: center;
+}
+
+.question-card {
+  width: 100%; padding: 28px 24px 24px;
+  position: relative;
+  transform-origin: center;
+}
+
+/* Question Card themes */
+.question-card.theme-night {
+  background: rgba(30, 20, 60, 0.88);
+  border-color: rgba(107, 157, 255, 0.3);
+}
+.question-card.theme-night .question-text { color: #e0d4f7; }
+.question-card.theme-night .question-counter { color: #b3c9ff; }
+
+.question-card.theme-flowers {
+  background: rgba(255, 240, 248, 0.92);
+  border-color: rgba(255, 107, 157, 0.25);
+}
+
+.question-card.theme-roses {
+  background: rgba(255, 235, 240, 0.92);
+  border-color: rgba(255, 75, 139, 0.2);
+}
+
+.question-card.theme-stars {
+  background: rgba(240, 244, 255, 0.92);
+  border-color: rgba(107, 157, 255, 0.2);
+}
+
+.question-card.theme-hearts {
+  background: rgba(255, 240, 248, 0.92);
+  border-color: rgba(255, 179, 204, 0.4);
+}
+
+/* Question Emoji */
+.question-emoji {
+  font-size: 48px; text-align: center;
+  display: block; margin-bottom: 14px;
+}
+
+/* Question Text */
+.question-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--text-dark); text-align: center;
+  line-height: 1.4; margin-bottom: 24px;
+  min-height: 56px;
+}
+
+/* Options Grid */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  position: relative;
+}
+
+/* Option Button */
+.option-btn {
+  padding: 13px 16px;
+  background: rgba(255,255,255,0.9);
+  border: 2px solid rgba(255,107,157,0.2);
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 700;
+  color: var(--text-dark);
+  cursor: pointer;
+  /* Faqat hover effektlari uchun transition — fleeing paytida overrride bo'ladi */
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
+  position: relative;
+  text-align: center;
+  line-height: 1.3;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Tugmaning minimum o'lchamini belgilash */
+  min-height: 46px;
+}
+
+.option-btn:not(.correct):not(.fleeing):not(.disabled):hover {
+  border-color: var(--primary);
+  background: rgba(255,107,157,0.06);
+  box-shadow: 0 4px 16px rgba(255,107,157,0.2);
+}
+
+.option-btn.correct {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  border-color: #2ecc71;
+  color: white;
+  animation: correctPulse 0.5s var(--spring);
+  box-shadow: 0 0 0 4px rgba(46,204,113,0.3), 0 6px 20px rgba(46,204,113,0.4);
+}
+
+@keyframes correctPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.option-btn.wrong {
+  border-color: rgba(255,107,157,0.4);
+  background: rgba(255,107,157,0.05);
+}
+
+.option-btn.fleeing {
+  position: fixed !important;
+  z-index: 100;
+  /* position va o'lcham o'zgarishi uchun transition yo'q, faqat harakat uchun */
+  box-shadow: 0 6px 24px rgba(255,107,157,0.35);
+  border-color: rgba(255,107,157,0.4) !important;
+  background: rgba(255,240,245,0.95) !important;
+  cursor: not-allowed;
+  will-change: left, top, transform;
+  animation: fleeGlow 1.1s ease-in-out infinite;
+}
+
+@keyframes fleeGlow {
+  0%, 100% {
+    box-shadow: 0 6px 24px rgba(255,107,157,0.32);
+  }
+  50% {
+    box-shadow: 0 10px 34px rgba(255,107,157,0.48), 0 0 0 5px rgba(255,179,204,0.18);
+  }
+}
+
+/* Grid qulab tushmasligi uchun yashirin placeholder */
+.flee-placeholder {
+  display: block;
+  flex-shrink: 0;
+  pointer-events: none;
+  visibility: hidden;
+  min-height: 46px;
+}
+
+.option-btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Reaction Emoji floating over wrong button */
+.reaction-emoji {
+  position: fixed; z-index: 200;
+  font-size: 24px; pointer-events: none;
+  animation: reactionFloat 0.8s ease forwards;
+}
+
+@keyframes reactionFloat {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-40px) scale(1.3); }
+}
+
+/* Puff smoke for mobile teleport */
+.puff-smoke {
+  position: fixed; z-index: 150;
+  font-size: 28px; pointer-events: none;
+  animation: puffOut 0.5s ease forwards;
+}
+
+@keyframes puffOut {
+  0% { opacity: 1; transform: scale(0.3); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+/* Feedback Message */
+.feedback-msg {
+  text-align: center; margin-top: 16px;
+  font-size: 15px; font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 14px;
+  animation: fadeInPop 0.3s var(--spring);
+}
+
+.feedback-msg.success {
+  background: rgba(46,204,113,0.12);
+  color: #27ae60;
+  border: 1px solid rgba(46,204,113,0.3);
+}
+
+.feedback-msg.error {
+  background: rgba(255,107,157,0.1);
+  color: #FF4B8B;
+  border: 1px solid rgba(255,107,157,0.2);
+}
+
+.feedback-msg.hidden { display: none; }
+
+@keyframes fadeInPop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Hint Bubble */
+.hint-bubble {
+  background: rgba(107,157,255,0.12);
+  border: 1px solid rgba(107,157,255,0.3);
+  border-radius: 14px; padding: 10px 16px;
+  text-align: center; color: #4B7BFF;
+  font-size: 14px; font-weight: 600;
+  margin-top: 12px;
+  animation: fadeInPop 0.3s var(--spring);
+}
+.hint-bubble.hidden { display: none; }
+
+/* Ghost Button */
+.ghost-btn {
+  position: fixed;
+  padding: 10px 20px;
+  background: rgba(50,50,80,0.85);
+  color: #ccc; border: none;
+  border-radius: 50px; font-size: 14px;
+  font-family: 'Nunito', sans-serif; font-weight: 600;
+  pointer-events: none; z-index: 500;
+  animation: ghostFloat 3s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+}
+
+.ghost-btn.hidden { display: none; }
+
+@keyframes ghostFloat {
+  0%, 100% { transform: translateY(0px); opacity: 0.8; }
+  50% { transform: translateY(-20px); opacity: 0.4; }
+}
+
+/* ─── REWARD ─── */
+#screenReward {
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 30px 20px 60px;
+  gap: 20px;
+}
+
+.reward-container {
+  width: 100%; max-width: 560px;
+  animation: slideUp 0.7s var(--spring) forwards;
+}
+
+/* Letter Reward */
+.reward-letter {
+  background: linear-gradient(135deg, #FFF8E8 0%, #FFF0D8 100%);
+  border: 2px solid rgba(200, 160, 100, 0.3);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  text-align: center; position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(200,160,100,0.2);
+}
+
+.wax-seal {
+  font-size: 48px; display: block;
+  margin-bottom: 20px;
+  animation: sealDrop 0.8s var(--spring) 0.3s both;
+}
+
+@keyframes sealDrop {
+  from { opacity: 0; transform: scale(0) rotate(-30deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.letter-headline {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px; color: #8B4513;
+  margin-bottom: 20px; line-height: 1.3;
+  animation: slideUp 0.6s var(--spring) 0.5s both;
+}
+
+.letter-body {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px; color: #6B4226;
+  line-height: 1.8; margin-bottom: 20px;
+  text-align: left;
+  animation: slideUp 0.6s var(--spring) 0.7s both;
+}
+
+.letter-signoff {
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px; color: #FF6B9D;
+  text-align: right;
+  animation: slideUp 0.6s var(--spring) 0.9s both;
+}
+
+.letter-bonus {
+  margin-top: 24px; padding: 16px 20px;
+  background: rgba(255,107,157,0.08);
+  border: 1px dashed rgba(255,107,157,0.3);
+  border-radius: 14px; font-size: 15px;
+  color: var(--text-medium); line-height: 1.5;
+  animation: slideUp 0.6s var(--spring) 1.1s both;
+}
+
+/* Ticket Reward */
+.reward-ticket {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  animation: ticketSlide 0.8s var(--spring) forwards;
+}
+
+@keyframes ticketSlide {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ticket-top {
+  background: linear-gradient(135deg, var(--primary), #FF4B8B);
+  padding: 32px 28px; color: white; text-align: center;
+}
+
+.ticket-logo { font-size: 40px; margin-bottom: 8px; }
+.ticket-event {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700; margin-bottom: 4px;
+}
+.ticket-sub { font-size: 14px; opacity: 0.85; }
+
+.ticket-divider {
+  display: flex; align-items: center;
+  padding: 0 16px;
+  background: white;
+}
+
+.ticket-divider::before,
+.ticket-divider::after {
+  content: '';
+  flex: 1; border-top: 2px dashed rgba(255,107,157,0.3);
+}
+
+.ticket-hole {
+  width: 28px; height: 28px;
+  background: var(--bg); border-radius: 50%;
+  margin: 0 8px; flex-shrink: 0;
+}
+
+.ticket-bottom {
+  padding: 24px 28px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ticket-field { text-align: left; }
+.ticket-label { font-size: 11px; color: var(--text-medium); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.ticket-value { font-size: 16px; font-weight: 800; color: var(--text-dark); margin-top: 3px; }
+
+.ticket-qr-decor {
+  grid-column: 1 / -1; text-align: center;
+  font-size: 60px; letter-spacing: -4px; color: var(--text-dark);
+  font-family: monospace; opacity: 0.15; margin-top: 8px;
+  font-size: 14px; letter-spacing: 2px; opacity: 0.5;
+}
+
+/* Gift Reward */
+.reward-gift {
+  text-align: center; padding: 40px 28px;
+}
+
+.gift-box-wrapper {
+  perspective: 1000px;
+  display: inline-block; margin-bottom: 28px;
+}
+
+.gift-box {
+  font-size: 96px; cursor: pointer;
+  transition: transform 0.3s;
+  display: inline-block;
+  animation: giftWiggle 2s ease-in-out infinite;
+}
+
+@keyframes giftWiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.gift-box:hover { transform: scale(1.15) rotate(0deg) !important; animation: none; }
+
+.gift-click-hint {
+  font-size: 14px; color: var(--text-medium);
+  margin-bottom: 24px;
+}
+
+.gift-content {
+  display: none; /* shown after click */
+  animation: slideUp 0.5s var(--spring) forwards;
+}
+
+.gift-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px; color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.gift-body {
+  font-size: 16px; color: var(--text-medium);
+  line-height: 1.7; margin-bottom: 16px;
+}
+
+.gift-bonus {
+  padding: 14px 20px;
+  background: rgba(255,215,0,0.1);
+  border: 1px solid rgba(255,215,0,0.4);
+  border-radius: 14px; font-size: 15px; color: var(--text-dark);
+}
+
+/* Countdown Reward */
+.reward-countdown {
+  text-align: center; padding: 40px 28px;
+}
+
+.countdown-headline {
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px; color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.countdown-display {
+  display: flex; justify-content: center; gap: 16px;
+  margin: 24px 0; flex-wrap: wrap;
+}
+
+.countdown-unit {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid rgba(255,107,157,0.2);
+  border-radius: 16px; padding: 20px 16px;
+  min-width: 80px; text-align: center;
+  box-shadow: 0 4px 16px rgba(255,107,157,0.1);
+}
+
+.countdown-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; font-weight: 700;
+  color: var(--primary); display: block;
+}
+
+.countdown-label {
+  font-size: 11px; color: var(--text-medium);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+}
+
+.countdown-body {
+  font-size: 16px; color: var(--text-medium);
+  line-height: 1.7; margin-top: 16px;
+}
+
+/* Stars Display */
+.stars-display {
+  display: flex; gap: 8px; justify-content: center;
+  font-size: 32px;
+  animation: slideUp 0.5s var(--spring) 0.8s both;
+}
+
+.star-filled { animation: starPop 0.4s var(--spring) both; }
+.star-empty { opacity: 0.2; }
+
+@keyframes starPop {
+  from { transform: scale(0) rotate(-30deg); }
+  to { transform: scale(1) rotate(0deg); }
+}
+
+/* Reward Actions */
+.reward-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  justify-content: center;
+  animation: slideUp 0.5s var(--spring) 1s both;
+}
+
+.btn-share-result, .btn-screenshot {
+  padding: 13px 24px;
+  border: none; border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.3s var(--spring);
+}
+
+.btn-share-result {
+  background: linear-gradient(135deg, var(--primary), #FF4B8B);
+  color: white;
+  box-shadow: 0 4px 16px rgba(255,107,157,0.35);
+}
+.btn-share-result:hover { transform: translateY(-2px) scale(1.03); }
+
+.btn-screenshot {
+  background: rgba(255,255,255,0.9);
+  color: var(--text-dark);
+  border: 2px solid rgba(255,107,157,0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.btn-screenshot:hover { transform: translateY(-2px); border-color: var(--primary); }
+
+/* Ghost trail effect */
+.ghost-trail {
+  position: fixed; z-index: 99;
+  pointer-events: none;
+  border-radius: 50px;
+  background: rgba(255,107,157,0.15);
+  animation: trailFade 0.4s ease forwards;
+}
+
+@keyframes trailFade {
+  from { opacity: 0.5; }
+  to { opacity: 0; transform: scale(0.8); }
+}
+
+/* Transition animations */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(60px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideOutLeft {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(-60px); }
+}
+
+.slide-in { animation: slideInRight 0.5s var(--spring) forwards; }
+.slide-out { animation: slideOutLeft 0.3s ease forwards; }
+
+/* Typewriter cursor */
+.typewriter::after {
+  content: '|';
+  animation: blink 0.7s step-end infinite;
+  color: var(--primary);
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .question-text { font-size: 17px; }
+  .options-grid { grid-template-columns: 1fr; }
+  .option-btn { padding: 14px 16px; font-size: 15px; }
+  .intro-card { padding: 28px 20px; }
+  .intro-title { font-size: 22px; }
+  .ticket-bottom { grid-template-columns: 1fr; }
+  .countdown-display { gap: 10px; }
+  .countdown-unit { min-width: 65px; padding: 14px 10px; }
+  .countdown-num { font-size: 30px; }
+}
+
+@media (max-height: 600px) {
+  #screenGame { justify-content: flex-start; padding-top: 8px; }
+  .question-card { padding: 18px 16px; }
+  .question-emoji { font-size: 36px; margin-bottom: 8px; }
+  .question-text { font-size: 17px; margin-bottom: 16px; }
+}
+
+/* Fireworks for anniversary */
+.firework {
+  position: fixed; z-index: 998;
+  pointer-events: none;
+  font-size: 20px;
+  animation: fireworkBurst 1.2s ease-out forwards;
+}
+
+@keyframes fireworkBurst {
+  0% { transform: scale(0); opacity: 1; }
+  60% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.6) translateY(-80px); opacity: 0; }
+}
+
+
+
+================================================================================
+FAYL: game\game.js
+================================================================================
+
+'use strict';
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+const STATE = {
+  cat: null, catData: null, catMeta: null,
+  questions: [], currentQ: 0,
+  params: {}, isPreview: false,
+  muted: false,
+  wrongAttempts: 0,
+  totalWrongAttempts: 0,
+  streak: 0,
+  stars: [],
+  ghostShown: false,
+  speedMultiplier: 1,
+  isMobile: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent),
+  audioCtx: null,
+  bgMusic: null,
+  musicStarted: false,
+  musicSourceReady: false,
+};
+
+// ─── AUDIO ───────────────────────────────────────────────────────────────────
+function getAudioCtx() {
+  if (!STATE.audioCtx) STATE.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return STATE.audioCtx;
+}
+
+function playTone(freq, type, duration, vol = 0.3, delay = 0) {
+  if (STATE.muted) return;
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = type; osc.frequency.value = freq;
+    gain.gain.setValueAtTime(vol, ctx.currentTime + delay);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+    osc.start(ctx.currentTime + delay);
+    osc.stop(ctx.currentTime + delay + duration);
+  } catch(e) {}
+}
+
+function playCorrect() {
+  [[523, 0], [659, 0.1], [784, 0.2], [1047, 0.3]].forEach(([f, d]) =>
+    playTone(f, 'sine', 0.3, 0.25, d));
+}
+
+function playWrong() {
+  playTone(300, 'sawtooth', 0.15, 0.2);
+  playTone(200, 'sawtooth', 0.15, 0.2, 0.1);
+}
+
+function playHover() {
+  playTone(800, 'sine', 0.02, 0.05);
+}
+
+function playFinale() {
+  const notes = [523, 659, 784, 1047, 784, 1047, 1319, 1568];
+  notes.forEach((f, i) => playTone(f, 'sine', 0.25, 0.2, i * 0.1));
+  setTimeout(() => {
+    [523, 659, 784].forEach((f, i) => playTone(f, 'triangle', 0.5, 0.15, i * 0.08));
+  }, notes.length * 100 + 200);
+}
+
+function initBackgroundMusic() {
+  STATE.bgMusic = document.getElementById('bgMusic');
+  if (!STATE.bgMusic) return;
+
+  STATE.bgMusic.volume = 0.32;
+  ensureRomanticLoopSource();
+
+  ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
+    window.addEventListener(eventName, startBackgroundMusic, { once: true, passive: true });
+  });
+}
+
+function ensureRomanticLoopSource() {
+  if (!STATE.bgMusic || STATE.musicSourceReady) return;
+  STATE.bgMusic.src = createRomanticLoopDataUri();
+  STATE.musicSourceReady = true;
+}
+
+async function startBackgroundMusic() {
+  if (!STATE.bgMusic || STATE.muted) return;
+
+  ensureRomanticLoopSource();
+  try {
+    STATE.bgMusic.volume = 0.32;
+    await STATE.bgMusic.play();
+    STATE.musicStarted = true;
+  } catch(e) {
+    STATE.musicStarted = false;
+  }
+}
+
+function createRomanticLoopDataUri() {
+  const sampleRate = 22050;
+  const seconds = 16;
+  const totalSamples = sampleRate * seconds;
+  const channels = 1;
+  const bytesPerSample = 2;
+  const dataSize = totalSamples * channels * bytesPerSample;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+
+  function writeString(offset, str) {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  }
+
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, channels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * channels * bytesPerSample, true);
+  view.setUint16(32, channels * bytesPerSample, true);
+  view.setUint16(34, 16, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataSize, true);
+
+  const chords = [
+    [261.63, 329.63, 392.00, 523.25],
+    [220.00, 261.63, 329.63, 440.00],
+    [174.61, 261.63, 349.23, 440.00],
+    [196.00, 246.94, 329.63, 392.00]
+  ];
+
+  for (let i = 0; i < totalSamples; i++) {
+    const t = i / sampleRate;
+    const chord = chords[Math.floor(t / 4) % chords.length];
+    const local = t % 4;
+    const fadeIn = Math.min(1, t / 1.2);
+    const fadeOut = Math.min(1, (seconds - t) / 1.2);
+    const chordFade = Math.min(1, local / 0.45, (4 - local) / 0.45);
+    const envelope = Math.max(0, Math.min(fadeIn, fadeOut, chordFade));
+    const shimmer = Math.sin(2 * Math.PI * 880 * t) * 0.015 * Math.sin(Math.PI * local / 4);
+    let sample = shimmer;
+
+    chord.forEach((freq, idx) => {
+      const detune = 1 + (idx - 1.5) * 0.0015;
+      sample += Math.sin(2 * Math.PI * freq * detune * t) * (0.075 / (idx + 1));
+      sample += Math.sin(2 * Math.PI * freq * 2 * t) * (0.018 / (idx + 1));
+    });
+
+    sample *= envelope;
+    sample = Math.max(-1, Math.min(1, sample));
+    view.setInt16(44 + i * 2, sample * 32767, true);
+  }
+
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
+  }
+  return `data:audio/wav;base64,${btoa(binary)}`;
+}
+
+// ─── URL PARAMS ──────────────────────────────────────────────────────────────
+function parseParams() {
+  const p = new URLSearchParams(window.location.search);
+  STATE.params = {
+    cat:     p.get('cat') || 'love',
+    from:    p.get('from') || 'Kimdir',
+    to:      p.get('to') || 'Siz',
+    msg:     p.get('msg')     ? safeB64Decode(p.get('msg'))     : '',
+    loc:     p.get('loc')     ? safeB64Decode(p.get('loc'))     : '',
+    dt:      p.get('dt')      ? safeB64Decode(p.get('dt'))      : '',
+    special: p.get('special') ? safeB64Decode(p.get('special')) : '',
+    preview: p.get('preview') === 'true',
+  };
+  STATE.isPreview = STATE.params.preview;
+  STATE.cat = STATE.params.cat;
+}
+
+function safeB64Decode(str) {
+  try { return decodeURIComponent(atob(str)); } catch(e) { return str; }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', async () => {
+  parseParams();
+  createBgParticles();
+  loadMuteState();
+  initBackgroundMusic();
+
+  if (STATE.isPreview) {
+    document.getElementById('previewBadge').classList.remove('hidden');
+  }
+
+  document.getElementById('muteBtn').addEventListener('click', toggleMute);
+
+  try {
+    await loadCategoryData();
+    setTimeout(() => showIntro(), 1200);
+  } catch(e) {
+    document.getElementById('screenLoading').innerHTML =
+      `<div style="text-align:center;padding:40px;color:#FF6B9D">
+        <div style="font-size:48px">😢</div>
+        <p style="font-size:18px;margin-top:16px">O'yin yuklanmadi.<br>URL to'g'rimi? Kategoriya: <b>${STATE.cat}</b></p>
+        <a href="/admin/" style="display:inline-block;margin-top:20px;padding:12px 24px;background:#FF6B9D;color:white;border-radius:50px;text-decoration:none;font-weight:700">Admin panelga qaytish</a>
+       </div>`;
+  }
+});
+
+async function loadCategoryData() {
+  const [catRes, metaRes] = await Promise.all([
+    fetch(`../content/cat-${STATE.cat}.json`),
+    fetch(`../content/categories.json`)
+  ]);
+  if (!catRes.ok) throw new Error('Category not found: ' + STATE.cat);
+  STATE.catData = await catRes.json();
+  const allMeta = await metaRes.json();
+  STATE.catMeta = allMeta.find(c => c.id === STATE.cat) || allMeta[0];
+  STATE.questions = STATE.catData.questions;
+}
+
+// ─── SCREENS ──────────────────────────────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+// ─── INTRO ────────────────────────────────────────────────────────────────────
+function showIntro() {
+  const { from, to, msg } = STATE.params;
+  const cd = STATE.catData;
+  const cm = STATE.catMeta;
+
+  const senderName = from || cd.senderName;
+
+  const senderEl = document.getElementById('introSender');
+  senderEl.textContent = '';
+  const fullText = `💌 ${senderName}dan sizga`;
+  typewriterEffect(senderEl, fullText, 55);
+
+  document.getElementById('introCategoryEmoji').textContent = cm.emoji;
+  document.getElementById('introTitle').textContent = cm.title;
+
+  const receiverName = to || cd.receiverName;
+  const message = msg || cd.customMessage || `Bu o'yin ${senderName}dan siz uchun! 💕`;
+  document.getElementById('introMessage').textContent = message;
+  document.getElementById('introReceiver').textContent = `🌸 ${receiverName} 🌸`;
+
+  document.getElementById('btnStart').addEventListener('click', startGame, { once: true });
+  showScreen('screenIntro');
+}
+
+function typewriterEffect(el, text, speed = 55) {
+  el.textContent = '';
+  el.classList.add('typewriter');
+  let i = 0;
+  const interval = setInterval(() => {
+    el.textContent += text[i++];
+    if (i >= text.length) {
+      clearInterval(interval);
+      el.classList.remove('typewriter');
+    }
+  }, speed);
+}
+
+// ─── GAME ─────────────────────────────────────────────────────────────────────
+function startGame() {
+  startBackgroundMusic();
+  STATE.currentQ = 0;
+  STATE.streak = 0;
+  STATE.stars = [];
+  STATE.wrongAttempts = 0;
+  STATE.totalWrongAttempts = 0;
+  STATE.ghostShown = false;
+  STATE.speedMultiplier = 1;
+
+  updateProgress();
+  showScreen('screenGame');
+  setTimeout(() => renderQuestion(), 200);
+}
+
+function updateProgress() {
+  const total = STATE.questions.length;
+  const done = STATE.currentQ;
+  const heartsEl = document.getElementById('progressHearts');
+  heartsEl.innerHTML = '';
+
+  for (let i = 0; i < total; i++) {
+    const span = document.createElement('span');
+    span.className = `progress-heart ${i < done ? 'filled' : 'empty'}`;
+    span.textContent = i < done ? '❤️' : '🤍';
+    heartsEl.appendChild(span);
+  }
+
+  document.getElementById('questionCounter').textContent =
+    `Savol ${done + 1}/${total}`;
+}
+
+function renderQuestion() {
+  // MUHIM: oldingi savolda qochib ketgan tugmalarni tozalash
+  cleanupFleeingButtons();
+
+  if (STATE.currentQ >= STATE.questions.length) {
+    showReward(); return;
+  }
+
+  const q = STATE.questions[STATE.currentQ];
+  STATE.wrongAttempts = 0;
+
+  const card = document.getElementById('questionCard');
+  card.className = `question-card glass-card ${q.theme ? 'theme-' + q.theme : ''}`;
+  card.style.animation = 'none';
+  card.offsetHeight; // reflow
+  card.style.animation = '';
+  card.classList.add('slide-in');
+
+  const emojiEl = document.getElementById('questionEmoji');
+  emojiEl.textContent = '';
+  setTimeout(() => { emojiEl.textContent = q.emoji; }, 50);
+
+  const textEl = document.getElementById('questionText');
+  textEl.textContent = '';
+  setTimeout(() => typewriterEffect(textEl, q.text, 30), 200);
+
+  renderOptions(q);
+
+  document.getElementById('feedbackMsg').className = 'feedback-msg hidden';
+  document.getElementById('hintBubble').classList.add('hidden');
+  setTimeout(() => document.getElementById('streakBadge').classList.add('hidden'), 1500);
+}
+
+function renderOptions(q) {
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+
+  q.options.forEach((optText, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = optText;
+    btn.style.opacity = '0';
+    btn.style.transform = 'translateY(12px)';
+
+    setTimeout(() => {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateY(0)';
+    }, 300 + idx * 100);
+
+    const isCorrect = idx === q.correctIndex;
+
+    if (isCorrect) {
+      btn.addEventListener('mouseenter', () => {
+        document.getElementById('heartbeatIndicator').classList.add('fast');
+        playHover();
+      });
+      btn.addEventListener('mouseleave', () => {
+        document.getElementById('heartbeatIndicator').classList.remove('fast');
+      });
+      btn.addEventListener('click', () => handleCorrect(btn, q));
+    } else {
+      // ── FLEE MEXANIKASI ──
+      // Noto'g'ri javoblar yaqinlashganda ham, bosilganda ham qochadi.
+      if (!STATE.isPreview) {
+        btn.addEventListener('pointerenter', (e) => {
+          if (btn.classList.contains('disabled')) return;
+          handleWrongInteraction(btn, e.clientX, e.clientY, q);
+        });
+        btn.addEventListener('pointerdown', (e) => {
+          e.preventDefault();
+          if (btn.classList.contains('disabled')) return;
+          handleWrongInteraction(btn, e.clientX, e.clientY, q);
+        });
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (btn.classList.contains('disabled')) return;
+          handleWrongInteraction(btn, e.clientX, e.clientY, q);
+        });
+        btn.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          if (btn.classList.contains('disabled')) return;
+          const t = e.touches[0] || { clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 };
+          handleWrongInteraction(btn, t.clientX, t.clientY, q);
+        }, { passive: false });
+        btn.addEventListener('focus', () => {
+          if (btn.classList.contains('disabled')) return;
+          const rect = btn.getBoundingClientRect();
+          handleWrongInteraction(btn, rect.left + rect.width / 2, rect.top + rect.height / 2, q);
+        });
+      } else {
+        // Preview rejimida: qochmaydi, faqat xabar ko'rsatadi
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('disabled')) return;
+          onWrongAttempt(btn, q);
+          playWrong();
+        });
+      }
+    }
+
+    grid.appendChild(btn);
+  });
+}
+
+// ─── FLEE MEXANIKASI ─────────────────────────────────────────────────────────
+
+// Noto'g'ri tugma bosilganda: feedback + tovush + qochish
+function handleWrongInteraction(btn, clientX, clientY, q) {
+  const now = performance.now();
+  if (btn._lastFleeAt && now - btn._lastFleeAt < 140) return;
+  btn._lastFleeAt = now;
+
+  onWrongAttempt(btn, q);
+  playWrong();
+  spawnReactionEmoji(clientX, clientY);
+  fleeButton(btn, clientX, clientY);
+}
+
+// Tugmani qochirish — birinchi bosilishda placeholder yaratib, keyingilarida yangi pozitsiyaga o'tkazadi
+function fleeButton(btn, clientX, clientY) {
+  const isMob = STATE.isMobile;
+
+  if (!btn._originalRect) {
+    // BIRINCHI bosilish: hozirgi joylashuvni yodlab qol, placeholder qo'y
+    const rect = btn.getBoundingClientRect();
+    btn._originalRect = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
+
+    // Griдda joy saqlab qolish uchun ko'rinmas placeholder
+    const ph = document.createElement('div');
+    ph.className = 'flee-placeholder';
+    ph.style.cssText = `width:${rect.width}px;height:${rect.height}px;min-width:${rect.width}px;min-height:${rect.height}px;visibility:hidden;flex-shrink:0;border-radius:50px;pointer-events:none;`;
+    btn.parentNode.insertBefore(ph, btn);
+    btn._placeholder = ph;
+
+    // Tugmani body ga o'tkazib, fixed pozitsiyada dastlabki o'rnida joylashtir (vizual sakrash yo'q)
+    document.body.appendChild(btn);
+    btn.style.position = 'fixed';
+    btn.style.left = rect.left + 'px';
+    btn.style.top = rect.top + 'px';
+    btn.style.width = rect.width + 'px';
+    btn.style.margin = '0';
+    btn.style.zIndex = '100';
+    btn.classList.add('fleeing');
+  }
+
+  // Joriy joylashuv (trail uchun)
+  const curLeft = parseFloat(btn.style.left) || 0;
+  const curTop  = parseFloat(btn.style.top)  || 0;
+  const w = btn._originalRect.width;
+  const h = btn._originalRect.height;
+  spawnTrail({ left: curLeft, top: curTop, width: w, height: h });
+
+  // Mobil: puff efekti qo'shimcha
+  if (isMob) spawnPuff(curLeft + w / 2, curTop + h / 2);
+
+  // Ekran ichidan kursor/touch nuqtasidan uzoqroq xavfsiz joy tanlaymiz.
+  const pad = STATE.isMobile ? 14 : 24;
+  const minTop = 64;
+  const maxX = Math.max(pad, window.innerWidth - w - pad);
+  const maxY = Math.max(minTop, window.innerHeight - h - pad);
+  const dangerX = Number.isFinite(clientX) ? clientX : curLeft + w / 2;
+  const dangerY = Number.isFinite(clientY) ? clientY : curTop + h / 2;
+  let best = { x: curLeft, y: curTop, score: -1 };
+
+  for (let i = 0; i < 18; i++) {
+    const candidateX = pad + Math.random() * Math.max(1, maxX - pad);
+    const candidateY = minTop + Math.random() * Math.max(1, maxY - minTop);
+    const centerX = candidateX + w / 2;
+    const centerY = candidateY + h / 2;
+    const score = Math.hypot(centerX - dangerX, centerY - dangerY);
+    if (score > best.score) best = { x: candidateX, y: candidateY, score };
+  }
+
+  const nx = Math.max(pad, Math.min(maxX, best.x));
+  const ny = Math.max(minTop, Math.min(maxY, best.y));
+
+  btn.style.transition = 'left 0.28s cubic-bezier(0.16,1,0.3,1), top 0.28s cubic-bezier(0.16,1,0.3,1), transform 0.28s cubic-bezier(0.16,1,0.3,1)';
+  btn.style.transform = `rotate(${(Math.random() * 10 - 5).toFixed(2)}deg)`;
+  btn.style.left = nx + 'px';
+  btn.style.top  = ny + 'px';
+}
+
+// Qochib ketgan barcha tugmalarni tozalash (savol o'zgarishida)
+function cleanupFleeingButtons() {
+  document.querySelectorAll('.option-btn.fleeing').forEach(btn => {
+    if (btn._placeholder) { btn._placeholder.remove(); btn._placeholder = null; }
+    btn._originalRect = null;
+    btn.remove();
+  });
+  // Placeholder lar qolgan bo'lsa ularni ham tozala
+  document.querySelectorAll('.flee-placeholder').forEach(ph => ph.remove());
+}
+
+function spawnTrail(rect) {
+  const trail = document.createElement('div');
+  trail.className = 'ghost-trail';
+  trail.style.left   = rect.left   + 'px';
+  trail.style.top    = rect.top    + 'px';
+  trail.style.width  = rect.width  + 'px';
+  trail.style.height = (rect.height || 46) + 'px';
+  document.body.appendChild(trail);
+  setTimeout(() => trail.remove(), 400);
+}
+
+function spawnPuff(x, y) {
+  const puff = document.createElement('div');
+  puff.className = 'puff-smoke';
+  puff.textContent = '💨';
+  puff.style.left = (x - 16) + 'px';
+  puff.style.top  = (y - 16) + 'px';
+  document.body.appendChild(puff);
+  setTimeout(() => puff.remove(), 500);
+}
+
+function spawnReactionEmoji(x, y) {
+  const reactions = ['😝', '🙈', '😈', '🏃', '😜', '👋', '✌️'];
+  const el = document.createElement('div');
+  el.className = 'reaction-emoji';
+  el.textContent = reactions[Math.floor(Math.random() * reactions.length)];
+  el.style.left = (x - 16) + 'px';
+  el.style.top  = (y - 30) + 'px';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 800);
+}
+
+function onWrongAttempt(btn, q) {
+  STATE.wrongAttempts++;
+  STATE.totalWrongAttempts++;
+  STATE.streak = 0;
+  STATE.speedMultiplier = Math.min(3, 1 + STATE.wrongAttempts * 0.4);
+
+  showFeedback(q.wrongMessage || 'Yo\'q-yo\'q! 😄', 'error');
+
+  if (STATE.wrongAttempts >= 5) {
+    document.getElementById('hintBubble').classList.remove('hidden');
+  }
+
+  if (STATE.totalWrongAttempts >= 10 && !STATE.ghostShown) {
+    STATE.ghostShown = true;
+    showGhostButton();
+  }
+}
+
+function showGhostButton() {
+  const ghost = document.getElementById('ghostBtn');
+  ghost.classList.remove('hidden');
+  ghost.style.left = '20px';
+  ghost.style.top  = (100 + Math.random() * (window.innerHeight - 200)) + 'px';
+
+  setTimeout(() => {
+    ghost.style.transition = 'all 3s ease-in-out';
+    ghost.style.left    = '-300px';
+    ghost.style.opacity = '0';
+    setTimeout(() => ghost.classList.add('hidden'), 3000);
+  }, 2500);
+}
+
+// ─── TO'G'RI JAVOB ───────────────────────────────────────────────────────────
+function handleCorrect(btn, q) {
+  // Barcha tugmalarni bloklash
+  document.querySelectorAll('.option-btn').forEach(b => {
+    b.classList.add('disabled');
+    b.style.cursor = 'default';
+    b.style.pointerEvents = 'none';
+  });
+
+  // To'g'ri tugmani bezash (agar qochib ketgan bo'lsa, qaytarib ko'rsatish)
+  btn.classList.add('correct');
+  if (btn.classList.contains('fleeing')) {
+    btn.classList.remove('fleeing');
+    btn.style.transition = 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)';
+    // Markazga qaytarish
+    const card = document.getElementById('questionCard');
+    const cr = card.getBoundingClientRect();
+    btn.style.left = (cr.left + cr.width / 2 - btn._originalRect.width / 2) + 'px';
+    btn.style.top  = (cr.top  + cr.height / 2) + 'px';
+  }
+
+  document.getElementById('heartbeatIndicator').classList.remove('fast');
+
+  const stars = STATE.wrongAttempts === 0 ? 3 : STATE.wrongAttempts <= 2 ? 2 : 1;
+  STATE.stars.push(stars);
+
+  STATE.streak++;
+  if (STATE.streak >= 3) showStreakBadge();
+
+  showFeedback(q.correctMessage || 'To\'g\'ri! 🎉', 'success');
+  playCorrect();
+  burstConfetti(45);
+
+  setTimeout(() => {
+    STATE.currentQ++;
+    updateProgress();
+    const wrapper = document.getElementById('questionWrapper');
+    wrapper.style.animation = 'slideOutLeft 0.3s ease forwards';
+    setTimeout(() => {
+      wrapper.style.animation = '';
+      renderQuestion();
+    }, 300);
+  }, 1900);
+}
+
+function showStreakBadge() {
+  const badge = document.getElementById('streakBadge');
+  badge.textContent = `🔥 ${STATE.streak} ta ketma-ket!`;
+  badge.classList.remove('hidden');
+}
+
+function showFeedback(msg, type) {
+  const el = document.getElementById('feedbackMsg');
+  el.textContent = msg;
+  el.className = `feedback-msg ${type}`;
+}
+
+// ─── CONFETTI ─────────────────────────────────────────────────────────────────
+const confettiCanvas = document.getElementById('confettiCanvas');
+const ctx2d = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiRAF = null;
+
+function resizeCanvas() {
+  confettiCanvas.width  = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function burstConfetti(count = 60) {
+  const colors = ['#FF6B9D','#6B9DFF','#FFD700','#2ecc71','#FF8C69','#B5EAD7','#FFB3CC'];
+  for (let i = 0; i < count; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2 + (Math.random() - 0.5) * 180,
+      y: window.innerHeight / 2,
+      vx: (Math.random() - 0.5) * 12,
+      vy: -7 - Math.random() * 8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 6 + Math.random() * 8,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 8,
+      gravity: 0.35,
+      life: 1,
+    });
+  }
+  if (!confettiRAF) animateConfetti();
+}
+
+function animateConfetti() {
+  ctx2d.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  confettiParticles = confettiParticles.filter(p => p.life > 0);
+
+  confettiParticles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    p.vy += p.gravity;
+    p.rotation += p.rotSpeed;
+    p.life -= 0.012;
+
+    ctx2d.save();
+    ctx2d.globalAlpha = Math.max(0, p.life);
+    ctx2d.translate(p.x, p.y);
+    ctx2d.rotate(p.rotation * Math.PI / 180);
+    ctx2d.fillStyle = p.color;
+    ctx2d.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+    ctx2d.restore();
+  });
+
+  if (confettiParticles.length > 0) {
+    confettiRAF = requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRAF = null;
+    ctx2d.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  }
+}
+
+function megaConfetti() {
+  const colors = ['#FF6B9D','#6B9DFF','#FFD700','#2ecc71','#FF8C69','#B5EAD7','#FFB3CC','#C9A96E'];
+  for (let i = 0; i < 160; i++) {
+    confettiParticles.push({
+      x: Math.random() * window.innerWidth,
+      y: -20,
+      vx: (Math.random() - 0.5) * 6,
+      vy: 3 + Math.random() * 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      size: 7 + Math.random() * 10,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 10,
+      gravity: 0.1,
+      life: 1.2,
+    });
+  }
+  ['💕','💗','❤️','💖','🌸','⭐','✨'].forEach((sym, i) => {
+    setTimeout(() => spawnFloatingHeart(sym), i * 200);
+  });
+  if (!confettiRAF) animateConfetti();
+}
+
+function spawnFloatingHeart(sym) {
+  const el = document.createElement('div');
+  el.style.cssText = `
+    position:fixed;z-index:998;pointer-events:none;
+    font-size:${20 + Math.random() * 20}px;
+    left:${10 + Math.random() * 80}%;
+    bottom:-40px;
+    animation:heartRise ${3 + Math.random() * 3}s ease-in forwards;
+  `;
+  el.textContent = sym;
+  document.body.appendChild(el);
+
+  if (!document.getElementById('heartRiseStyle')) {
+    const s = document.createElement('style');
+    s.id = 'heartRiseStyle';
+    s.textContent = `
+      @keyframes heartRise {
+        0% { transform:translateY(0) scale(1); opacity:1; }
+        100% { transform:translateY(-110vh) scale(1.3); opacity:0; }
+      }`;
+    document.head.appendChild(s);
+  }
+  setTimeout(() => el.remove(), 6000);
+}
+
+// ─── FIREWORKS ────────────────────────────────────────────────────────────────
+function spawnFireworks() {
+  const symbols = ['🎆','🎇','✨','🌟','💫','⭐'];
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const fw = document.createElement('div');
+      fw.className = 'firework';
+      fw.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      fw.style.left = (5 + Math.random() * 90) + '%';
+      fw.style.top  = (5 + Math.random() * 70) + '%';
+      document.body.appendChild(fw);
+      setTimeout(() => fw.remove(), 1200);
+    }, i * 150);
+  }
+}
+
+// ─── REWARD ───────────────────────────────────────────────────────────────────
+function showReward() {
+  cleanupFleeingButtons();
+  playFinale();
+  megaConfetti();
+
+  const cm   = STATE.catMeta;
+  const cd   = STATE.catData;
+  const { from, to, loc, dt, special } = STATE.params;
+  const senderName   = from || cd.senderName;
+  const receiverName = to   || cd.receiverName;
+  const reward     = cd.finalReward;
+  const rewardType = cm.endReward.type;
+
+  const container = document.getElementById('rewardContainer');
+  container.innerHTML = '';
+
+  switch(rewardType) {
+    case 'letter':
+      renderLetterReward(container, reward, senderName, receiverName, special);
+      break;
+    case 'ticket':
+      renderTicketReward(container, reward, senderName, receiverName, loc, dt);
+      break;
+    case 'gift':
+      renderGiftReward(container, reward, senderName, receiverName);
+      break;
+    case 'countdown':
+      renderCountdownReward(container, reward, senderName, receiverName, cm);
+      spawnFireworks();
+      break;
+    default:
+      renderLetterReward(container, reward, senderName, receiverName, special);
+  }
+
+  renderStars();
+  showScreen('screenReward');
+
+  document.getElementById('btnShareResult').addEventListener('click', shareResult, { once: true });
+  document.getElementById('btnScreenshot').addEventListener('click', saveScreenshot, { once: true });
+}
+
+// URL parametrlaridan kelgan FROM/TO bilan JSON dagi [FROM]/[TO] ni almashtiradi
+function rn(text, from, to) {
+  if (!text) return '';
+  return String(text).replace(/\[FROM\]/g, from).replace(/\[TO\]/g, to);
+}
+
+function renderLetterReward(container, reward, from, to, special) {
+  const body     = rn(special || reward.body, from, to);
+  const headline = rn(reward.headline, from, to);
+  const signoff  = rn(reward.signoff  || `${from}dan 💕`, from, to);
+  const bonus    = reward.bonusReveal ? rn(reward.bonusReveal, from, to) : '';
+  container.innerHTML = `
+    <div class="reward-letter glass-card">
+      <span class="wax-seal">💌</span>
+      <div class="letter-headline">${escapeHtml(headline)}</div>
+      <div class="letter-body">${escapeHtml(body)}</div>
+      <div class="letter-signoff">${escapeHtml(signoff)}</div>
+      ${bonus ? `<div class="letter-bonus">${escapeHtml(bonus)}</div>` : ''}
+    </div>
+  `;
+}
+
+function renderTicketReward(container, reward, from, to, loc, dt) {
+  const location = loc || 'Toshkent, Cinema';
+  const date     = dt  || 'Yaqin orada';
+  container.innerHTML = `
+    <div class="reward-ticket">
+      <div class="ticket-top">
+        <div class="ticket-logo">🎬</div>
+        <div class="ticket-event">${escapeHtml(reward.title || 'Kino Chiptasi')}</div>
+        <div class="ticket-sub">HeartQuest tomonidan taqdim etildi</div>
+      </div>
+      <div class="ticket-divider">
+        <div class="ticket-hole"></div><div class="ticket-hole"></div>
+      </div>
+      <div class="ticket-bottom">
+        <div class="ticket-field">
+          <div class="ticket-label">Kimdan</div>
+          <div class="ticket-value">${escapeHtml(from)}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-label">Kimga</div>
+          <div class="ticket-value">${escapeHtml(to)}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-label">📍 Joy</div>
+          <div class="ticket-value">${escapeHtml(location)}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-label">📅 Sana</div>
+          <div class="ticket-value">${escapeHtml(date)}</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-label">🎟️ O'rinlar</div>
+          <div class="ticket-value">2 × VIP</div>
+        </div>
+        <div class="ticket-field">
+          <div class="ticket-label">✅ Holati</div>
+          <div class="ticket-value" style="color:#2ecc71">Tasdiqlangan</div>
+        </div>
+        <div class="ticket-qr-decor">▓▓▓▓▓▓ HEARTQUEST ▓▓▓▓▓▓</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderGiftReward(container, reward, from, to) {
+  const headline = rn(reward.headline, from, to);
+  const body     = rn(reward.body,     from, to);
+  const signoff  = rn(reward.signoff  || `${from}dan 🎁`, from, to);
+  const bonus    = reward.bonusReveal ? rn(reward.bonusReveal, from, to) : '';
+  container.innerHTML = `
+    <div class="reward-gift glass-card">
+      <div class="gift-box-wrapper">
+        <div class="gift-box" id="giftBox">🎁</div>
+      </div>
+      <div class="gift-click-hint" id="giftHint">👆 Sovg'ani ochish uchun bosing!</div>
+      <div class="gift-content" id="giftContent" style="display:none">
+        <div class="gift-headline">${escapeHtml(headline)}</div>
+        <div class="gift-body">${escapeHtml(body)}</div>
+        ${bonus ? `<div class="gift-bonus">${escapeHtml(bonus)}</div>` : ''}
+        <div class="letter-signoff" style="margin-top:16px">${escapeHtml(signoff)}</div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('giftBox').addEventListener('click', () => {
+    const box     = document.getElementById('giftBox');
+    const content = document.getElementById('giftContent');
+    const hint    = document.getElementById('giftHint');
+    box.style.cssText += 'transform:scale(1.5) rotate(20deg);opacity:0;transition:all 0.5s ease;';
+    burstConfetti(90);
+    playFinale();
+    setTimeout(() => {
+      hint.style.display  = 'none';
+      box.style.display   = 'none';
+      content.style.display = 'block';
+    }, 500);
+  }, { once: true });
+}
+
+function renderCountdownReward(container, reward, from, to, catMeta) {
+  reward = {
+    ...reward,
+    headline:    rn(reward.headline,    from, to),
+    body:        rn(reward.body,        from, to),
+    signoff:     rn(reward.signoff || `${from}dan 💍`, from, to),
+    bonusReveal: rn(reward.bonusReveal, from, to),
+  };
+  const targetDate = new Date(catMeta.endReward.countdownDate || '2027-01-01');
+
+  function getTimeParts() {
+    const diff = Math.max(0, targetDate - new Date());
+    return {
+      d: Math.floor(diff / 86400000),
+      h: Math.floor((diff % 86400000) / 3600000),
+      m: Math.floor((diff % 3600000)  / 60000),
+      s: Math.floor((diff % 60000)    / 1000),
+    };
+  }
+
+  const t = getTimeParts();
+  container.innerHTML = `
+    <div class="reward-countdown glass-card">
+      <div class="countdown-headline">${escapeHtml(reward.headline || '')}</div>
+      <div class="countdown-display">
+        <div class="countdown-unit"><span class="countdown-num" id="cd-d">${t.d}</span><span class="countdown-label">Kun</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-h">${t.h}</span><span class="countdown-label">Soat</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-m">${t.m}</span><span class="countdown-label">Daqiqa</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-s">${t.s}</span><span class="countdown-label">Soniya</span></div>
+      </div>
+      <div class="countdown-body">${escapeHtml(reward.body)}</div>
+      ${reward.bonusReveal ? `<div class="letter-bonus" style="margin-top:16px">${escapeHtml(reward.bonusReveal)}</div>` : ''}
+      <div class="letter-signoff" style="margin-top:16px">${escapeHtml(reward.signoff || from + 'dan 💍')}</div>
+    </div>
+  `;
+
+  setInterval(() => {
+    const t2 = getTimeParts();
+    const dEl = document.getElementById('cd-d');
+    if (dEl) {
+      dEl.textContent = t2.d;
+      document.getElementById('cd-h').textContent = t2.h;
+      document.getElementById('cd-m').textContent = t2.m;
+      document.getElementById('cd-s').textContent = t2.s;
+    }
+  }, 1000);
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;')
+    .replace(/\n/g,'<br>');
+}
+
+// ─── YULDUZLAR ────────────────────────────────────────────────────────────────
+function renderStars() {
+  const totalStars = STATE.stars.reduce((a, b) => a + b, 0);
+  const maxStars   = STATE.questions.length * 3;
+  const pct = totalStars / maxStars;
+  const displayStars = pct >= 0.85 ? 3 : pct >= 0.55 ? 2 : 1;
+
+  const el = document.getElementById('starsDisplay');
+  el.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    const span = document.createElement('span');
+    span.textContent = i < displayStars ? '⭐' : '☆';
+    span.className   = i < displayStars ? 'star-filled' : 'star-empty';
+    if (i < displayStars) span.style.animationDelay = `${0.9 + i * 0.15}s`;
+    el.appendChild(span);
+  }
+}
+
+// ─── ULASHISH ─────────────────────────────────────────────────────────────────
+function shareResult() {
+  const cm   = STATE.catMeta;
+  const url  = window.location.href;
+  const text = `Men HeartQuest o'yinidan o'tdim! ${cm.emoji} ${cm.title}`;
+  if (navigator.share) {
+    navigator.share({ title: 'HeartQuest 💕', text, url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      alert('Link nusxalandi! Do\'stlaringizga yuboring 💕');
+    }).catch(() => {
+      alert('Link: ' + url);
+    });
+  }
+}
+
+function saveScreenshot() {
+  const os = /Mac/i.test(navigator.userAgent) ? 'Cmd+Shift+4' : 'Win+Shift+S';
+  alert(`Ekran rasmini olish uchun: ${os} 💕`);
+}
+
+// ─── OVOZ ─────────────────────────────────────────────────────────────────────
+function toggleMute() {
+  STATE.muted = !STATE.muted;
+  document.getElementById('muteBtn').textContent = STATE.muted ? '🔇' : '🔊';
+  localStorage.setItem('hq_muted', STATE.muted ? '1' : '');
+
+  if (STATE.bgMusic) {
+    if (STATE.muted) {
+      STATE.bgMusic.pause();
+    } else {
+      startBackgroundMusic();
+    }
+  }
+}
+
+function loadMuteState() {
+  STATE.muted = !!localStorage.getItem('hq_muted');
+  document.getElementById('muteBtn').textContent = STATE.muted ? '🔇' : '🔊';
+}
+
+// ─── FON ZARRACHALARI ─────────────────────────────────────────────────────────
+function createBgParticles() {
+  const container = document.getElementById('bgParticles');
+  const symbols   = ['💕','✨','🌸','⭐','💫','🌹','💗','🎀','🌟','💖'];
+  for (let i = 0; i < 28; i++) {
+    const el = document.createElement('div');
+    el.className = 'bp';
+    el.textContent = symbols[i % symbols.length];
+    el.style.left             = `${Math.random() * 100}%`;
+    el.style.fontSize         = `${10 + Math.random() * 14}px`;
+    el.style.animationDuration = `${10 + Math.random() * 15}s`;
+    el.style.animationDelay   = `${-Math.random() * 15}s`;
+    el.style.opacity          = (0.06 + Math.random() * 0.08).toString();
+    container.appendChild(el);
+  }
+}
+
+// ─── RESIZE ───────────────────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  // Qochib ketgan tugmalar ekrandan chiqib ketmasligi uchun
+  document.querySelectorAll('.option-btn.fleeing').forEach(btn => {
+    const w   = parseFloat(btn.style.width) || 120;
+    const h   = btn.offsetHeight || 46;
+    let left  = parseFloat(btn.style.left) || 0;
+    let top   = parseFloat(btn.style.top)  || 0;
+    left = Math.max(8, Math.min(window.innerWidth  - w - 8, left));
+    top  = Math.max(64, Math.min(window.innerHeight - h - 8, top));
+    btn.style.left = left + 'px';
+    btn.style.top  = top  + 'px';
+  });
+});
+
+
+
+================================================================================
+FAYL: game\index.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>HeartQuest 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Nunito:wght@300;400;600;700;800;900&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <!-- Particle Background -->
+  <div class="bg-particles" id="bgParticles"></div>
+
+  <!-- Canvas for confetti -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Preview Badge -->
+  <div class="preview-badge hidden" id="previewBadge">PREVIEW MODE</div>
+
+  <!-- Mute Button -->
+  <button class="mute-btn" id="muteBtn" title="Ovoz">🔊</button>
+
+  <!-- Heartbeat indicator -->
+  <div class="heartbeat-indicator" id="heartbeatIndicator">💓</div>
+
+  <!-- Romantic background music. JS fills this with a generated soft loop. -->
+  <audio id="bgMusic" loop preload="auto" aria-hidden="true"></audio>
+
+  <!-- Loading Screen -->
+  <div class="screen" id="screenLoading">
+    <div class="loading-content">
+      <div class="loading-heart">💕</div>
+      <p class="loading-text">Sabr qiling...</p>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intro Screen -->
+  <div class="screen hidden" id="screenIntro">
+    <div class="intro-card glass-card">
+      <div class="intro-sender" id="introSender"></div>
+      <div class="intro-emoji" id="introCategoryEmoji"></div>
+      <h1 class="intro-title" id="introTitle"></h1>
+      <p class="intro-message" id="introMessage"></p>
+      <div class="intro-receiver" id="introReceiver"></div>
+      <button class="btn-start" id="btnStart">
+        O'yinni boshlash 🎮
+      </button>
+    </div>
+  </div>
+
+  <!-- Game Screen -->
+  <div class="screen hidden" id="screenGame">
+    <!-- Progress -->
+    <div class="progress-bar-container">
+      <div class="progress-hearts" id="progressHearts"></div>
+      <div class="question-counter" id="questionCounter"></div>
+    </div>
+
+    <!-- Streak Badge -->
+    <div class="streak-badge hidden" id="streakBadge">🔥 Zo'r!</div>
+
+    <!-- Question Card -->
+    <div class="question-wrapper" id="questionWrapper">
+      <div class="question-card glass-card" id="questionCard">
+        <div class="question-emoji" id="questionEmoji"></div>
+        <div class="question-text" id="questionText"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+
+        <!-- Feedback message -->
+        <div class="feedback-msg hidden" id="feedbackMsg"></div>
+
+        <!-- Hint -->
+        <div class="hint-bubble hidden" id="hintBubble">
+          <span>🤫 Psst... to'g'ri javob yuragingizda 💙</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ghost Easter egg -->
+    <div class="ghost-btn hidden" id="ghostBtn">Biz do'st bo'lolmaymiz 👻</div>
+  </div>
+
+  <!-- Reward Screen -->
+  <div class="screen hidden" id="screenReward">
+    <div class="reward-container" id="rewardContainer"></div>
+
+    <!-- Stars -->
+    <div class="stars-display" id="starsDisplay"></div>
+
+    <!-- Actions -->
+    <div class="reward-actions">
+      <button class="btn-share-result" id="btnShareResult">📤 Ulashish</button>
+      <button class="btn-screenshot" id="btnScreenshot">📸 Saqlash</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
+
+

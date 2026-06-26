@@ -2,164 +2,164 @@
   "categoryId": "future",
   "senderName": "Jasur",
   "receiverName": "Shahlo",
-  "customMessage": "Birgalikda quradigan kelajagimiz haqida o'ylayman va tabassum qilaman 🌟",
+  "customMessage": "Shahlo, hozirgi sinovlarimiz ham bir kun shirin xotiraga aylanadi. Men seni kutayotgan emasman, men sen tomon yurib kelyapman. 🌙",
   "questions": [
     {
       "id": 1,
-      "text": "5 yildan keyin o'zingizni qayerda ko'rasiz?",
-      "emoji": "🌍",
+      "text": "Uzoqlar orasida yuraklarimiz charchasa, bizga eng ko'p nima kuch beradi?",
+      "emoji": "🌙",
       "theme": "stars",
-      "correctIndex": 3,
+      "correctIndex": 2,
       "options": [
-        "Hali bilmayman",
-        "Yolg'iz, ishlayotgan",
-        "Xorijda, yangi hayotda",
-        "Sevgan odamim bilan, baxtli 🌍"
+        "🌙 Bir oz sukut, keyin sovuq xabar",
+        "💌 Oddiy gaplar, ammo yarim ishonch",
+        "🤍 Sabr, duo va bir-birimizga vafo",
+        "✨ Vaqt o'tsin, keyin ko'ramiz degan so'z"
       ],
-      "wrongMessage": "Sevgan odamingiz bilan bo'lish kelajak rejasi emas? 🌍",
-      "correctMessage": "Ha! Sevgan odamim bilan — bu eng yaxshi reja! 🌍💕"
+      "wrongMessage": "Yo'q, jonim, bizni yarim ishonch emas, sabr va vafo ushlab turadi. 🤍",
+      "correctMessage": "Ha, Shahlo. Sabrimiz ham duo, vafomiz ham yo'l: ikkovimiz shu yo'ldan birga o'tamiz. 🤍"
     },
     {
       "id": 2,
-      "text": "Hayotingizning eng muhim qarorini qabul qilishda kimga maslahat solardingiz?",
-      "emoji": "💬",
+      "text": "Oilaviy bosim yuragingni siqsa, Jasurdan qanday va'dani eshitging keladi?",
+      "emoji": "🤲",
       "theme": "flowers",
-      "correctIndex": 1,
+      "correctIndex": 0,
       "options": [
-        "Faqat o'zimga",
-        "Menga eng yaqin va ishongan odamimga 💬",
-        "Do'stlarimga",
-        "Internetdan qidirardim"
+        "🤲 Men seni yolg'iz qoldirmayman, azizam",
+        "🌸 Biroz kutaylik, balki hammasi unutilar",
+        "💫 Hozir jim turaylik, keyin gaplashamiz",
+        "🌙 Har kim taqdirini o'zi ko'tarsin"
       ],
-      "wrongMessage": "Eng yaqin odam — eng yaxshi maslahatchi! 💬",
-      "correctMessage": "Aynan! Ishongan odamning maslahati — oltindan qimmat! 💬💕"
+      "wrongMessage": "Sen bu og'irlikni yolg'iz ko'tarmaysan. Men yoningdaman, har kuni. 🤲",
+      "correctMessage": "Aynan shuni bil: men seni yolg'iz qoldirmayman. Seni halol niyat bilan so'rab borish uchun harakatdaman. 🤲"
     },
     {
       "id": 3,
-      "text": "Birgalikda quradigan uyimizning bir xususiyatini aytasizmi?",
-      "emoji": "🏡",
-      "theme": "flowers",
-      "correctIndex": 0,
+      "text": "Sovchilar eshigingizga kirib keladigan kunni tasavvur qilsak, yuragimiz nima deydi?",
+      "emoji": "💍",
+      "theme": "roses",
+      "correctIndex": 3,
       "options": [
-        "Iliq, mehribon — eshigi doim ochiq bo'lsin 🏡",
-        "Katta va hashamatli",
-        "Shahar markazida",
-        "Yolg'iz uyim bo'lsin"
+        "🌹 Shunchaki kunlardan biri bo'lsa kerak",
+        "💫 Hali uzoq, orzu qilib turaveramiz",
+        "🤍 Bilmadim, yurak sekinroq ursin",
+        "💍 Mana, duolarimiz eshik qoqib keldi"
       ],
-      "wrongMessage": "Katta va hashamatli emas, iliq va mehr to'la bo'lsin! 🏡",
-      "correctMessage": "Ha! Iliq uy — hamma narsadan yaxshi! 🏡💕"
+      "wrongMessage": "Bu kun shunchaki kun emas, Shahlo. U kun duolarimizning ovozi bo'ladi. 💍",
+      "correctMessage": "Ha, jonim. Sovchilar kelganida yuragim: \"nihoyat, sevgimizga yo'l ochildi\", deydi. 💍"
     },
     {
       "id": 4,
-      "text": "Birgalikda borishni orzu qilgan bir joy bormi?",
-      "emoji": "✈️",
+      "text": "Masofalar cho'zilganda, bir-birimizga qanday ko'z bilan qarashimiz kerak?",
+      "emoji": "✨",
       "theme": "stars",
-      "correctIndex": 2,
+      "correctIndex": 1,
       "options": [
-        "Yo'q, hozircha yo'q",
-        "Ko'p, lekin aytmayman",
-        "Ha! Siz bilan istalgan joy — orzuim ✈️",
-        "Yolg'iz borishni afzal ko'raman"
+        "🌙 Bugunni og'ir deb, ertani unutib",
+        "✨ Uzoqni yaqin qiladigan ishonch bilan",
+        "🌸 Xafa bo'lsak, gapirmay qo'yish bilan",
+        "💌 Faqat sog'inchni ichimizga yutib"
       ],
-      "wrongMessage": "Birgalikda sayohat — eng yaxshi sayohat! ✈️",
-      "correctMessage": "Siz bilan istalgan joy — jannat! ✈️💕"
+      "wrongMessage": "Masofa yurakni sovutmasin. Biz unga ishonch bilan javob beramiz. ✨",
+      "correctMessage": "To'g'ri, sevgilim. Ishonchimiz masofadan ham uzun, sog'inchimizdan ham kuchli bo'ladi. ✨"
     },
     {
       "id": 5,
-      "text": "Qariganingizda yoningizda kim bo'lishini xohlaysiz?",
-      "emoji": "👴👵",
-      "theme": "roses",
-      "correctIndex": 3,
-      "options": [
-        "Farzandlarim",
-        "Do'stlarim",
-        "Yolg'iz bo'lsam ham arzimaydi",
-        "Sevgan odamim — umr bo'yi 👴👵"
-      ],
-      "wrongMessage": "Qarilikda yolg'iz bo'lmaslik kerak-ku! 👴👵",
-      "correctMessage": "Umr bo'yi yonida bo'lish — bu mening ham orzuim! 👴👵💕"
-    },
-    {
-      "id": 6,
-      "text": "Kelajakda qiyinchilik bo'lsa — birgalikda hal qila olamizmi?",
-      "emoji": "💪",
-      "theme": "hearts",
-      "correctIndex": 1,
-      "options": [
-        "Har kim o'zi hal qilsin",
-        "Ha! Ikkovimiz birgalikda — hamma narsa mumkin 💪",
-        "Qiyin, bilmayman",
-        "Ko'ramiz vaziyatga qarab"
-      ],
-      "wrongMessage": "Birgalikda kuchliroq! 💪",
-      "correctMessage": "Aynan! Birga bo'lsak — har qanday to'siq yengiladi! 💪💕"
-    },
-    {
-      "id": 7,
-      "text": "Birgalikda ko'rgan eng chiroyli tong — kelajakda ham shunday tonglar bo'lishini xohlaysizmi?",
-      "emoji": "🌅",
-      "theme": "stars",
-      "correctIndex": 0,
-      "options": [
-        "Ha! Har tong siz bilan boshqacha bo'lar edi 🌅",
-        "Tong — oddiy narsa",
-        "Balki",
-        "Buni o'ylamaganman"
-      ],
-      "wrongMessage": "Har tong siz bilan — ajoyib boshliqlar bo'lar edi! 🌅",
-      "correctMessage": "Ha! Siz bilan har tong — yangi baxt boshlanishi! 🌅💕"
-    },
-    {
-      "id": 8,
-      "text": "Kelajakda bir-birimizga sabr ko'rsata olamizmi?",
-      "emoji": "🕊️",
+      "text": "Biz quradigan uy qanday bo'lsa, Shahlo o'zini eng xotirjam his qiladi?",
+      "emoji": "🏡",
       "theme": "flowers",
       "correctIndex": 2,
       "options": [
-        "Qiyin, men sabrsizman",
-        "Urinib ko'raman",
-        "Ha! Sabr — sevgining kuchi 🕊️",
-        "Bunday bo'lmasa yaxshi"
+        "🌷 Chiroyli, lekin biroz sovuq uy",
+        "🕯️ Katta, ammo yuraklar jim uy",
+        "🏡 Mehr, duo va kulgi to'lgan uy",
+        "🌙 Hamma band, har kim o'zicha uy"
       ],
-      "wrongMessage": "Sabr — kelajagimizning asosi! 🕊️",
-      "correctMessage": "Aynan! Sabr bilan har narsaga erishsa bo'ladi! 🕊️💕"
+      "wrongMessage": "Bizning uyimiz devor bilan emas, mehr va xotirjamlik bilan quriladi. 🏡",
+      "correctMessage": "Ha, Shahlo. Uyimizda sen qo'rqmay nafas olasan, men esa har kuni seni asrab yashayman. 🏡"
+    },
+    {
+      "id": 6,
+      "text": "Agar yo'limizda yana sinov chiqsa, Jasur va Shahlo qanday turadi?",
+      "emoji": "🫶",
+      "theme": "hearts",
+      "correctIndex": 0,
+      "options": [
+        "🫶 Qo'lni qo'ldan qo'ymay, bir safda",
+        "🌙 Bir oz chekinib, jim kuzatib",
+        "💫 Har kim o'z dardini yashirib",
+        "🌸 Vaziyat tinishini kutib turib"
+      ],
+      "wrongMessage": "Sinov bizni ajratish uchun emas, yanada mahkamroq tutishtirish uchun keladi. 🫶",
+      "correctMessage": "Ha, azizam. Men sening yoningda turaman, sen mening yonimda: shunda hech bir bosim bizdan katta bo'lmaydi. 🫶"
+    },
+    {
+      "id": 7,
+      "text": "Kelajakdagi birinchi sokin tongimizda nimani eng avval sezamiz?",
+      "emoji": "🌅",
+      "theme": "stars",
+      "correctIndex": 1,
+      "options": [
+        "☕ Shunchaki choyning iliq bug'ini",
+        "🌅 Nihoyat yonma-yon uyg'ongan baxtni",
+        "🌷 Kunlar yana odatdagidek o'tishini",
+        "💌 Telefon ovozisiz jimlik bo'lishini"
+      ],
+      "wrongMessage": "U tong oddiy bo'lmaydi. U tongda masofalar nihoyat tugaydi. 🌅",
+      "correctMessage": "Ha, Shahlo. O'sha tongda men seni ko'rib, ichimdan: \"mana mening uyim\", deyman. 🌅"
+    },
+    {
+      "id": 8,
+      "text": "Kutish og'ir kelgan paytda yuragimizga qaysi gap malham bo'ladi?",
+      "emoji": "💌",
+      "theme": "flowers",
+      "correctIndex": 3,
+      "options": [
+        "🌙 Sabr qil, lekin yolg'iz chidagin",
+        "🌸 Bugun og'ir, ertaga ko'ramiz",
+        "✨ Hammasini vaqtning o'zi aytsin",
+        "💌 Men kelyapman, sening umidingman"
+      ],
+      "wrongMessage": "Kutish yolg'iz chidash degani emas. Men sen tomon harakat qilyapman. 💌",
+      "correctMessage": "Ha, jonim. Men kelyapman: gap bilan emas, niyat, harakat va halol qadamlar bilan. 💌"
     },
     {
       "id": 9,
-      "text": "Kelajakda birgalikda erishmoqchi bo'lgan bir orzuingiz bormi?",
-      "emoji": "⭐",
-      "theme": "stars",
-      "correctIndex": 3,
+      "text": "Jasur oilasini ko'ndirishga urinayotganida, Shahloning yuragi nimaga suyansin?",
+      "emoji": "🤍",
+      "theme": "roses",
+      "correctIndex": 2,
       "options": [
-        "Yo'q, hech narsani orzu qilmayman",
-        "Ko'p, lekin aytmayman",
-        "Hali o'ylamadim",
-        "Ha! Va bu orzuni birgalikda amalga oshirsam — baxtli bo'laman ⭐"
+        "🌹 Faqat taxminlarga va jim xabarlarga",
+        "🌙 Qo'rquvga, go'yo hammasi kechikadi",
+        "🤍 Jasurning niyati, duosi va harakatiga",
+        "💫 Tasodifga, balki o'zi hal bo'lar"
       ],
-      "wrongMessage": "Birgalikdagi orzu — ikki marta kuchli! ⭐",
-      "correctMessage": "Birgalikda erishilgan orzu — eng mazali meva! ⭐💕"
+      "wrongMessage": "Men tasodifga tashlab qo'ymayapman, Shahlo. Seni so'rab borish uchun jonim bilan harakatdaman. 🤍",
+      "correctMessage": "To'g'ri, azizam. Mening niyatim pok: oilam rozi bo'lib, seni munosib hurmat bilan so'rab borishimizni xohlayman. 🤍"
     },
     {
       "id": 10,
-      "text": "Kelajakdagi hayotingizda men muhim o'rin egallashinni xohlaysizmi?",
-      "emoji": "💖",
-      "theme": "roses",
-      "correctIndex": 1,
+      "text": "Bu sinovli davr tugaganida, sevgimiz haqida qanday hikoya aytamiz?",
+      "emoji": "🌟",
+      "theme": "hearts",
+      "correctIndex": 0,
       "options": [
-        "Bilmayman hali",
-        "Ha! Siz — kelajagimning muhim qismi 💖",
-        "Ko'ramiz vaqti kelganda",
-        "Bu erta hali"
+        "🌟 Biz sabr qildik va birga g'alaba qildik",
+        "🌙 Biz ko'p qo'rqdik, keyin unutdik",
+        "🌸 Biz uzoq kutdik, ammo sukut qildik",
+        "💫 Biz yo'lni taqdirga topshirdik"
       ],
-      "wrongMessage": "Bu erta emas — bu hozir kerakli savol! 💖",
-      "correctMessage": "Bu so'z — mening kelajagimning eng yaxshi xabari! 💖💕"
+      "wrongMessage": "Bizning hikoyamiz qo'rquv haqida emas. U sabr, vafo va birga yutish haqida bo'ladi. 🌟",
+      "correctMessage": "Ha, mening Shahloyim. Bir kun bu kunlarni eslab kulamiz: \"biz sabr qildik, sevgi esa bizni uyga olib keldi\", deymiz. 🌟"
     }
   ],
   "finalReward": {
     "type": "gift",
-    "headline": "[TO], kelajagimiz siz bilan yorqin! 🌟",
-    "body": "Bu savollarni javoblab, ko'rsatdingiz: siz ham kelajakni birgalikda ko'rasiz. Bu — mening eng katta orzuim. Har bir orzumiz — bitta qadam.",
-    "signoff": "[FROM]dan mehr bilan 🌟",
-    "bonusReveal": "🎁 Maxsus: Siz bilan birgalikda amalga oshirmoqchi bo'lgan bitta orzuim bor — u haqida tez orada gaplashamiz ✨"
+    "headline": "[TO], kelajagimiz sen bilan nurli 🌟",
+    "body": "Shahlo, bu savollarning har birida men senga bitta narsani aytmoqchi bo'ldim: sen kutayotgan sevgi bekor kutmayapti. Men seni oilam roziligi, sovchilar hurmati va halol niyat bilan so'rab borish uchun harakat qilyapman. Hozirgi bosimlar o'tadi, masofalar qisqaradi, qo'rquvlar tinadi. Biz esa bir kuni o'z uyimizda, xotirjam tongda, hammasiga arzigani uchun Allohga shukr qilamiz.",
+    "signoff": "[FROM]dan, seni tanlagan yurakdan 🤍",
+    "bonusReveal": "🎁 Maxsus va'da: men seni faqat so'z bilan ovutmoqchi emasman. Men seni hurmat bilan, duolar bilan, sovchilar bilan so'rab boradigan kun uchun kurashyapman. Sen mening kelajagimdagi mehmon emas, uyimning egasisan. ✨"
   }
 }
