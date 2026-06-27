@@ -1,8 +1,8 @@
 {
   "categoryId": "future",
-  "senderName": "Jasur",
-  "receiverName": "Shahlo",
-  "customMessage": "Shahlo, hozirgi sinovlarimiz ham bir kun shirin xotiraga aylanadi. Men seni kutayotgan emasman, men sen tomon yurib kelyapman. 🌙",
+  "senderName": "Yuboruvchi",
+  "receiverName": "Qabul qiluvchi",
+  "customMessage": "[TO], hozirgi sinovlarimiz ham bir kun shirin xotiraga aylanadi. Men seni kutayotgan emasman, men sen tomon yurib kelyapman. 🌙",
   "questions": [
     {
       "id": 1,
@@ -17,11 +17,11 @@
         "✨ Vaqt o'tsin, keyin ko'ramiz degan so'z"
       ],
       "wrongMessage": "Yo'q, jonim, bizni yarim ishonch emas, sabr va vafo ushlab turadi. 🤍",
-      "correctMessage": "Ha, Shahlo. Sabrimiz ham duo, vafomiz ham yo'l: ikkovimiz shu yo'ldan birga o'tamiz. 🤍"
+      "correctMessage": "Ha, [TO]. Sabrimiz ham duo, vafomiz ham yo'l — ikkovimiz shu yo'ldan birga o'tamiz. 🤍"
     },
     {
       "id": 2,
-      "text": "Oilaviy bosim yuragingni siqsa, Jasurdan qanday va'dani eshitging keladi?",
+      "text": "[FROM]dan qanday va'dani eshitishing seni yengillatadi?",
       "emoji": "🤲",
       "theme": "flowers",
       "correctIndex": 0,
@@ -31,7 +31,7 @@
         "💫 Hozir jim turaylik, keyin gaplashamiz",
         "🌙 Har kim taqdirini o'zi ko'tarsin"
       ],
-      "wrongMessage": "Sen bu og'irlikni yolg'iz ko'tarmaysan. Men yoningdaman, har kuni. 🤲",
+      "wrongMessage": "Sen bu og'irlikni yolg'iz ko'tarmaysan. [FROM] yoningdadi, har kuni. 🤲",
       "correctMessage": "Aynan shuni bil: men seni yolg'iz qoldirmayman. Seni halol niyat bilan so'rab borish uchun harakatdaman. 🤲"
     },
     {
@@ -46,7 +46,7 @@
         "🤍 Bilmadim, yurak sekinroq ursin",
         "💍 Mana, duolarimiz eshik qoqib keldi"
       ],
-      "wrongMessage": "Bu kun shunchaki kun emas, Shahlo. U kun duolarimizning ovozi bo'ladi. 💍",
+      "wrongMessage": "Bu kun shunchaki kun emas, [TO]. U kun duolarimizning ovozi bo'ladi. 💍",
       "correctMessage": "Ha, jonim. Sovchilar kelganida yuragim: \"nihoyat, sevgimizga yo'l ochildi\", deydi. 💍"
     },
     {
@@ -66,7 +66,7 @@
     },
     {
       "id": 5,
-      "text": "Biz quradigan uy qanday bo'lsa, Shahlo o'zini eng xotirjam his qiladi?",
+      "text": "Biz quradigan uy qanday bo'lsa, [TO] o'zini eng xotirjam his qiladi?",
       "emoji": "🏡",
       "theme": "flowers",
       "correctIndex": 2,
@@ -77,11 +77,11 @@
         "🌙 Hamma band, har kim o'zicha uy"
       ],
       "wrongMessage": "Bizning uyimiz devor bilan emas, mehr va xotirjamlik bilan quriladi. 🏡",
-      "correctMessage": "Ha, Shahlo. Uyimizda sen qo'rqmay nafas olasan, men esa har kuni seni asrab yashayman. 🏡"
+      "correctMessage": "Ha, [TO]. Uyimizda sen qo'rqmay nafas olasan, men esa har kuni seni asrab yashayman. 🏡"
     },
     {
       "id": 6,
-      "text": "Agar yo'limizda yana sinov chiqsa, Jasur va Shahlo qanday turadi?",
+      "text": "Agar yo'limizda yana sinov chiqsa, [FROM] va [TO] qanday turadi?",
       "emoji": "🫶",
       "theme": "hearts",
       "correctIndex": 0,
@@ -92,7 +92,7 @@
         "🌸 Vaziyat tinishini kutib turib"
       ],
       "wrongMessage": "Sinov bizni ajratish uchun emas, yanada mahkamroq tutishtirish uchun keladi. 🫶",
-      "correctMessage": "Ha, azizam. Men sening yoningda turaman, sen mening yonimda: shunda hech bir bosim bizdan katta bo'lmaydi. 🫶"
+      "correctMessage": "Ha, azizam. Men sening yoningda turaman, sen mening yonimda — shunda hech bir bosim bizdan katta bo'lmaydi. 🫶"
     },
     {
       "id": 7,
@@ -107,7 +107,7 @@
         "💌 Telefon ovozisiz jimlik bo'lishini"
       ],
       "wrongMessage": "U tong oddiy bo'lmaydi. U tongda masofalar nihoyat tugaydi. 🌅",
-      "correctMessage": "Ha, Shahlo. O'sha tongda men seni ko'rib, ichimdan: \"mana mening uyim\", deyman. 🌅"
+      "correctMessage": "Ha, [TO]. O'sha tongda men seni ko'rib, ichimdan: \"mana mening uyim\", deyman. 🌅"
     },
     {
       "id": 8,
@@ -121,23 +121,23 @@
         "✨ Hammasini vaqtning o'zi aytsin",
         "💌 Men kelyapman, sening umidingman"
       ],
-      "wrongMessage": "Kutish yolg'iz chidash degani emas. Men sen tomon harakat qilyapman. 💌",
-      "correctMessage": "Ha, jonim. Men kelyapman: gap bilan emas, niyat, harakat va halol qadamlar bilan. 💌"
+      "wrongMessage": "Kutish yolg'iz chidash degani emas. [FROM] sen tomon harakat qilyapdi. 💌",
+      "correctMessage": "Ha, jonim. Men kelyapman — gap bilan emas, niyat, harakat va halol qadamlar bilan. 💌"
     },
     {
       "id": 9,
-      "text": "Jasur oilasini ko'ndirishga urinayotganida, Shahloning yuragi nimaga suyansin?",
+      "text": "[FROM] oilasini ko'ndirishga urinayotganida, [TO]ning yuragi nimaga suyansin?",
       "emoji": "🤍",
       "theme": "roses",
       "correctIndex": 2,
       "options": [
         "🌹 Faqat taxminlarga va jim xabarlarga",
         "🌙 Qo'rquvga, go'yo hammasi kechikadi",
-        "🤍 Jasurning niyati, duosi va harakatiga",
+        "🤍 [FROM]ning niyati, duosi va harakatiga",
         "💫 Tasodifga, balki o'zi hal bo'lar"
       ],
-      "wrongMessage": "Men tasodifga tashlab qo'ymayapman, Shahlo. Seni so'rab borish uchun jonim bilan harakatdaman. 🤍",
-      "correctMessage": "To'g'ri, azizam. Mening niyatim pok: oilam rozi bo'lib, seni munosib hurmat bilan so'rab borishimizni xohlayman. 🤍"
+      "wrongMessage": "Men tasodifga tashlab qo'ymayapman, [TO]. Seni so'rab borish uchun jonim bilan harakatdaman. 🤍",
+      "correctMessage": "To'g'ri, azizam. Mening niyatim pok — oilam rozi bo'lib, seni munosib hurmat bilan so'rab borishimizni xohlayman. 🤍"
     },
     {
       "id": 10,
@@ -152,13 +152,13 @@
         "💫 Biz yo'lni taqdirga topshirdik"
       ],
       "wrongMessage": "Bizning hikoyamiz qo'rquv haqida emas. U sabr, vafo va birga yutish haqida bo'ladi. 🌟",
-      "correctMessage": "Ha, mening Shahloyim. Bir kun bu kunlarni eslab kulamiz: \"biz sabr qildik, sevgi esa bizni uyga olib keldi\", deymiz. 🌟"
+      "correctMessage": "Ha, azizam. Bir kun bu kunlarni eslab kulamiz: \"biz sabr qildik, sevgi esa bizni uyga olib keldi\", deymiz. 🌟"
     }
   ],
   "finalReward": {
     "type": "gift",
     "headline": "[TO], kelajagimiz sen bilan nurli 🌟",
-    "body": "Shahlo, bu savollarning har birida men senga bitta narsani aytmoqchi bo'ldim: sen kutayotgan sevgi bekor kutmayapti. Men seni oilam roziligi, sovchilar hurmati va halol niyat bilan so'rab borish uchun harakat qilyapman. Hozirgi bosimlar o'tadi, masofalar qisqaradi, qo'rquvlar tinadi. Biz esa bir kuni o'z uyimizda, xotirjam tongda, hammasiga arzigani uchun Allohga shukr qilamiz.",
+    "body": "[TO], bu savollarning har birida men senga bitta narsani aytmoqchi bo'ldim: sen kutayotgan sevgi bekor kutmayapti. Men seni oilam roziligi, sovchilar hurmati va halol niyat bilan so'rab borish uchun harakat qilyapman. Hozirgi bosimlar o'tadi, masofalar qisqaradi, qo'rquvlar tinadi. Biz esa bir kuni o'z uyimizda, xotirjam tongda, hammasiga arzigani uchun Allohga shukr qilamiz.",
     "signoff": "[FROM]dan, seni tanlagan yurakdan 🤍",
     "bonusReveal": "🎁 Maxsus va'da: men seni faqat so'z bilan ovutmoqchi emasman. Men seni hurmat bilan, duolar bilan, sovchilar bilan so'rab boradigan kun uchun kurashyapman. Sen mening kelajagimdagi mehmon emas, uyimning egasisan. ✨"
   }

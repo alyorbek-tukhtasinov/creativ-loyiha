@@ -16,7 +16,6 @@ const STATE = {
   audioCtx: null,
   bgMusic: null,
   musicStarted: false,
-  musicSourceReady: false,
 };
 
 // ─── AUDIO ───────────────────────────────────────────────────────────────────
@@ -66,97 +65,24 @@ function initBackgroundMusic() {
   STATE.bgMusic = document.getElementById('bgMusic');
   if (!STATE.bgMusic) return;
 
-  STATE.bgMusic.volume = 0.32;
-  ensureRomanticLoopSource();
+  STATE.bgMusic.volume = 0.28;
 
   ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
     window.addEventListener(eventName, startBackgroundMusic, { once: true, passive: true });
   });
 }
 
-function ensureRomanticLoopSource() {
-  if (!STATE.bgMusic || STATE.musicSourceReady) return;
-  STATE.bgMusic.src = createRomanticLoopDataUri();
-  STATE.musicSourceReady = true;
-}
-
 async function startBackgroundMusic() {
   if (!STATE.bgMusic || STATE.muted) return;
 
-  ensureRomanticLoopSource();
   try {
-    STATE.bgMusic.volume = 0.32;
+    STATE.bgMusic.volume = 0.28;
     await STATE.bgMusic.play();
     STATE.musicStarted = true;
   } catch(e) {
     STATE.musicStarted = false;
+    console.warn('Background music autoplay blocked until user interaction:', e);
   }
-}
-
-function createRomanticLoopDataUri() {
-  const sampleRate = 22050;
-  const seconds = 16;
-  const totalSamples = sampleRate * seconds;
-  const channels = 1;
-  const bytesPerSample = 2;
-  const dataSize = totalSamples * channels * bytesPerSample;
-  const buffer = new ArrayBuffer(44 + dataSize);
-  const view = new DataView(buffer);
-
-  function writeString(offset, str) {
-    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
-  }
-
-  writeString(0, 'RIFF');
-  view.setUint32(4, 36 + dataSize, true);
-  writeString(8, 'WAVE');
-  writeString(12, 'fmt ');
-  view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true);
-  view.setUint16(22, channels, true);
-  view.setUint32(24, sampleRate, true);
-  view.setUint32(28, sampleRate * channels * bytesPerSample, true);
-  view.setUint16(32, channels * bytesPerSample, true);
-  view.setUint16(34, 16, true);
-  writeString(36, 'data');
-  view.setUint32(40, dataSize, true);
-
-  const chords = [
-    [261.63, 329.63, 392.00, 523.25],
-    [220.00, 261.63, 329.63, 440.00],
-    [174.61, 261.63, 349.23, 440.00],
-    [196.00, 246.94, 329.63, 392.00]
-  ];
-
-  for (let i = 0; i < totalSamples; i++) {
-    const t = i / sampleRate;
-    const chord = chords[Math.floor(t / 4) % chords.length];
-    const local = t % 4;
-    const fadeIn = Math.min(1, t / 1.2);
-    const fadeOut = Math.min(1, (seconds - t) / 1.2);
-    const chordFade = Math.min(1, local / 0.45, (4 - local) / 0.45);
-    const envelope = Math.max(0, Math.min(fadeIn, fadeOut, chordFade));
-    const shimmer = Math.sin(2 * Math.PI * 880 * t) * 0.015 * Math.sin(Math.PI * local / 4);
-    let sample = shimmer;
-
-    chord.forEach((freq, idx) => {
-      const detune = 1 + (idx - 1.5) * 0.0015;
-      sample += Math.sin(2 * Math.PI * freq * detune * t) * (0.075 / (idx + 1));
-      sample += Math.sin(2 * Math.PI * freq * 2 * t) * (0.018 / (idx + 1));
-    });
-
-    sample *= envelope;
-    sample = Math.max(-1, Math.min(1, sample));
-    view.setInt16(44 + i * 2, sample * 32767, true);
-  }
-
-  let binary = '';
-  const bytes = new Uint8Array(buffer);
-  const chunkSize = 0x8000;
-  for (let i = 0; i < bytes.length; i += chunkSize) {
-    binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunkSize));
-  }
-  return `data:audio/wav;base64,${btoa(binary)}`;
 }
 
 // ─── URL PARAMS ──────────────────────────────────────────────────────────────
@@ -241,7 +167,8 @@ function showIntro() {
   document.getElementById('introTitle').textContent = cm.title;
 
   const receiverName = to || cd.receiverName;
-  const message = msg || cd.customMessage || `Bu o'yin ${senderName}dan siz uchun! 💕`;
+  const rawMessage = msg || cd.customMessage || `Bu o'yin [FROM]dan siz uchun! 💕`;
+  const message = rn(rawMessage, senderName, receiverName);
   document.getElementById('introMessage').textContent = message;
   document.getElementById('introReceiver').textContent = `🌸 ${receiverName} 🌸`;
 
@@ -296,7 +223,6 @@ function updateProgress() {
 }
 
 function renderQuestion() {
-  // MUHIM: oldingi savolda qochib ketgan tugmalarni tozalash
   cleanupFleeingButtons();
 
   if (STATE.currentQ >= STATE.questions.length) {
@@ -319,7 +245,7 @@ function renderQuestion() {
 
   const textEl = document.getElementById('questionText');
   textEl.textContent = '';
-  setTimeout(() => typewriterEffect(textEl, q.text, 30), 200);
+  setTimeout(() => typewriterEffect(textEl, renderNameText(q.text), 30), 200);
 
   renderOptions(q);
 
@@ -335,7 +261,7 @@ function renderOptions(q) {
   q.options.forEach((optText, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.textContent = optText;
+    btn.textContent = renderNameText(optText);
     btn.style.opacity = '0';
     btn.style.transform = 'translateY(12px)';
 
@@ -399,9 +325,8 @@ function renderOptions(q) {
   });
 }
 
-// ─── FLEE MEXANIKASI ─────────────────────────────────────────────────────────
+// ─── NOTO'G'RI TUGMA EFFEKTI ─────────────────────────────────────────────────
 
-// Noto'g'ri tugma bosilganda: feedback + tovush + qochish
 function handleWrongInteraction(btn, clientX, clientY, q) {
   const now = performance.now();
   if (btn._lastFleeAt && now - btn._lastFleeAt < 140) return;
@@ -410,103 +335,26 @@ function handleWrongInteraction(btn, clientX, clientY, q) {
   onWrongAttempt(btn, q);
   playWrong();
   spawnReactionEmoji(clientX, clientY);
-  fleeButton(btn, clientX, clientY);
+  nudgeWrongButton(btn);
 }
 
-// Tugmani qochirish — birinchi bosilishda placeholder yaratib, keyingilarida yangi pozitsiyaga o'tkazadi
-function fleeButton(btn, clientX, clientY) {
-  const isMob = STATE.isMobile;
+function nudgeWrongButton(btn) {
+  const dx = Math.round((Math.random() * 2 - 1) * 14);
+  const dy = Math.round((Math.random() * 2 - 1) * 10);
+  const rot = (Math.random() * 4 - 2).toFixed(1);
 
-  if (!btn._originalRect) {
-    // BIRINCHI bosilish: hozirgi joylashuvni yodlab qol, placeholder qo'y
-    const rect = btn.getBoundingClientRect();
-    btn._originalRect = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
+  btn.classList.add('wrong-nudge');
+  btn.style.transform = `translate(${dx}px, ${dy}px) rotate(${rot}deg)`;
 
-    // Griдda joy saqlab qolish uchun ko'rinmas placeholder
-    const ph = document.createElement('div');
-    ph.className = 'flee-placeholder';
-    ph.style.cssText = `width:${rect.width}px;height:${rect.height}px;min-width:${rect.width}px;min-height:${rect.height}px;visibility:hidden;flex-shrink:0;border-radius:50px;pointer-events:none;`;
-    btn.parentNode.insertBefore(ph, btn);
-    btn._placeholder = ph;
-
-    // Tugmani body ga o'tkazib, fixed pozitsiyada dastlabki o'rnida joylashtir (vizual sakrash yo'q)
-    document.body.appendChild(btn);
-    btn.style.position = 'fixed';
-    btn.style.left = rect.left + 'px';
-    btn.style.top = rect.top + 'px';
-    btn.style.width = rect.width + 'px';
-    btn.style.margin = '0';
-    btn.style.zIndex = '100';
-    btn.classList.add('fleeing');
-  }
-
-  // Joriy joylashuv (trail uchun)
-  const curLeft = parseFloat(btn.style.left) || 0;
-  const curTop  = parseFloat(btn.style.top)  || 0;
-  const w = btn._originalRect.width;
-  const h = btn._originalRect.height;
-  spawnTrail({ left: curLeft, top: curTop, width: w, height: h });
-
-  // Mobil: puff efekti qo'shimcha
-  if (isMob) spawnPuff(curLeft + w / 2, curTop + h / 2);
-
-  // Ekran ichidan kursor/touch nuqtasidan uzoqroq xavfsiz joy tanlaymiz.
-  const pad = STATE.isMobile ? 14 : 24;
-  const minTop = 64;
-  const maxX = Math.max(pad, window.innerWidth - w - pad);
-  const maxY = Math.max(minTop, window.innerHeight - h - pad);
-  const dangerX = Number.isFinite(clientX) ? clientX : curLeft + w / 2;
-  const dangerY = Number.isFinite(clientY) ? clientY : curTop + h / 2;
-  let best = { x: curLeft, y: curTop, score: -1 };
-
-  for (let i = 0; i < 18; i++) {
-    const candidateX = pad + Math.random() * Math.max(1, maxX - pad);
-    const candidateY = minTop + Math.random() * Math.max(1, maxY - minTop);
-    const centerX = candidateX + w / 2;
-    const centerY = candidateY + h / 2;
-    const score = Math.hypot(centerX - dangerX, centerY - dangerY);
-    if (score > best.score) best = { x: candidateX, y: candidateY, score };
-  }
-
-  const nx = Math.max(pad, Math.min(maxX, best.x));
-  const ny = Math.max(minTop, Math.min(maxY, best.y));
-
-  btn.style.transition = 'left 0.28s cubic-bezier(0.16,1,0.3,1), top 0.28s cubic-bezier(0.16,1,0.3,1), transform 0.28s cubic-bezier(0.16,1,0.3,1)';
-  btn.style.transform = `rotate(${(Math.random() * 10 - 5).toFixed(2)}deg)`;
-  btn.style.left = nx + 'px';
-  btn.style.top  = ny + 'px';
+  clearTimeout(btn._nudgeTimer);
+  btn._nudgeTimer = setTimeout(() => {
+    btn.style.transform = '';
+    btn.classList.remove('wrong-nudge');
+  }, 320);
 }
 
-// Qochib ketgan barcha tugmalarni tozalash (savol o'zgarishida)
 function cleanupFleeingButtons() {
-  document.querySelectorAll('.option-btn.fleeing').forEach(btn => {
-    if (btn._placeholder) { btn._placeholder.remove(); btn._placeholder = null; }
-    btn._originalRect = null;
-    btn.remove();
-  });
-  // Placeholder lar qolgan bo'lsa ularni ham tozala
-  document.querySelectorAll('.flee-placeholder').forEach(ph => ph.remove());
-}
-
-function spawnTrail(rect) {
-  const trail = document.createElement('div');
-  trail.className = 'ghost-trail';
-  trail.style.left   = rect.left   + 'px';
-  trail.style.top    = rect.top    + 'px';
-  trail.style.width  = rect.width  + 'px';
-  trail.style.height = (rect.height || 46) + 'px';
-  document.body.appendChild(trail);
-  setTimeout(() => trail.remove(), 400);
-}
-
-function spawnPuff(x, y) {
-  const puff = document.createElement('div');
-  puff.className = 'puff-smoke';
-  puff.textContent = '💨';
-  puff.style.left = (x - 16) + 'px';
-  puff.style.top  = (y - 16) + 'px';
-  document.body.appendChild(puff);
-  setTimeout(() => puff.remove(), 500);
+  // no-op: nudge mexanikasi bilan almashtirdik
 }
 
 function spawnReactionEmoji(x, y) {
@@ -526,7 +374,7 @@ function onWrongAttempt(btn, q) {
   STATE.streak = 0;
   STATE.speedMultiplier = Math.min(3, 1 + STATE.wrongAttempts * 0.4);
 
-  showFeedback(q.wrongMessage || 'Yo\'q-yo\'q! 😄', 'error');
+  showFeedback(renderNameText(q.wrongMessage || 'Yo\'q-yo\'q! 😄'), 'error');
 
   if (STATE.wrongAttempts >= 5) {
     document.getElementById('hintBubble').classList.remove('hidden');
@@ -561,17 +409,7 @@ function handleCorrect(btn, q) {
     b.style.pointerEvents = 'none';
   });
 
-  // To'g'ri tugmani bezash (agar qochib ketgan bo'lsa, qaytarib ko'rsatish)
   btn.classList.add('correct');
-  if (btn.classList.contains('fleeing')) {
-    btn.classList.remove('fleeing');
-    btn.style.transition = 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)';
-    // Markazga qaytarish
-    const card = document.getElementById('questionCard');
-    const cr = card.getBoundingClientRect();
-    btn.style.left = (cr.left + cr.width / 2 - btn._originalRect.width / 2) + 'px';
-    btn.style.top  = (cr.top  + cr.height / 2) + 'px';
-  }
 
   document.getElementById('heartbeatIndicator').classList.remove('fast');
 
@@ -581,7 +419,7 @@ function handleCorrect(btn, q) {
   STATE.streak++;
   if (STATE.streak >= 3) showStreakBadge();
 
-  showFeedback(q.correctMessage || 'To\'g\'ri! 🎉', 'success');
+  showFeedback(renderNameText(q.correctMessage || 'To\'g\'ri! 🎉'), 'success');
   playCorrect();
   burstConfetti(45);
 
@@ -777,6 +615,12 @@ function showReward() {
 function rn(text, from, to) {
   if (!text) return '';
   return String(text).replace(/\[FROM\]/g, from).replace(/\[TO\]/g, to);
+}
+
+function renderNameText(text) {
+  const from = STATE.params.from || (STATE.catData && STATE.catData.senderName) || 'Yuboruvchi';
+  const to = STATE.params.to || (STATE.catData && STATE.catData.receiverName) || 'Qabul qiluvchi';
+  return rn(text, from, to);
 }
 
 function renderLetterReward(container, reward, from, to, special) {
@@ -1010,17 +854,4 @@ function createBgParticles() {
 }
 
 // ─── RESIZE ───────────────────────────────────────────────────────────────────
-window.addEventListener('resize', () => {
-  resizeCanvas();
-  // Qochib ketgan tugmalar ekrandan chiqib ketmasligi uchun
-  document.querySelectorAll('.option-btn.fleeing').forEach(btn => {
-    const w   = parseFloat(btn.style.width) || 120;
-    const h   = btn.offsetHeight || 46;
-    let left  = parseFloat(btn.style.left) || 0;
-    let top   = parseFloat(btn.style.top)  || 0;
-    left = Math.max(8, Math.min(window.innerWidth  - w - 8, left));
-    top  = Math.max(64, Math.min(window.innerHeight - h - 8, top));
-    btn.style.left = left + 'px';
-    btn.style.top  = top  + 'px';
-  });
-});
+window.addEventListener('resize', resizeCanvas);

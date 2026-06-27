@@ -1,7 +1,7 @@
 {
   "categoryId": "anniversary",
-  "senderName": "Ulugbek",
-  "receiverName": "Fotima",
+  "senderName": "Yuboruvchi",
+  "receiverName": "Qabul qiluvchi",
   "customMessage": "Birga bo'lganimizning har bir yili — oltin sahifa 💍",
   "questions": [
     {
@@ -157,7 +157,7 @@
   ],
   "finalReward": {
     "type": "countdown",
-    "headline": "[TO], yilligimiz muborak! Birgalikdagi har bir kun — nعمat 💍",
+    "headline": "[TO], yilligimiz muborak! Birgalikdagi har bir kun — ne'mat 💍",
     "body": "Birga o'tgan kunlar — ularning har biri meni yaxshiroq qildi. Siz bilan — hayot go'zal. Yana ko'p yillar birgalikda, yanada kuchliroq bo'lamiz.",
     "signoff": "[FROM]dan, butun qalb bilan 💍",
     "bonusReveal": "📅 Keyingi yiligimizga rejamiz: Birgalikda yangi joy, yangi xotira!",

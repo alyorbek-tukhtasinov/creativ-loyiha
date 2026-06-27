@@ -25,8 +25,10 @@
   <!-- Heartbeat indicator -->
   <div class="heartbeat-indicator" id="heartbeatIndicator">💓</div>
 
-  <!-- Romantic background music. JS fills this with a generated soft loop. -->
-  <audio id="bgMusic" loop preload="auto" aria-hidden="true"></audio>
+  <audio id="bgMusic" loop preload="auto" aria-hidden="true">
+    <source src="../assets/music/background.mp3" type="audio/mpeg">
+    <source src="../assets/music/background.ogg" type="audio/ogg">
+  </audio>
 
   <!-- Loading Screen -->
   <div class="screen" id="screenLoading">

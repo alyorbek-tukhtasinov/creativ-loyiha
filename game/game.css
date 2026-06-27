@@ -408,34 +408,11 @@ body::before {
   background: rgba(255,107,157,0.05);
 }
 
-.option-btn.fleeing {
-  position: fixed !important;
-  z-index: 100;
-  /* position va o'lcham o'zgarishi uchun transition yo'q, faqat harakat uchun */
-  box-shadow: 0 6px 24px rgba(255,107,157,0.35);
-  border-color: rgba(255,107,157,0.4) !important;
-  background: rgba(255,240,245,0.95) !important;
-  cursor: not-allowed;
-  will-change: left, top, transform;
-  animation: fleeGlow 1.1s ease-in-out infinite;
-}
-
-@keyframes fleeGlow {
-  0%, 100% {
-    box-shadow: 0 6px 24px rgba(255,107,157,0.32);
-  }
-  50% {
-    box-shadow: 0 10px 34px rgba(255,107,157,0.48), 0 0 0 5px rgba(255,179,204,0.18);
-  }
-}
-
-/* Grid qulab tushmasligi uchun yashirin placeholder */
-.flee-placeholder {
-  display: block;
-  flex-shrink: 0;
-  pointer-events: none;
-  visibility: hidden;
-  min-height: 46px;
+.option-btn.wrong-nudge {
+  border-color: rgba(255,107,157,0.45);
+  background: rgba(255,107,157,0.08);
+  box-shadow: 0 6px 18px rgba(255,107,157,0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .option-btn.disabled {
@@ -453,19 +430,6 @@ body::before {
 @keyframes reactionFloat {
   0% { opacity: 1; transform: translateY(0) scale(1); }
   100% { opacity: 0; transform: translateY(-40px) scale(1.3); }
-}
-
-/* Puff smoke for mobile teleport */
-.puff-smoke {
-  position: fixed; z-index: 150;
-  font-size: 28px; pointer-events: none;
-  animation: puffOut 0.5s ease forwards;
-}
-
-@keyframes puffOut {
-  0% { opacity: 1; transform: scale(0.3); }
-  50% { opacity: 0.7; transform: scale(1.2); }
-  100% { opacity: 0; transform: scale(1.8); }
 }
 
 /* Feedback Message */
@@ -791,20 +755,6 @@ body::before {
   box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
 .btn-screenshot:hover { transform: translateY(-2px); border-color: var(--primary); }
-
-/* Ghost trail effect */
-.ghost-trail {
-  position: fixed; z-index: 99;
-  pointer-events: none;
-  border-radius: 50px;
-  background: rgba(255,107,157,0.15);
-  animation: trailFade 0.4s ease forwards;
-}
-
-@keyframes trailFade {
-  from { opacity: 0.5; }
-  to { opacity: 0; transform: scale(0.8); }
-}
 
 /* Transition animations */
 @keyframes slideInRight {
